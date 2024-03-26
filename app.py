@@ -150,7 +150,7 @@ with tab4:
                                      'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
 
-            for_edits_df = workshops_results.filter(col["award_desc"]==workshop_choice)
+            for_edits_df = workshops_results.filter(col("award_desc")==workshop_choice)
             
             if (for_edits_df.iloc[0]['ACCOUNT_LOCATOR'] is not None):
                 st.session_state['new_acct_loc'] = workshops_results.iloc[0]['ACCOUNT_LOCATOR']
