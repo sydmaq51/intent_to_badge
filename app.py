@@ -159,8 +159,8 @@ with tab4:
                 st.session_state['new_acct_loc'] = '' 
                 st.session_state['new_acct_id'] = ''
             elif for_edits_pd_df_rows == 1:
-                st.session_state['new_acct_loc'] = for_edits_df.iloc[0]['ACCOUNT_LOCATOR']           
-                st.session_state['new_acct_id'] = for_edits_df.iloc[0]['ACCOUNT_IDENTIFIER']
+                st.session_state['new_acct_loc'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0]           
+                st.session_state['new_acct_id'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
             else:
                 st.write("there should only be 1 or zero rows.")
         
