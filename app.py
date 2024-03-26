@@ -132,10 +132,7 @@ with tab3:
 with tab4:
     st.subheader("View Trial Account and Badges Awarded Information")
     
-    if st.session_state.auth_status == 'authed':
-        badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
-                                     'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
-        # st.dataframe(badge_options)
+    if st.session_state.auth_status == 'authed'
 
         # show a table of all the entries this suser has made
         workshops_sql =  "select award_desc, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') "
@@ -147,49 +144,31 @@ with tab4:
             st.write("You have entered account info for the following badge workshops:")
             st.dataframe(workshops_results)
 
+            //Drop list to choose a workshop to focus on
+            badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
+                                     'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
-            st.session_state['workshop_acro'] = workshop_choice[workshop_acro]
-            st.session_state['award_name'] = workshop_choice[award_name]
-
+            
+            if (workshop_results.iloc[0]['ACCOUNT_LOCATOR'] is not None):
+                st.session_state['new_acct_loc'] = workshop_results.iloc[0]['ACCOUNT_LOCATOR'])
+            if (workshop_results.iloc[0]['ACCOUNT_ID'] is not None):    
+                st.session_state['new_acct_id'] = workshop_results.iloc[0]['ACCOUNT_ID'])
+            
             with st.form("edit_acct_info"):
                 st.write("Edit Trial Account Info for " + workshop_choice['badge_name'])
-                acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:")
-                acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:")
+                edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:, st.session_state.account_id)
+                edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
                 submit_new_acct_info = st.submit_form_button
 
             if submit_new_acct_info: 
-                st.write(acct_id)
-                st.write(acct_loc)
+                st.write(edited_acct_id)
+                st.write(edits_acct_loc)
             st.stop()
-            if (workshop_results.iloc[0]['ACCOUNT_LOCATOR'] is not None):
-                st.write("Your Account LOCATOR for " + workshop + " is: " + workshop_results.iloc[0]['ACCOUNT_LOCATOR'])
-            if (workshop_results.iloc[0]['ORGANIZATION_ID'] is not None):    
-                st.write("Your Account ORGANIZATION for " + workshop + " is: " +workshop_results.iloc[0]['ORGANIZATION_ID'] or "Missing")
-            if (workshop_results.iloc[0]['ACCOUNT_NAME'] is not None):
-                st.write("Your ACCOUNT NAME for " + workshop + " is: " + workshop_results.iloc[0]['ACCOUNT_NAME'] or "Missing")
+
         else:
             st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
             new_badge_interest = st.button("Register for the " + st.session_state.workshop_acro + " Badge")
 
-            if new_badge_interest:
-                st.session_state.new_info_submit = False
-                with st.form("new_workshop_interest"):
-                    st.session_state.new_acct_id = st.text_input("Enter the ACCOUNT ID of Your Snowflake Trial Account:")
-                    st.session_state.new_acct_loc = st.text_input("Enter the ACCOUNT LOCATOR of Your Snowflake Trial Account:")
-                    new_info_submit = st.form_submit_button("Submit My New Trial Account Info") 
-            if new_info_submit:
-                        st.session_state.new_info_submit = True
-                        add_workshop_result = session.call('AMAZING.APP.ADD_ACCT_INFO_SP',st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_acro, st.session_state.new_acct_id, st.session_state.new_acct_loc)
-                        st.session_state['add_workshop_result'] = add_workshop_result
-                        # st.error(e, icon="🚨")
-            if st.session_state.new_info_submit==True:
-                #st.success('Snowflake Trial Account Info Updated for ' + workshop, icon='🚀')
-                st.write(st.session_state.add_workshop_result)
-                refreshed_workshop_df = session.sql(workshop_sql)
-                refreshed_workshop_results = refreshed_workshop_df.to_pandas()
-                refreshed_workshop_rows = refreshed_workshop_results.shape[0]
-                if refreshed_workshop_rows>=1:
-                    st.dataframe(refreshed_workshop_results)
         
         #with st.form("workshops"):  
          #   st.write("editing will happen here")
