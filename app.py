@@ -132,7 +132,7 @@ with tab3:
 with tab4:
     st.subheader("View Trial Account and Badges Awarded Information")
     
-    if st.session_state.auth_status == 'authed'
+    if st.session_state.auth_status == 'authed':
 
         # show a table of all the entries this suser has made
         workshops_sql =  "select award_desc, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') "
