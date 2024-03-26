@@ -166,7 +166,6 @@ with tab4:
 
             st.write(st.session_state.new_acct_loc)
 
-            
             with st.form("edit_acct_info"):
                 # st.write("Edit Trial Account Info for " + workshop_choice)
                 edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.new_acct_id)
@@ -174,8 +173,15 @@ with tab4:
                 submit_new_acct_info = st.form_submit_button("Update Trial Account Info")
 
             if submit_new_acct_info: 
-                st.write(edited_acct_id)
-                st.write(edits_acct_loc)
+                if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
+                    st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
+                elif edited_acct_id.find(".") < 0:
+                    st.write("The ACCOUNT ID does not seem accurate. Please try again.")
+                elif len(edited_acct_loc) < 7 or len(edited_acct_loc) > 8:
+                    st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
+                else:    
+                    st.write(edited_acct_id)
+                    st.write(edits_acct_loc)
                     
 
         else:
