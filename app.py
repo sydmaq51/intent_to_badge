@@ -148,11 +148,14 @@ with tab4:
             badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
                                      'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
+
+            for_edits_df = workshops_results.filter(col["award_desc"]==workshop_choice)
             
-            if (workshops_results.iloc[0]['ACCOUNT_LOCATOR'] is not None):
+            if (for_edits_df.iloc[0]['ACCOUNT_LOCATOR'] is not None):
                 st.session_state['new_acct_loc'] = workshops_results.iloc[0]['ACCOUNT_LOCATOR']
-            if (workshops_results.iloc[0]['ACCOUNT_ID'] is not None):    
+            if (for_edits_df.iloc[0]['ACCOUNT_ID'] is not None):    
                 st.session_state['new_acct_id'] = workshops_results.iloc[0]['ACCOUNT_IDENTIFIER']
+        
             
             with st.form("edit_acct_info"):
                 st.write("Edit Trial Account Info for " + workshop_choice['badge_name'])
