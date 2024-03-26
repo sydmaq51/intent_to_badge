@@ -162,8 +162,8 @@ with tab4:
                 if new_info_submit:
                     # add_workshop_result = 
                     session.call('AMAZING.APP.ADD_ACCT_INFO_SP',st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_acro, new_acct_id, new_acct_loc)
-                    # st.write(add_workshop_result)
-                    # st.error(e, icon="🚨")
+                    st.write(add_workshop_result)
+                    st.error(e, icon="🚨")
                     st.success('Snowflake Trial Account Info Updated for ' + workshop, icon='🚀')
             
        
