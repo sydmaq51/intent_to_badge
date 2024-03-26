@@ -138,7 +138,7 @@ with tab4:
         # st.dataframe(badge_options)
 
         # show a table of all the entries this suser has made
-        workshops_sql =  "select short_course_id, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') "
+        workshops_sql =  "select award_desc, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') "
         workshops_df = session.sql(workshops_sql)
         workshops_results = workshops_df.to_pandas()
         workshops_rows = workshops_results.shape[0]
