@@ -168,10 +168,10 @@ with tab4:
 
             
             with st.form("edit_acct_info"):
-                # st.write("Edit Trial Account Info for " + workshop_choice['badge_name'])
+                # st.write("Edit Trial Account Info for " + workshop_choice)
                 edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.new_acct_id)
                 edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.new_acct_loc)
-                submit_new_acct_info = st.submit_form_button
+                submit_new_acct_info = st.submit_form_button("Update Trial Account Info")
 
             if submit_new_acct_info: 
                 st.write(edited_acct_id)
