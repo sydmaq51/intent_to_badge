@@ -151,7 +151,7 @@ with tab4:
             workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
 
             for_edits_df =  "select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') and award_desc='" + workshop_choice + "'"
-            st.datafram(for_edits_df)
+            st.dataframe(for_edits_df)
             
             if (for_edits_df.iloc[0]['ACCOUNT_LOCATOR'] is not None):
                 st.session_state['new_acct_loc'] = workshops_results.iloc[0]['ACCOUNT_LOCATOR']
