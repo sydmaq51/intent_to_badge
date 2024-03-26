@@ -165,10 +165,8 @@ with tab4:
                         st.session_state['add_workshop_result'] = add_workshop_result
                         # st.error(e, icon="🚨")
             if new_info_submit = True:
-                st.session_state['auth_status'] = 'not_authed'
+                st.success('Snowflake Trial Account Info Updated for ' + workshop, icon='🚀')
                 st.write(st.session_state.add_workshop_result)
-                # st.success('Snowflake Trial Account Info Updated for ' + workshop, icon='🚀')
-            
        
     
         
