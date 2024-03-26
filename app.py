@@ -150,9 +150,9 @@ with tab4:
             workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
             
             if (workshop_results.iloc[0]['ACCOUNT_LOCATOR'] is not None):
-                st.session_state['new_acct_loc'] = workshop_results.iloc[0]['ACCOUNT_LOCATOR'])
+                st.session_state['new_acct_loc'] = workshop_results.iloc[0]['ACCOUNT_LOCATOR']
             if (workshop_results.iloc[0]['ACCOUNT_ID'] is not None):    
-                st.session_state['new_acct_id'] = workshop_results.iloc[0]['ACCOUNT_ID'])
+                st.session_state['new_acct_id'] = workshop_results.iloc[0]['ACCOUNT_ID']
             
             with st.form("edit_acct_info"):
                 st.write("Edit Trial Account Info for " + workshop_choice['badge_name'])
