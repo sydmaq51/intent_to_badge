@@ -135,7 +135,7 @@ with tab4:
     if st.session_state.auth_status == 'authed':
         badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
                                      'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
-        st.dataframe(badge_options)
+        # st.dataframe(badge_options)
 
         # show a table of all the entries this suser has made
         workshops_sql =  "select award_id, account_locator, organization_id, account_name from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') "
@@ -145,7 +145,7 @@ with tab4:
         
         if workshops_rows>=1:
             st.write("You have entered account info for the following badge workshops:")
-            st.dataframe(workshop_results)
+            st.dataframe(workshops_results)
 
             workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
             st.session_state['workshop_acro'] = workshop_choice[workshop_acro]
