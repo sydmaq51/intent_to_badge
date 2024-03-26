@@ -144,7 +144,7 @@ with tab4:
             st.write("You have entered account info for the following badge workshops:")
             st.dataframe(workshops_results)
 
-            //Drop list to choose a workshop to focus on
+            # Drop list to choose a workshop to focus on
             badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
                                      'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
