@@ -8,6 +8,8 @@ if 'auth_status' not in st.session_state:
     st.session_state['auth_status'] = 'not_authed'
 if 'display_format' not in st.session_state:
     st.session_state['display_format'] = 1
+if 'new_info_submit' not in st.session_state:
+    st.session_state['new_info_submit'] = False
 
 # Temp for debugging
 st.session_state
