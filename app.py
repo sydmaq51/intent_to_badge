@@ -173,10 +173,10 @@ with tab4:
                 edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.new_acct_loc)
                 submit_new_acct_info = st.submit_form_button("Update Trial Account Info")
 
-            if submit_new_acct_info: 
-                st.write(edited_acct_id)
-                st.write(edits_acct_loc)
-            st.stop()
+                if submit_new_acct_info: 
+                    st.write(edited_acct_id)
+                    st.write(edits_acct_loc)
+                    
 
         else:
             st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
