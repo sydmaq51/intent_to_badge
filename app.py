@@ -159,11 +159,11 @@ with tab4:
                     st.session_state.new_acct_id = st.text_input("Enter the ACCOUNT ID of Your Snowflake Trial Account:")
                     st.session_state.new_acct_loc = st.text_input("Enter the ACCOUNT LOCATOR of Your Snowflake Trial Account:")
                     new_info_submit = st.form_submit_button("Submit My New Trial Account Info") 
-        if new_info_submit:
-            add_workshop_result = session.call('AMAZING.APP.ADD_ACCT_INFO_SP',st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_acro, st.session_state.new_acct_id, st.session_state.new_acct_loc)
+                if new_info_submit:
+                    add_workshop_result = session.call('AMAZING.APP.ADD_ACCT_INFO_SP',st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_acro, st.session_state.new_acct_id, st.session_state.new_acct_loc)
                         # st.session_state['add_workshop'] = add_workshop_result
                         # st.error(e, icon="🚨")
-            st.success('Snowflake Trial Account Info Updated for ' + workshop, icon='🚀')
+                    st.success('Snowflake Trial Account Info Updated for ' + workshop, icon='🚀')
             
        
     
