@@ -155,10 +155,10 @@ with tab4:
             for_edits_pd_df = for_edits_df.to_pandas()
             for_edits_pd_df_rows = for_edits_pd_df.shape[0]
 
-            if for_edits_pd_df_rows = 0:
+            if for_edits_pd_df_rows == 0:
                 st.session_state['new_acct_loc'] = '' 
                 st.session_state['new_acct_id'] = ''
-            elif for_edits_pd_df_rows = 1:
+            elif for_edits_pd_df_rows == 1:
                 st.session_state['new_acct_loc'] = for_edits_df.iloc[0]['ACCOUNT_LOCATOR']           
                 st.session_state['new_acct_id'] = for_edits_df.iloc[0]['ACCOUNT_IDENTIFIER']
             else:
