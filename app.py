@@ -152,7 +152,7 @@ with tab4:
             if (workshops_results.iloc[0]['ACCOUNT_LOCATOR'] is not None):
                 st.session_state['new_acct_loc'] = workshops_results.iloc[0]['ACCOUNT_LOCATOR']
             if (workshops_results.iloc[0]['ACCOUNT_ID'] is not None):    
-                st.session_state['new_acct_id'] = workshops_results.iloc[0]['ACCOUNT_ID']
+                st.session_state['new_acct_id'] = workshops_results.iloc[0]['ACCOUNT_IDENTIFIER']
             
             with st.form("edit_acct_info"):
                 st.write("Edit Trial Account Info for " + workshop_choice['badge_name'])
