@@ -181,7 +181,7 @@ with tab4:
                     st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
                 else:    
                     st.write(edited_acct_id)
-                    st.write(edits_acct_loc)
+                    st.write(edited_acct_loc)
                     
 
         else:
