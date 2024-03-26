@@ -8,8 +8,8 @@ if 'auth_status' not in st.session_state:
     st.session_state['auth_status'] = 'not_authed'
 if 'display_format' not in st.session_state:
     st.session_state['display_format'] = 1
-if 'new_info_submit' not in st.session_state:
-    st.session_state['new_info_submit'] = False
+if 'new_badge_info_submit' not in st.session_state:
+    st.session_state['new_badge_info_submit'] = False
 
 # Temp for debugging
 st.session_state
@@ -133,19 +133,33 @@ with tab4:
     st.subheader("View Trial Account and Badges Awarded Information")
     
     if st.session_state.auth_status == 'authed':
-        badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW']})
+        badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
+                                     'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
         # st.dataframe(badge_options)
-        workshop = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
-        st.session_state['workshop_acro'] = workshop[9:13]
-        award_name = 'AWARD-'+st.session_state.workshop_acro
         
-        workshop_sql =  "select award_id, account_locator, organization_id, account_name from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') and AWARD_ID = '" + award_name + "'"
-        workshop_df = session.sql(workshop_sql)
-        workshop_results = workshop_df.to_pandas()
-        workshop_rows = workshop_results.shape[0]
+        workshops_sql =  "select award_id, account_locator, organization_id, account_name from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') and AWARD_ID = '" + award_name + "'"
+        workshops_df = session.sql(workshops_sql)
+        workshops_results = workshops_df.to_pandas()
+        workshops_rows = workshops_results.shape[0]
         
-        if workshop_rows>=1:
-            st.write("We found your Trial Account Info. Please make sure it is complete!")
+        if workshops_rows>=1:
+            st.write("You have entered account info for the following badge workshops:")
+            st.dataframe(workshop_results)
+
+            workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
+            st.session_state['workshop_acro'] = workshop_choice[workshop_acro]
+            st.session_state['award_name'] = workshop_choice[award_name]
+
+            with st.form("edit_acct_info"):
+                st.write("Edit Trial Account Info for " + workshop_choice['badge_name'])
+                acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:")
+                acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:")
+                submit_new_acct_info = st.submit_form_button
+
+            if submit_new_acct_info: 
+                st.write(acct_id)
+                st.write(acct_loc)
+            st.stop()
             if (workshop_results.iloc[0]['ACCOUNT_LOCATOR'] is not None):
                 st.write("Your Account LOCATOR for " + workshop + " is: " + workshop_results.iloc[0]['ACCOUNT_LOCATOR'])
             if (workshop_results.iloc[0]['ORGANIZATION_ID'] is not None):    
@@ -162,7 +176,7 @@ with tab4:
                     st.session_state.new_acct_id = st.text_input("Enter the ACCOUNT ID of Your Snowflake Trial Account:")
                     st.session_state.new_acct_loc = st.text_input("Enter the ACCOUNT LOCATOR of Your Snowflake Trial Account:")
                     new_info_submit = st.form_submit_button("Submit My New Trial Account Info") 
-                    if new_info_submit:
+            if new_info_submit:
                         st.session_state.new_info_submit = True
                         add_workshop_result = session.call('AMAZING.APP.ADD_ACCT_INFO_SP',st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_acro, st.session_state.new_acct_id, st.session_state.new_acct_loc)
                         st.session_state['add_workshop_result'] = add_workshop_result
