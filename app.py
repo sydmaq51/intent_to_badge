@@ -163,9 +163,12 @@ with tab4:
                 st.session_state['new_acct_id'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
             else:
                 st.write("there should only be 1 or zero rows.")
-        
+
+            st.write(st.session_state.new_acct_loc)
+
+            
             with st.form("edit_acct_info"):
-                st.write("Edit Trial Account Info for " + workshop_choice['badge_name'])
+                # st.write("Edit Trial Account Info for " + workshop_choice['badge_name'])
                 edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.new_acct_id)
                 edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.new_acct_loc)
                 submit_new_acct_info = st.submit_form_button
