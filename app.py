@@ -151,14 +151,19 @@ with tab4:
             workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
 
             for_edits_df =  "select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') and award_desc='" + workshop_choice + "'"
-            st.dataframe(for_edits_df)
-            
-            if (for_edits_df.iloc[0]['ACCOUNT_LOCATOR'] is not None):
-                st.session_state['new_acct_loc'] = workshops_results.iloc[0]['ACCOUNT_LOCATOR']
-            if (for_edits_df.iloc[0]['ACCOUNT_ID'] is not None):    
-                st.session_state['new_acct_id'] = workshops_results.iloc[0]['ACCOUNT_IDENTIFIER']
+            for_edits_df = session.sql(workshops_sql)
+            for_edits_pd_df = for_edits_df.to_pandas()
+            for_edits_pd_df_rows = for_edits_pd_df.shape[0]
+
+            if for_edits_pd_df_rows = 0:
+                st.session_state['new_acct_loc'] = '' 
+                st.session_state['new_acct_id'] = ''
+            elif for_edits_pd_df_rows = 1:
+                st.session_state['new_acct_loc'] = for_edits_df.iloc[0]['ACCOUNT_LOCATOR']           
+                st.session_state['new_acct_id'] = for_edits_df.iloc[0]['ACCOUNT_IDENTIFIER']
+            else:
+                st.write("there should only be 1 or zero rows.")
         
-            
             with st.form("edit_acct_info"):
                 st.write("Edit Trial Account Info for " + workshop_choice['badge_name'])
                 edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.new_acct_id)
