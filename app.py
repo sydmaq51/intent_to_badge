@@ -111,12 +111,6 @@ def validate_acct_id(acct_id):
    else: 
       st.write("The ACCOUNT ID entered seems legit.")
 
-
-#####################################
-# Session Initializations
-# initialize_user_info()
-
- 
 cnx=st.connection("snowflake")
 session = cnx.session()
 if 'auth_status' not in st.session_state:
@@ -124,7 +118,6 @@ if 'auth_status' not in st.session_state:
 
 # Temp for debugging
 st.session_state
-
 
 with st.sidebar:
    st.sidebar.header("User")
