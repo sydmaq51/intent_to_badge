@@ -176,7 +176,7 @@ with tab3:
 
 ##########################################
 with tab4:
-    st.subheader("View Trial Account Information You've Entered")
+   st.subheader("View Trial Account Information You've Entered")
     
    if st.session_state.auth_status == 'authed':
 
