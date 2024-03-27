@@ -23,7 +23,29 @@ def get_user_profile_info():
    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
    this_user_df = session.sql(this_user_sql)
    user_results_pd_df = this_user_df.to_pandas()                          
+   user_rows = user_results_pd_df.shape[0]
 
+   if user_rows>=1:
+      # if at least one row was found then the key must have been correct so we consider the user authorized
+      st.session_state['auth_status'] = 'authed'
+       
+      # 1 row found means the UNI_ID is legit and can be used to look up other information
+      # all user vars need to be checked to make sure they aren't empty before we set session vars
+      if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
+         st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
+      if user_results['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
+         st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
+      if user_results['BADGE_FAMILY_NAME'].iloc[0] is not None:    
+         st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
+      if user_results['BADGE_EMAIL'].iloc[0] is not None:
+         st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]  
+      if user_results['DISPLAY_NAME'].iloc[0] is not None:
+         st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
+      else:
+         st.session_state['display_name'] = "PLEASE GO TO THE DISPLAY NAME TAB TO GENERATE A DISPLAY NAME FOR YOUR BADGE"
+      st.dataframe(user_results)
+   else: # no rows returned
+        st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs tab below for tips on FINDING YOUR INFO, and try again]") 
 
 def get_user_workshop_acct_info():
    # get a table of all the entries this user has made
@@ -75,30 +97,7 @@ if find_my_uni_record:
    # reset all session vars
    initialize_user_info()
    get_user_profile_info()
-   user_rows = user_results_pd_df.shape[0]
    
-   # st.dataframe(user_results)
-   
-   if user_rows>=1:
-      # if at least one row was found then the key must have been correct so we consider the user authorized
-      st.session_state['auth_status'] = 'authed'
-       
-      # 1 row found means the UNI_ID is legit and can be used to look up other information
-      # all user vars need to be checked to make sure they aren't empty before we set session vars
-      if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
-         st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
-      if user_results['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
-         st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
-      if user_results['BADGE_FAMILY_NAME'].iloc[0] is not None:    
-         st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
-      if user_results['BADGE_EMAIL'].iloc[0] is not None:
-         st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]  
-      if user_results['DISPLAY_NAME'].iloc[0] is not None:
-         st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
-      else:
-         st.session_state['display_name'] = "PLEASE GO TO THE DISPLAY NAME TAB TO GENERATE A DISPLAY NAME FOR YOUR BADGE"
-   else: # no rows returned
-        st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs tab below for tips on FINDING YOUR INFO, and try again]") 
 
 ###################################### Tabs
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["View Name/Email", "Edit Name/Email","Display Name", "Workshop Account Info", "FAQs"])
