@@ -65,7 +65,7 @@ with tab1:
         if st.session_state.display_name == '<no display name generated>':
             st.markdown("**Name Will Display on Badge As: **" +
         else:
-            md_str =  "**Name Will Display on Badge As: :red[" + session_state.display_name + "]")         
+            md_str =  "**Name Will Display on Badge As:** :red[" + session_state.display_name + "]"       
             st.markdown(md_str)
         st.write("-----")
         st.markdown("*If your display name has not been generated, or you would like to make changes to information, go to the next tab and edit your information*")
