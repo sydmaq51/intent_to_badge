@@ -86,7 +86,7 @@ def workshop_choice_changed():
       
 #####################################
 # Session Initializations
-initialize_user_info()
+# initialize_user_info()
 cnx=st.connection("snowflake")
 session = cnx.session()
 if 'auth_status' not in st.session_state:
