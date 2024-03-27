@@ -229,7 +229,6 @@ with tab3:
 ##########################################
 with tab4:
    st.subheader("View Trial Account Information You've Entered")
-   st.session_state.edited_acct_id = 'test'
    
    if st.session_state.auth_status == 'authed':
       # display of info for all registered workshops
