@@ -225,18 +225,18 @@ with tab4:
             edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
             submit_new_acct_info = st.form_submit_button("Update Trial Account Info")
 
-            if submit_new_acct_info: 
-               if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
-                  st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
-               elif edited_acct_id.find(".") < 0:
-                  st.write("The ACCOUNT ID does not seem accurate. Please try again.")
-               elif len(edited_acct_loc) < 7 or len(edited_acct_loc) > 8:
-                  st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
-               else:    
-                  st.session_state.account_identifier = edited_acct_id
-                  st.session_state.account_locator = edited_acct_loc
-                  st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
-                  get_user_workshop_acct_info()
+      if submit_new_acct_info: 
+         if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
+            st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
+         elif edited_acct_id.find(".") < 0:
+            st.write("The ACCOUNT ID does not seem accurate. Please try again.")
+         elif len(edited_acct_loc) < 7 or len(edited_acct_loc) > 8:
+            st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
+         else:    
+            st.session_state.account_identifier = edited_acct_id
+            st.session_state.account_locator = edited_acct_loc
+            st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
+            # get_user_workshop_acct_info()
 
       #else:
            #st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
