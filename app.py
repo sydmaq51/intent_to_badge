@@ -178,7 +178,7 @@ with tab3:
 with tab4:
     st.subheader("View Trial Account Information You've Entered")
     
-    if st.session_state.auth_status == 'authed':
+   if st.session_state.auth_status == 'authed':
 
         # get a table of all the entries this user has made
         workshops_sql =  "select award_desc, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') "
@@ -219,7 +219,7 @@ with tab4:
             st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
             new_badge_interest = st.button("Register for the " + st.session_state.workshop_acro + " Badge")
       
-    else: # not authed
+   else: # not authed
          st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
  
         
