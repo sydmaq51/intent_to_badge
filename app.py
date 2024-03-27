@@ -4,6 +4,8 @@ from snowflake.snowpark.functions import col
 
 if 'submit_new_acct_info' not in st.session_state:
    st.session_state.submit_new_acct_info = False
+if 'edited_acct_id' not in st.session_state:
+   st.session_state.edited_acct_id = 'no entry'
    
 def initialize_user_info():
    # session is open but not authed
@@ -258,10 +260,11 @@ with tab4:
                
                
       if st.session_state.submit_new_acct_info==True: 
-            st.write(f"You submited ACCOUNT IDENTIFIER {st.session_state.edited_acct_id} and ACCOUNT LOCATOR {st.session_state.edited_acct_loc} for Workshop {st.session_state.workshop_choice}")
+            #st.write(f"You submited ACCOUNT IDENTIFIER {st.session_state.edited_acct_id} and ACCOUNT LOCATOR {st.session_state.edited_acct_loc} for Workshop {st.session_state.workshop_choice}")
 
       st.write('Outside the form')
-      st.write(st.session_state.edited_acct_id)
+      st.write("EDITED ACCOUNT ID IS: "+ st.session_state.edited_acct_id)
+      
    else: # not authed
          st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
  
