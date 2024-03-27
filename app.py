@@ -74,7 +74,7 @@ with tab1:
             md_str =  "**Name Will Display on Badge As:** :red[" + st.session_state.display_name + "]"       
             st.markdown(md_str)
         st.write("-----")
-        st.markdown("*If your display name has not been generated, or you would like to make changes to information, go to the next tab and edit your information*")
+        st.markdown("*If your display name has not been generated, or you would like to make changes to information, use other tabs and edit your information*")
     else:
         st.write("Please sign in using your UNI_ID and UUID in the section above.")
 ###################################
