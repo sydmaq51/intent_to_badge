@@ -82,6 +82,7 @@ def workshop_choice_changed():
          st.session_state['account_locator'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] 
       if for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0] is not None:
          st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
+      st.write('Finished the function, boss!')   
    else:
       st.write("there should only be 1 or zero rows.") 
       
@@ -229,9 +230,9 @@ with tab4:
                st.session_state.account_locator = edited_acct_loc
                st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
 
-      else:
-           st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
-           new_badge_interest = st.button("Register for the " + st.session_state.workshop_acro + " Badge")
+      #else:
+           #st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
+           # new_badge_interest = st.button("Register for the " + st.session_state.workshop_acro + " Badge")
       
    else: # not authed
          st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
