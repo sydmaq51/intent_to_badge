@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 from snowflake.snowpark.functions import col
 
-
+if submit_new_account_info not in session_state:
+   set st.submit_new_account_info = False
+   
 def initialize_user_info():
    # session is open but not authed
    st.session_state['auth_status'] = 'not_authed'
