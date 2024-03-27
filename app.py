@@ -217,7 +217,7 @@ with tab4:
       if workshop_to_view: #button clicked
          st.session_state.editing_workshop=True
 
-      if st.session_state.editing_workshop=True:    
+      if st.session_state.editing_workshop==True:    
          get_workshop_info()
          with st.form("edit_acct_info"):
             # st.write("Edit Trial Account Info for " + workshop_choice)
