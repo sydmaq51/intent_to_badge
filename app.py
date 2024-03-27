@@ -71,7 +71,7 @@ if find_my_uni_record:
        
       # row found means the UNI_ID is legit and can be used to look up other information
       st.session_state['uni_id'] = uni_id
-
+      st.session_state['uni_uuid'] = uni_uuid
       # all user vars need to be checked to make sure they aren't empty before we set session vars
       if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
          st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
