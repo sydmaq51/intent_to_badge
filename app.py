@@ -145,7 +145,7 @@ with tab3:
                                    )
             submit_display_format = st.form_submit_button("Record My Name Display Preference")
         
-        if submit_display_format:
+      if submit_display_format:
             if badge_name_order == display_option_1:
                 display_format = 1
                 edited_display_name = display_option_1
