@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 from snowflake.snowpark.functions import col
 
+badge_options = "('< choose a badge >','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')"
+
 def initialize_user_info():
    # session is open but not authed
    st.session_state['auth_status'] = 'not_authed'
@@ -203,14 +205,8 @@ with tab3:
 ##########################################
 with tab4:
    st.subheader("View Trial Account Information You've Entered")
-    
    if st.session_state.auth_status == 'authed':
-      get_user_workshop_acct_info()
-      # Drop list to choose a workshop to focus on
-      badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW']
-                                    , 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW']
-                                    , 'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
-            
+      get_user_workshop_acct_info()     # list of all accounts registered for all workskhops     
       st.session_state.chosen =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , options=badge_options
                                                       #, on_change=workshop_choice_changed()
