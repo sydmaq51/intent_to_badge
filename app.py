@@ -16,6 +16,24 @@ def initialize_user_info():
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
 
+def get_user_profile_info():
+   #start over with authentication and populating vars
+   st.session_state['uni_id'] = uni_id
+   st.session_state['uni_uuid'] = uni_uuid
+   this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
+   this_user_df = session.sql(this_user_sql)
+   user_results = this_user_df.to_pandas()                          
+   user_rows = user_results.shape[0]
+   # st.dataframe(user_results)
+
+def get_user_workshop_acct_info():
+   # get a table of all the entries this user has made
+   workshops_sql =  "select award_desc, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') "
+   workshops_df = session.sql(workshops_sql)
+   workshops_results = workshops_df.to_pandas()
+   workshops_rows = workshops_results.shape[0]
+
+
 def workshop_choice_changed():
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
@@ -23,7 +41,7 @@ def workshop_choice_changed():
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
                    f"and award_desc='{st.session_state.workshop_choice}'")
-   st.write(for_edits_df)
+   # st.write(for_edits_df)
    for_edits_df = session.sql(workshops_sql)
    for_edits_pd_df = for_edits_df.to_pandas()
    for_edits_pd_df_rows = for_edits_pd_df.shape[0]
@@ -57,21 +75,13 @@ find_my_uni_record = st.button("Find my UNI User Info")
 if find_my_uni_record:
    # reset all session vars
    initialize_user_info()
+   get_user_profile_info()
    
-   #start over with authentication and populating vars
-   this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
-   this_user_df = session.sql(this_user_sql)
-   user_results = this_user_df.to_pandas()                          
-   user_rows = user_results.shape[0]
-   st.dataframe(user_results)
-    
    if user_rows>=1:
       # if at least one row was found then the key must have been correct so we consider the user authorized
       st.session_state['auth_status'] = 'authed'
        
-      # row found means the UNI_ID is legit and can be used to look up other information
-      st.session_state['uni_id'] = uni_id
-      st.session_state['uni_uuid'] = uni_uuid
+      # 1 row found means the UNI_ID is legit and can be used to look up other information
       # all user vars need to be checked to make sure they aren't empty before we set session vars
       if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
          st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
@@ -173,47 +183,41 @@ with tab3:
    else: # not authed
          st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
  
-
 ##########################################
 with tab4:
    st.subheader("View Trial Account Information You've Entered")
     
    if st.session_state.auth_status == 'authed':
+      get_user_workshop_acct_info()
+      
+      # show the entries
+      if workshops_rows>=1:
+         st.write("You have entered account info for the following badge workshops:")
+         st.dataframe(workshops_results)
 
-        # get a table of all the entries this user has made
-        workshops_sql =  "select award_desc, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') "
-        workshops_df = session.sql(workshops_sql)
-        workshops_results = workshops_df.to_pandas()
-        workshops_rows = workshops_results.shape[0]
-
-        # show the entries
-        if workshops_rows>=1:
-            st.write("You have entered account info for the following badge workshops:")
-            st.dataframe(workshops_results)
-
-            # Drop list to choose a workshop to focus on
-            badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
+         # Drop list to choose a workshop to focus on
+         badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
                                      'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             
-            st.session_state.workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, on_change=workshop_choice_changed(), key=1)
+         st.session_state.workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, on_change=workshop_choice_changed(), key=1)
 
-            with st.form("edit_acct_info"):
-                # st.write("Edit Trial Account Info for " + workshop_choice)
-                edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
-                edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
-                submit_new_acct_info = st.form_submit_button("Update Trial Account Info")
+         with st.form("edit_acct_info"):
+            # st.write("Edit Trial Account Info for " + workshop_choice)
+            edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
+            edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
+            submit_new_acct_info = st.form_submit_button("Update Trial Account Info")
 
-            if submit_new_acct_info: 
-                if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
-                    st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
-                elif edited_acct_id.find(".") < 0:
-                    st.write("The ACCOUNT ID does not seem accurate. Please try again.")
-                elif len(edited_acct_loc) < 7 or len(edited_acct_loc) > 8:
-                    st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
-                else:    
-                    st.session_state.account_identifier = edited_acct_id
-                    st.session_state.account_locator = edited_acct_loc
-                    st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
+         if submit_new_acct_info: 
+            if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
+               st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
+            elif edited_acct_id.find(".") < 0:
+               st.write("The ACCOUNT ID does not seem accurate. Please try again.")
+            elif len(edited_acct_loc) < 7 or len(edited_acct_loc) > 8:
+               st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
+            else:    
+               st.session_state.account_identifier = edited_acct_id
+               st.session_state.account_locator = edited_acct_loc
+               st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
 
         else:
             st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
