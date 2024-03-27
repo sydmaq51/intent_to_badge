@@ -92,8 +92,8 @@ if find_my_uni_record:
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["View Name/Email", "Edit Name/Email","Display Name", "Workshop Account Info", "FAQs"])
 
 with tab1:
-    st.subheader("Your Name and Email - Currently Stored in Our System")
-    if st.session_state.auth_status == 'authed':
+   st.subheader("Your Name and Email - Currently Stored in Our System")
+   if st.session_state.auth_status == 'authed':
         st.markdown("**GIVEN NAME:** " + st.session_state.given_name)
         st.markdown("**MIDDLE/ALTERNATE NAME:** "+ st.session_state.middle_name) 
         st.markdown("**FAMILY NAME:** " + st.session_state.family_name)
