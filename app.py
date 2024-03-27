@@ -105,13 +105,13 @@ with tab1:
             st.markdown(md_str)
         st.write("-----")
         st.markdown("*If your display name has not been generated, or you would like to make changes to information, use other tabs and edit your information*")
-    else:
+   else:
         st.write("Please sign in using your UNI_ID and UUID in the section above.")
 ###################################
 with tab2:
     st.subheader("Edit or Confirm Your Name for Your Badge(s)")
 
-    if st.session_state.auth_status == 'authed':
+   if st.session_state.auth_status == 'authed':
         with st.form("badge_name_and_email"):
             st.write("Confirm Your Name for Any Badges That Might Be Issued")     
             edited_given = st.text_input("Given Name (Name used to greet you)", st.session_state.given_name)
@@ -124,15 +124,15 @@ with tab2:
             session.call('AMAZING.APP.UPDATE_BADGENAME_BADGEEMAIL_SP',uni_id, uni_uuid, edited_given, edited_middle, edited_family, edited_email)
             st.success('Badge Name & Email Updated', icon='🚀')
 
-    else: # not authed
+   else: # not authed
         st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
  
 #######################################
 with tab3:
     st.subheader("Format the Display of Your Name on Your Badge(s)")
 
-    if st.session_state.auth_status == 'authed':
-        with st.form("display_formatting"):
+   if st.session_state.auth_status == 'authed':
+      with st.form("display_formatting"):
             display_option_1 = edited_given.capitalize() + " " + edited_middle.capitalize() + " " + edited_family.capitalize() #lazy do it for me
             display_option_2 = edited_given.capitalize() + " " + edited_middle.capitalize() + " " + edited_family #european w nobiliary
             display_option_3 = edited_family.upper() + " " + edited_middle + " " + edited_given.capitalize()  #east asian with alt script middle
@@ -170,7 +170,7 @@ with tab3:
                     
             session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',uni_id, uni_uuid, display_format, edited_display_name)
             st.success('Badge Display Name Updated', icon='🚀')
-      else: # not authed
+   else: # not authed
          st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
  
 
