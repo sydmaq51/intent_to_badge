@@ -22,9 +22,8 @@ def get_user_profile_info():
    st.session_state['uni_uuid'] = uni_uuid
    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
    this_user_df = session.sql(this_user_sql)
-   user_results = this_user_df.to_pandas()                          
-   user_rows = user_results.shape[0]
-   # st.dataframe(user_results)
+   user_results_pd_df = this_user_df.to_pandas()                          
+
 
 def get_user_workshop_acct_info():
    # get a table of all the entries this user has made
@@ -76,6 +75,9 @@ if find_my_uni_record:
    # reset all session vars
    initialize_user_info()
    get_user_profile_info()
+   user_rows = user_results_pd_df.shape[0]
+   
+   # st.dataframe(user_results)
    
    if user_rows>=1:
       # if at least one row was found then the key must have been correct so we consider the user authorized
