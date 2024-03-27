@@ -18,9 +18,9 @@ def initialize_user_info():
 
 def get_user_profile_info():
    #start over with authentication and populating vars
-   st.session_state['uni_id'] = uni_id
-   st.session_state['uni_uuid'] = uni_uuid
-   this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
+   this_user_sql =  (f"select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email "
+                     f"from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('{st.session_state.uni_id}') "
+                     f"and UNI_UUID=trim('{uni_uuid}')"
    this_user_df = session.sql(this_user_sql)
    user_results_pd_df = this_user_df.to_pandas()                          
    user_rows = user_results_pd_df.shape[0]
@@ -77,7 +77,8 @@ def workshop_choice_changed():
       st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
    else:
       st.write("there should only be 1 or zero rows.") 
-
+      
+#####################################
 # Session Initializations
 initialize_user_info()
 cnx=st.connection("snowflake")
@@ -100,8 +101,13 @@ find_my_uni_record = st.button("Find my UNI User Info")
 if find_my_uni_record:
    # reset all session vars
    initialize_user_info()
+
+   # Set uni_id and key to entries on form
+   st.session_state['uni_id'] = uni_id
+   st.session_state['uni_uuid'] = uni_uuid
+
+   # this will query the db and if finds a match will populate profile vars
    get_user_profile_info()
-   
 
 ###################################### Tabs
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["View Name/Email", "Edit Name/Email","Display Name", "Workshop Account Info", "FAQs"])
