@@ -44,12 +44,17 @@ if find_my_uni_record:
     if user_rows>=1:
         st.session_state['auth_status'] = 'authed'
         st.session_state['uni_id'] = uni_id
-        st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
-        st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
+        if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
+            st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
+        if user_results['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
+            st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
         st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
         st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]
         st.session_state['display_format'] = user_results['DISPLAY_FORMAT'].iloc[0]  
-        st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
+        if user_results['DISPLAY_NAME'].iloc[0] is not None:
+            st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
+        else:
+            st.session_state['display_name'] = "PLEASE GO TO THE NEXT TAB AND GENERATE A DISPLAY NAME FOR YOUR BADGE"
     else:
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, read the tips on the FINDING INFO tab, and try again]") 
 
@@ -63,7 +68,7 @@ with tab1:
         st.markdown("**MIDDLE/ALTERNATE NAME:** "+ st.session_state.middle_name) 
         st.markdown("**FAMILY NAME:** " + st.session_state.family_name)
         st.markdown("**EMAIL:** " + st.session_state.badge_email)
-        if st.session_state.display_name == '<no display name generated>':
+        if st.session_state.display_name == "PLEASE GO TO THE NEXT TAB AND GENERATE A DISPLAY NAME FOR YOUR BADGE":
             st.markdown("**Name Will Display on Badge As:** " + st.session_state.display_name)
         else:
             md_str =  "**Name Will Display on Badge As:** :red[" + st.session_state.display_name + "]"       
