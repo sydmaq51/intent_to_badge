@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from snowflake.snowpark.functions import col
 
-badge_options = "('< choose a badge >','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')"
 
 def initialize_user_info():
    # session is open but not authed
@@ -208,7 +207,7 @@ with tab4:
    if st.session_state.auth_status == 'authed':
       get_user_workshop_acct_info()     # list of all accounts registered for all workskhops     
       st.session_state.chosen =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
-                                                      , options=badge_options
+                                                      , ('< choose a badge >','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       #, on_change=workshop_choice_changed()
                                                       , key=1)
 
