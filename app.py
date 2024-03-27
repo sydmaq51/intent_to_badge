@@ -109,7 +109,7 @@ with tab1:
         st.write("Please sign in using your UNI_ID and UUID in the section above.")
 ###################################
 with tab2:
-    st.subheader("Edit or Confirm Your Name for Your Badge(s)")
+   st.subheader("Edit or Confirm Your Name for Your Badge(s)")
 
    if st.session_state.auth_status == 'authed':
         with st.form("badge_name_and_email"):
