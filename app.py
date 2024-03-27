@@ -40,7 +40,7 @@ if find_my_uni_record:
     user_rows = user_results.shape[0]
     st.dataframe(user_results)
     
-    if user_rows>=1
+    if user_rows>=1:
         st.session_state['auth_status'] = 'authed'
         st.session_state['uni_id'] = uni_id
         st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
