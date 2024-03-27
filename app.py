@@ -235,7 +235,7 @@ with tab4:
             if submit_button: #button clicked
                st.session_state.submit_new_acct_info=True
       
-      if submit_new_acct_info==True: 
+      if st.session_state.submit_new_acct_info==True: 
          if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
             st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
          elif edited_acct_id.find(".") < 0:
