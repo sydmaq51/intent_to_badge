@@ -2,32 +2,46 @@ import streamlit as st
 import pandas as pd
 from snowflake.snowpark.functions import col
 
+def sign_in():
+   # session is open but not authed
+   st.session_state['auth_status'] = 'not_authed'
+   st.session_state['uni_id'] = uni_id
+   st.session_state['uni_uuid'] = uni_uuid
+   # all profile fields get set back to nothing
+   st.session_state['given_name'] = ''
+   st.session_state['middle_name'] = ''
+   st.session_state['family_name'] = ''
+   st.session_state['badge_email'] = ''
+   st.session_state['display_name'] = ''
+   # workshop/account fields are set back to nothing 
+   st.session_state['workshop_choice'] = '' 
+   st.session_state['account_locator'] = ''
+   st.session_state['account_identifier'] = ''
+
 def workshop_choice_changed():
+   st.session_state['account_locator'] = ''
+   st.session_state['account_identifier'] = ''
    for_edits_df =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid} '" 
-                   f"and award_desc='" + workshop_choice + "'"
-                   for_edits_df = session.sql(workshops_sql)
-                   for_edits_pd_df = for_edits_df.to_pandas()
-                   for_edits_pd_df_rows = for_edits_pd_df.shape[0]
+                   f"and award_desc='{st.session_state.workshop_choice}'")
+   st.write(for_edits_df)
+   for_edits_df = session.sql(workshops_sql)
+   for_edits_pd_df = for_edits_df.to_pandas()
+   for_edits_pd_df_rows = for_edits_pd_df.shape[0]
 
-                    # if the data row doesnt exist just seed it with blanks
-                    if for_edits_pd_df_rows == 0:
-                        st.session_state['new_acct_loc'] = '' 
-                        st.session_state['new_acct_id'] = ''
-                    elif for_edits_pd_df_rows == 1:
-                        st.session_state['new_acct_loc'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0]           
-                        st.session_state['new_acct_id'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
-                    else:
-                        st.write("there should only be 1 or zero rows.") 
+   # if the data row doesnt exist just seed it with blanks
+   if for_edits_pd_df_rows == 1:
+      st.session_state['account_locator'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0]           
+      st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
+   else:
+      st.write("there should only be 1 or zero rows.") 
 
 # Session Initializations
 cnx=st.connection("snowflake")
 session = cnx.session()
 if 'auth_status' not in st.session_state:
     st.session_state['auth_status'] = 'not_authed'
-if 'new_badge_info_submit' not in st.session_state:
-    st.session_state['new_badge_info_submit'] = False
 
 # Temp for debugging
 st.session_state
@@ -43,15 +57,7 @@ find_my_uni_record = st.button("Find my UNI User Info")
 
 if find_my_uni_record:
     # reset all session vars
-    st.session_state['auth_status'] = 'not_authed'
-    st.session_state['uni_id'] = uni_id
-    st.session_state['uni_uuid'] = uni_uuid
-    st.session_state['given_name'] = ''
-    st.session_state['middle_name'] = ''
-    st.session_state['family_name'] = ''
-    st.session_state['badge_email'] = ''
-    st.session_state['display_name'] = ''
-    
+   
     
     this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
     this_user_df = session.sql(this_user_sql)
@@ -180,16 +186,12 @@ with tab4:
             badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
                                      'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             
-            st.session_state.workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
-
-            
-
-            # st.write(st.session_state.new_acct_loc)
+            st.session_state.workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, on_change=workshop_choice_changed(), key=1)
 
             with st.form("edit_acct_info"):
                 # st.write("Edit Trial Account Info for " + workshop_choice)
-                edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.new_acct_id)
-                edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.new_acct_loc)
+                edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
+                edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
                 submit_new_acct_info = st.form_submit_button("Update Trial Account Info")
 
             if submit_new_acct_info: 
@@ -200,9 +202,9 @@ with tab4:
                 elif len(edited_acct_loc) < 7 or len(edited_acct_loc) > 8:
                     st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
                 else:    
-                    st.write(edited_acct_id)
-                    st.write(edited_acct_loc)
-                    
+                    st.session_state.account_identifier = edited_acct_id
+                    st.session_state.account_locator = edited_acct_loc
+                    st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
 
         else:
             st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
