@@ -5,8 +5,6 @@ from snowflake.snowpark.functions import col
 def initialize_user_info():
    # session is open but not authed
    st.session_state['auth_status'] = 'not_authed'
-   st.session_state['uni_id'] = uni_id
-   st.session_state['uni_uuid'] = uni_uuid
    # all profile fields get set back to nothing
    st.session_state['given_name'] = ''
    st.session_state['middle_name'] = ''
@@ -23,7 +21,7 @@ def workshop_choice_changed():
    st.session_state['account_identifier'] = ''
    for_edits_df =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
-                   f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid} '" 
+                   f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}'" 
                    f"and award_desc='{st.session_state.workshop_choice}'")
    st.write(for_edits_df)
    for_edits_df = session.sql(workshops_sql)
@@ -38,6 +36,7 @@ def workshop_choice_changed():
       st.write("there should only be 1 or zero rows.") 
 
 # Session Initializations
+initialize_user_info()
 cnx=st.connection("snowflake")
 session = cnx.session()
 if 'auth_status' not in st.session_state:
