@@ -63,7 +63,7 @@ with tab1:
         st.markdown("**FAMILY NAME:** " + st.session_state.family_name)
         st.markdown("**EMAIL:** " + st.session_state.badge_email)
         if st.session_state.display_name == '<no display name generated>':
-            st.markdown("**Name Will Display on Badge As:** " + st.session_state.display_name
+            st.markdown("**Name Will Display on Badge As:** " + st.session_state.display_name)
         else:
             md_str =  "**Name Will Display on Badge As:** :red[" + st.session_state.display_name + "]"       
             st.markdown(md_str)
