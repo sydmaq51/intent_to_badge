@@ -16,6 +16,7 @@ def initialize_user_info():
    st.session_state['workshop_choice'] = '' 
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
+   st.sesstion_state['submit_new_account_info'] = False
 
 def get_user_profile_info():
    #start over with authentication and populating vars
@@ -93,7 +94,7 @@ def get_workshop_info():
       
 #####################################
 # Session Initializations
-# initialize_user_info()
+initialize_user_info()
 cnx=st.connection("snowflake")
 session = cnx.session()
 if 'auth_status' not in st.session_state:
