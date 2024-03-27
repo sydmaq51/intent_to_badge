@@ -218,7 +218,8 @@ with tab4:
 
       if workshop_to_view: #button clicked
          st.session_state.editing_workshop=True
-
+         st.session_state.submit_new_acct_info=False
+         
       if st.session_state.editing_workshop==True:    
          get_workshop_info()
          with st.form("edit_acct_info"):
