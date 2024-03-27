@@ -18,9 +18,10 @@ st.session_state
 # Page Header
 st.header('Are You Snow-A-Mazing?')
 st.write('Welcome to the learn.snowflake.com Workshop Badge Management app!')
+st.write('Using this app you can manage your badge name and email and you can view your results.')
 
 uni_id = st.text_input('Enter your learn.snowflake.com UNI ID:')
-uni_uuid = st.text_input('Enter the secret UUID displayed on the DORA is Listening Page:')
+uni_uuid = st.text_input('Enter the secret UUID displayed on the DORA is Listening Page of any Workshop:')
 find_my_uni_record = st.button("Find my UNI User Info")
 
 if find_my_uni_record:
@@ -33,13 +34,13 @@ if find_my_uni_record:
     st.session_state['family_name'] = ''
     st.session_state['badge_email'] = ''
     
-    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, badge_email, display_format, coalesce(display_name,'<no display name generated>') as display_name from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
+    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, badge_email, display_format, coalesce(display_name,' <no display name generated>') as display_name from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
     this_user_df = session.sql(this_user_sql)
     user_results = this_user_df.to_pandas()                          
     user_rows = user_results.shape[0]
     st.dataframe(user_results)
     
-    if user_rows>=1:
+    if user_rows>=1
         st.session_state['auth_status'] = 'authed'
         st.session_state['uni_id'] = uni_id
         st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
@@ -61,7 +62,11 @@ with tab1:
         st.markdown("**MIDDLE/ALTERNATE NAME:** "+ st.session_state.middle_name) 
         st.markdown("**FAMILY NAME:** " + st.session_state.family_name)
         st.markdown("**EMAIL:** " + st.session_state.badge_email)
-        st.markdown("**Name Will Display on Badge As:** " + st.session_state.display_name)
+        if st.session_state.display_name == '<no display name generated>':
+            st.markdown("**Name Will Display on Badge As: **" +
+        else:
+            md_str =  "**Name Will Display on Badge As: :red[" + session_state.display_name + "]")         
+            st.markdown(md_str)
         st.write("-----")
         st.markdown("*If your display name has not been generated, or you would like to make changes to information, go to the next tab and edit your information*")
     else:
