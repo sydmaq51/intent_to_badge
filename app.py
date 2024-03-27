@@ -219,7 +219,7 @@ with tab4:
                st.session_state.account_locator = edited_acct_loc
                st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
 
-        else:
+         else:
            st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
            new_badge_interest = st.button("Register for the " + st.session_state.workshop_acro + " Badge")
       
