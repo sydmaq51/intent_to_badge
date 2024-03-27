@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from snowflake.snowpark.functions import col
 
-def app_sign_in():
+def app_signin():
    # session is open but not authed
    st.session_state['auth_status'] = 'not_authed'
    st.session_state['uni_id'] = uni_id
