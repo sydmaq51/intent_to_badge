@@ -82,6 +82,8 @@ def get_workshop_info():
       if for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0] is not None:
          st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
       st.write('Finished the function, boss!')   
+   elif for_edits_df_rows == 0:
+      st.write('You have not previously entered account information for this workshop. Please add the information below.')
    else:
       st.write("there should only be 1 or zero rows.") 
       
