@@ -64,9 +64,10 @@ def get_user_workshop_acct_info():
        st.dataframe(workshops_results)
 
 def workshop_choice_changed():
-   st.session_state['workshop_choice'] = st.session_state.chosen
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
+
+def get_workshop_info():   
    for_edits_sql =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
@@ -177,20 +178,16 @@ with tab3:
       if submit_display_format:
             if badge_name_order == display_option_1:
                 display_format = 1
-                edited_display_name = display_option_1
-                    
+                edited_display_name = display_option_1     
             elif badge_name_order == display_option_2:
                 display_format = 2
-                edited_display_name = display_option_2
-                    
+                edited_display_name = display_option_2    
             elif badge_name_order == display_option_3:
                 display_format = 3
-                edited_display_name = display_option_3
-                    
+                edited_display_name = display_option_3         
             elif badge_name_order == display_option_4:
                 display_format = 4
                 edited_display_name = display_option_4
-                    
             elif badge_name_order == display_option_5:
                 display_format = 5
                 edited_display_name = display_option_5
@@ -207,18 +204,23 @@ with tab4:
    st.subheader("View Trial Account Information You've Entered")
    if st.session_state.auth_status == 'authed':
       get_user_workshop_acct_info()     # list of all accounts registered for all workskhops     
-      st.session_state.chosen =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
+      st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('< choose a badge >','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , on_change=workshop_choice_changed()
                                                       , key=1)
+      workshop_to_view = st.submit_button("Create/Edit Acct Info for Chosen Workshop") 
 
-      with st.form("edit_acct_info"):
+      if workshop_to_view == '< choose a badge >':
+         st.write("Choose a workshop from the drop list before clicking the button.")
+      else:
+         get_workshop_info()
+         with st.form("edit_acct_info"):
             # st.write("Edit Trial Account Info for " + workshop_choice)
             edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
             edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
             submit_new_acct_info = st.form_submit_button("Update Trial Account Info")
 
-      if submit_new_acct_info: 
+         if submit_new_acct_info: 
             if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
                st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
             elif edited_acct_id.find(".") < 0:
