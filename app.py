@@ -158,6 +158,7 @@ with tab2:
 
         if submit_edits:
             session.call('AMAZING.APP.UPDATE_BADGENAME_BADGEEMAIL_SP',uni_id, uni_uuid, edited_given, edited_middle, edited_family, edited_email)
+            get_user_profile_info() 
             st.success('Badge Name & Email Updated', icon='🚀')
 
    else: # not authed
@@ -201,6 +202,7 @@ with tab3:
                 st.write('Choose a format for your name')
                     
             session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',uni_id, uni_uuid, display_format, edited_display_name)
+            get_user_profile_info()
             st.success('Badge Display Name Updated', icon='🚀')
    else: # not authed
          st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
