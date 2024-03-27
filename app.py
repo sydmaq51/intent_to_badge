@@ -63,9 +63,13 @@ def get_user_workshop_acct_info():
        st.write("You have entered account info for the following badge workshops:")
        st.dataframe(workshops_results)
 
-def get_workshop_info():   
+def workshop_chosen_changed():
+   st.session_state.editing_workshop=False
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
+
+
+def get_workshop_info():   
    for_edits_sql =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
@@ -206,10 +210,14 @@ with tab4:
       get_user_workshop_acct_info()     # list of all accounts registered for all workskhops     
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
+                                                      , on_changed = workshop_chosen_changed()
                                                       , key=1)
       workshop_to_view = st.button("Create/Edit Acct Info for Chosen Workshop") 
 
-      if workshop_to_view:
+      if workshop_to_view: #button clicked
+         st.session_state.editing_workshop=True
+
+     if st.session_state.editing_workshop=True:    
          get_workshop_info()
          with st.form("edit_acct_info"):
             # st.write("Edit Trial Account Info for " + workshop_choice)
