@@ -67,18 +67,23 @@ if find_my_uni_record:
     st.dataframe(user_results)
     
     if user_rows>=1:
-        st.session_state['auth_status'] = 'authed'
-        st.session_state['uni_id'] = uni_id
-        if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
-            st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
-        if user_results['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
-            st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
-        if user_results['BADGE_FAMILY_NAME'].iloc[0] is not None:    
-            st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
-        if user_results['BADGE_EMAIL'].iloc[0] is not None:
-            st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]  
-        if user_results['DISPLAY_NAME'].iloc[0] is not None:
-            st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
+       # if at least one row was found then the key must have been correct so we consider the user authorized
+       st.session_state['auth_status'] = 'authed'
+       
+       # row found means the UNI_ID is legit and can be used to look up other information
+       st.session_state['uni_id'] = uni_id
+
+       # all user vars need to be checked to make sure they aren't empty before we set session vars
+       if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
+          st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
+       if user_results['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
+          st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
+       if user_results['BADGE_FAMILY_NAME'].iloc[0] is not None:    
+          st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
+       if user_results['BADGE_EMAIL'].iloc[0] is not None:
+          st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]  
+       if user_results['DISPLAY_NAME'].iloc[0] is not None:
+          st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
         else:
             st.session_state['display_name'] = "PLEASE GO TO THE DISPLAY NAME TAB TO GENERATE A DISPLAY NAME FOR YOUR BADGE"
     else:
