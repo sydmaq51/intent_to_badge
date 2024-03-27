@@ -65,7 +65,8 @@ def get_user_workshop_acct_info():
        st.dataframe(workshops_results)
 
 def workshop_chosen_changed():
-   st.session_state.editing_workshop=False
+   st.session_state['editing_workshop']=False
+   st.session_state['submit_new_account_info'] = False
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
 
@@ -224,9 +225,12 @@ with tab4:
             # st.write("Edit Trial Account Info for " + workshop_choice)
             edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
             edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
-            submit_new_acct_info = st.form_submit_button("Update Trial Account Info")
-
-      if submit_new_acct_info: 
+            submit_button = st.form_submit_button("Update Trial Account Info")
+    
+      if submit_button: #button clicked
+         st.session_state.submit_new_acct_info=True
+      
+      if submit_new_acct_info==True: 
          if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
             st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
          elif edited_acct_id.find(".") < 0:
