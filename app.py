@@ -35,7 +35,7 @@ if find_my_uni_record:
     st.session_state['badge_email'] = ''
     st.session_state['display_name'] = ''
     
-    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, badge_email, display_format, display_name from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
+    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
     this_user_df = session.sql(this_user_sql)
     user_results = this_user_df.to_pandas()                          
     user_rows = user_results.shape[0]
@@ -48,9 +48,10 @@ if find_my_uni_record:
             st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
         if user_results['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
             st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
-        st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
-        st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]
-        st.session_state['display_format'] = user_results['DISPLAY_FORMAT'].iloc[0]  
+        if user_results['BADGE_FAMILY_NAME'].iloc[0] is not None:    
+            st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
+        if user_results['BADGE_EMAIL'].iloc[0] is not None:
+            st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]  
         if user_results['DISPLAY_NAME'].iloc[0] is not None:
             st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
         else:
@@ -68,7 +69,7 @@ with tab1:
         st.markdown("**MIDDLE/ALTERNATE NAME:** "+ st.session_state.middle_name) 
         st.markdown("**FAMILY NAME:** " + st.session_state.family_name)
         st.markdown("**EMAIL:** " + st.session_state.badge_email)
-        if st.session_state.display_name != "PLEASE GO TO THE NEXT TAB AND GENERATE A DISPLAY NAME FOR YOUR BADGE":
+        if st.session_state.display_name != "PLEASE GO TO THE DISPLAY NAME TAB TO GENERATE A DISPLAY NAME FOR YOUR BADGE":
             st.markdown("**Name Will Display on Badge As:** " + st.session_state.display_name)
         else:
             md_str =  "**Name Will Display on Badge As:** :red[" + st.session_state.display_name + "]"       
