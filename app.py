@@ -2,13 +2,30 @@ import streamlit as st
 import pandas as pd
 from snowflake.snowpark.functions import col
 
+def workshop_choice_changed():
+   for_edits_df =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
+                   f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
+                   f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid} '" 
+                   f"and award_desc='" + workshop_choice + "'"
+                   for_edits_df = session.sql(workshops_sql)
+                   for_edits_pd_df = for_edits_df.to_pandas()
+                   for_edits_pd_df_rows = for_edits_pd_df.shape[0]
+
+                    # if the data row doesnt exist just seed it with blanks
+                    if for_edits_pd_df_rows == 0:
+                        st.session_state['new_acct_loc'] = '' 
+                        st.session_state['new_acct_id'] = ''
+                    elif for_edits_pd_df_rows == 1:
+                        st.session_state['new_acct_loc'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0]           
+                        st.session_state['new_acct_id'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
+                    else:
+                        st.write("there should only be 1 or zero rows.") 
+
 # Session Initializations
 cnx=st.connection("snowflake")
 session = cnx.session()
 if 'auth_status' not in st.session_state:
     st.session_state['auth_status'] = 'not_authed'
-if 'display_format' not in st.session_state:
-    st.session_state['display_format'] = 1
 if 'new_badge_info_submit' not in st.session_state:
     st.session_state['new_badge_info_submit'] = False
 
@@ -34,6 +51,7 @@ if find_my_uni_record:
     st.session_state['family_name'] = ''
     st.session_state['badge_email'] = ''
     st.session_state['display_name'] = ''
+    
     
     this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
     this_user_df = session.sql(this_user_sql)
@@ -162,23 +180,9 @@ with tab4:
             badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
                                      'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             
-            workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
+            st.session_state.workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
 
-            # After the choice is made, requery to get existing data
-            for_edits_df =  "select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') and award_desc='" + workshop_choice + "'"
-            for_edits_df = session.sql(workshops_sql)
-            for_edits_pd_df = for_edits_df.to_pandas()
-            for_edits_pd_df_rows = for_edits_pd_df.shape[0]
-
-            # if the data row doesnt exist just seed it with blanks
-            if for_edits_pd_df_rows == 0:
-                st.session_state['new_acct_loc'] = '' 
-                st.session_state['new_acct_id'] = ''
-            elif for_edits_pd_df_rows == 1:
-                st.session_state['new_acct_loc'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0]           
-                st.session_state['new_acct_id'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
-            else:
-                st.write("there should only be 1 or zero rows.")
+            
 
             # st.write(st.session_state.new_acct_loc)
 
