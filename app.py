@@ -227,8 +227,8 @@ with tab4:
             edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
             submit_button = st.form_submit_button("Update Trial Account Info")
     
-      if submit_button: #button clicked
-         st.session_state.submit_new_acct_info=True
+            if submit_button: #button clicked
+               st.session_state.submit_new_acct_info=True
       
       if submit_new_acct_info==True: 
          if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
