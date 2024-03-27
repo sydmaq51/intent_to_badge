@@ -213,7 +213,10 @@ with tab3:
 with tab4:
    st.subheader("View Trial Account Information You've Entered")
    if st.session_state.auth_status == 'authed':
-      get_user_workshop_acct_info()     # list of all accounts registered for all workskhops     
+      # display of info for all registered workshops
+      get_user_workshop_acct_info()        
+     
+      # drop list with option button for editing
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , on_change = workshop_chosen_changed()
@@ -223,7 +226,9 @@ with tab4:
       if workshop_to_view: #button clicked
          st.session_state.editing_workshop=True
          # st.session_state.submit_new_acct_info=False
-         
+
+
+      # clicking above button makes this appear by setting property to True
       if st.session_state.editing_workshop==True:    
          get_workshop_info()
          with st.form("edit_acct_info"):
@@ -235,18 +240,18 @@ with tab4:
             if submit_button: #button clicked
                st.session_state.submit_new_acct_info=True
       
-      if st.session_state.submit_new_acct_info==True: 
-         if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
-            st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
-         elif edited_acct_id.find(".") < 0:
-            st.write("The ACCOUNT ID does not seem accurate. Please try again.")
-         elif len(edited_acct_loc) < 7 or len(edited_acct_loc) > 8:
-            st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
-         else:    
-            st.session_state.account_identifier = edited_acct_id
-            st.session_state.account_locator = edited_acct_loc
-            st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
-            # get_user_workshop_acct_info()
+            if st.session_state.submit_new_acct_info==True: 
+               if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
+                  st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
+               elif edited_acct_id.find(".") < 0:
+                  st.write("The ACCOUNT ID does not seem accurate. Please try again.")
+               elif len(edited_acct_loc) < 7 or len(edited_acct_loc) > 8:
+                  st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
+               else:    
+                  st.session_state.account_identifier = edited_acct_id
+                  st.session_state.account_locator = edited_acct_loc
+                  st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
+                  # get_user_workshop_acct_info()
 
       #else:
            #st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
