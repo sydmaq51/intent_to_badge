@@ -34,7 +34,7 @@ if find_my_uni_record:
     st.session_state['family_name'] = ''
     st.session_state['badge_email'] = ''
     
-    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, badge_email, display_format, coalesce(display_name,' <no display name generated>') as display_name from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
+    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, badge_email, display_format, coalesce(display_name,'<no display name generated>') as display_name from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
     this_user_df = session.sql(this_user_sql)
     user_results = this_user_df.to_pandas()                          
     user_rows = user_results.shape[0]
@@ -63,9 +63,9 @@ with tab1:
         st.markdown("**FAMILY NAME:** " + st.session_state.family_name)
         st.markdown("**EMAIL:** " + st.session_state.badge_email)
         if st.session_state.display_name == '<no display name generated>':
-            st.markdown("**Name Will Display on Badge As: **" +
+            st.markdown("**Name Will Display on Badge As:** " + st.session_state.display_name
         else:
-            md_str =  "**Name Will Display on Badge As:** :red[" + session_state.display_name + "]"       
+            md_str =  "**Name Will Display on Badge As:** :red[" + st.session_state.display_name + "]"       
             st.markdown(md_str)
         st.write("-----")
         st.markdown("*If your display name has not been generated, or you would like to make changes to information, go to the next tab and edit your information*")
