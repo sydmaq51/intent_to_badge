@@ -54,12 +54,12 @@ if find_my_uni_record:
         if user_results['DISPLAY_NAME'].iloc[0] is not None:
             st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
         else:
-            st.session_state['display_name'] = "PLEASE GO TO THE NEXT TAB AND GENERATE A DISPLAY NAME FOR YOUR BADGE"
+            st.session_state['display_name'] = "PLEASE GO TO THE DISPLAY NAME TAB TO GENERATE A DISPLAY NAME FOR YOUR BADGE"
     else:
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, read the tips on the FINDING INFO tab, and try again]") 
 
 ###################################### Tabs
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["View Name/Email", "Edit Name/Email","Choose Name Display", "My Badge Work", "FAQs"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["View Name/Email", "Edit Name/Email","Display Name", "Workshop Account Info", "FAQs"])
 
 with tab1:
     st.subheader("Your Name and Email - Currently Stored in Our System")
@@ -68,7 +68,7 @@ with tab1:
         st.markdown("**MIDDLE/ALTERNATE NAME:** "+ st.session_state.middle_name) 
         st.markdown("**FAMILY NAME:** " + st.session_state.family_name)
         st.markdown("**EMAIL:** " + st.session_state.badge_email)
-        if st.session_state.display_name == "PLEASE GO TO THE NEXT TAB AND GENERATE A DISPLAY NAME FOR YOUR BADGE":
+        if st.session_state.display_name != "PLEASE GO TO THE NEXT TAB AND GENERATE A DISPLAY NAME FOR YOUR BADGE":
             st.markdown("**Name Will Display on Badge As:** " + st.session_state.display_name)
         else:
             md_str =  "**Name Will Display on Badge As:** :red[" + st.session_state.display_name + "]"       
