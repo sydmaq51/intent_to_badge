@@ -20,7 +20,7 @@ def get_user_profile_info():
    #start over with authentication and populating vars
    this_user_sql =  (f"select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email "
                      f"from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('{st.session_state.uni_id}') "
-                     f"and UNI_UUID=trim('{uni_uuid}')")
+                     f"and UNI_UUID=trim('{st.session_state.uni_uuid}')")
    this_user_df = session.sql(this_user_sql)
    user_results_pd_df = this_user_df.to_pandas()                          
    user_rows = user_results_pd_df.shape[0]
@@ -31,6 +31,7 @@ def get_user_profile_info():
        
       # 1 row found means the UNI_ID is legit and can be used to look up other information
       # all user vars need to be checked to make sure they aren't empty before we set session vars
+      
       if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
          st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
       if user_results['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
