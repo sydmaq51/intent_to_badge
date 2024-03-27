@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from snowflake.snowpark.functions import col
 
-if submit_new_account_info not in session_state:
+if 'submit_new_account_info' not in st.session_state:
    st.session_state.submit_new_account_info = False
    
 def initialize_user_info():
