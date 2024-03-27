@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from snowflake.snowpark.functions import col
 
-def app_signin():
+def initialize_user_info():
    # session is open but not authed
    st.session_state['auth_status'] = 'not_authed'
    st.session_state['uni_id'] = uni_id
@@ -56,37 +56,37 @@ uni_uuid = st.text_input('Enter the secret UUID displayed on the DORA is Listeni
 find_my_uni_record = st.button("Find my UNI User Info")
 
 if find_my_uni_record:
-    # reset all session vars
-    app_signin()
+   # reset all session vars
+   initialize_user_info()
    
-    #start over with authentication and populating vars
-    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
-    this_user_df = session.sql(this_user_sql)
-    user_results = this_user_df.to_pandas()                          
-    user_rows = user_results.shape[0]
-    st.dataframe(user_results)
+   #start over with authentication and populating vars
+   this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
+   this_user_df = session.sql(this_user_sql)
+   user_results = this_user_df.to_pandas()                          
+   user_rows = user_results.shape[0]
+   st.dataframe(user_results)
     
-    if user_rows>=1:
-       # if at least one row was found then the key must have been correct so we consider the user authorized
-       st.session_state['auth_status'] = 'authed'
+   if user_rows>=1:
+      # if at least one row was found then the key must have been correct so we consider the user authorized
+      st.session_state['auth_status'] = 'authed'
        
-       # row found means the UNI_ID is legit and can be used to look up other information
-       st.session_state['uni_id'] = uni_id
+      # row found means the UNI_ID is legit and can be used to look up other information
+      st.session_state['uni_id'] = uni_id
 
-       # all user vars need to be checked to make sure they aren't empty before we set session vars
-       if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
+      # all user vars need to be checked to make sure they aren't empty before we set session vars
+      if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
           st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
-       if user_results['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
+      if user_results['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
           st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
-       if user_results['BADGE_FAMILY_NAME'].iloc[0] is not None:    
+      if user_results['BADGE_FAMILY_NAME'].iloc[0] is not None:    
           st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
-       if user_results['BADGE_EMAIL'].iloc[0] is not None:
+      if user_results['BADGE_EMAIL'].iloc[0] is not None:
           st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]  
-       if user_results['DISPLAY_NAME'].iloc[0] is not None:
+      if user_results['DISPLAY_NAME'].iloc[0] is not None:
           st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
-        else:
+       else:
             st.session_state['display_name'] = "PLEASE GO TO THE DISPLAY NAME TAB TO GENERATE A DISPLAY NAME FOR YOUR BADGE"
-    else:
+   else: # no rows returned
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, read the tips on the FINDING INFO tab, and try again]") 
 
 ###################################### Tabs
