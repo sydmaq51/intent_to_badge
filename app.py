@@ -54,6 +54,10 @@ def get_user_workshop_acct_info():
    workshops_results = workshops_df.to_pandas()
    workshops_rows = workshops_results.shape[0]
 
+   # show the entries
+   if workshops_rows>=1:
+       st.write("You have entered account info for the following badge workshops:")
+       st.dataframe(workshops_results)
 
 def workshop_choice_changed():
    st.session_state['account_locator'] = ''
@@ -190,25 +194,19 @@ with tab4:
     
    if st.session_state.auth_status == 'authed':
       get_user_workshop_acct_info()
-      
-      # show the entries
-      if workshops_rows>=1:
-         st.write("You have entered account info for the following badge workshops:")
-         st.dataframe(workshops_results)
-
-         # Drop list to choose a workshop to focus on
-         badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
+      # Drop list to choose a workshop to focus on
+      badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
                                      'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             
-         st.session_state.workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, on_change=workshop_choice_changed(), key=1)
+      st.session_state.workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, on_change=workshop_choice_changed(), key=1)
 
-         with st.form("edit_acct_info"):
+      with st.form("edit_acct_info"):
             # st.write("Edit Trial Account Info for " + workshop_choice)
             edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
             edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
             submit_new_acct_info = st.form_submit_button("Update Trial Account Info")
 
-         if submit_new_acct_info: 
+      if submit_new_acct_info: 
             if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
                st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
             elif edited_acct_id.find(".") < 0:
@@ -220,7 +218,7 @@ with tab4:
                st.session_state.account_locator = edited_acct_loc
                st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
 
-         else:
+      else:
            st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
            new_badge_interest = st.button("Register for the " + st.session_state.workshop_acro + " Badge")
       
