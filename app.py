@@ -233,24 +233,23 @@ with tab4:
          get_workshop_info()
          with st.form("edit_acct_info"):
             st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
-            edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
-            edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
+            st.session_state.edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
+            st.session_state.edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
             submit_button = st.form_submit_button("Update Trial Account Info")
     
          if submit_button: #button clicked
                st.session_state.submit_new_acct_info=True
-               st.write(f"You submited ACCOUNT IDENTIFIER {edited_acct_id} and ACCOUNT LOCATOR {edited_acct_loc} for Workshop {st.session_state.workshop_choice}")
                
-         if st.session_state.submit_new_acct_info==True: 
-            if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
+               
+      if st.session_state.submit_new_acct_info==True: 
+            st.write(f"You submited ACCOUNT IDENTIFIER {st.session_state.edited_acct_id} and ACCOUNT LOCATOR {st.session_state.edited_acct_loc} for Workshop {st.session_state.workshop_choice}")
+            if len(st.session_state.edited_acct_id) < 15 or len(st.session_state.edited_acct_id) > 18:
                st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
-            elif edited_acct_id.find(".") < 0:
+            elif st.session_state.edited_acct_id.find(".") < 0:
                st.write("The ACCOUNT ID does not seem accurate. Please try again.")
-            elif len(edited_acct_loc) < 7 or len(edited_acct_loc) > 8:
+            elif len(st.session_state.edited_acct_loc) < 7 or len(st.session_state.edited_acct_loc) > 8:
                st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
             else:    
-               st.session_state.account_identifier = edited_acct_id
-               st.session_state.account_locator = edited_acct_loc
                st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
                # get_user_workshop_acct_info()
 
