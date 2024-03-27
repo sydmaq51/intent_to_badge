@@ -210,7 +210,7 @@ with tab4:
       get_user_workshop_acct_info()     # list of all accounts registered for all workskhops     
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
-                                                      , on_changed = workshop_chosen_changed()
+                                                      , on_change = workshop_chosen_changed()
                                                       , key=1)
       workshop_to_view = st.button("Create/Edit Acct Info for Chosen Workshop") 
 
