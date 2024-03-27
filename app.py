@@ -77,7 +77,7 @@ def workshop_choice_changed():
       if for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] is not None:
          st.session_state['account_locator'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] 
       if for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0] is not None:
-      st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
+         st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
    else:
       st.write("there should only be 1 or zero rows.") 
       
