@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 
 
-st.sidebar.header("User")
-
 if 'submit_new_acct_info' not in st.session_state:
    st.session_state.submit_new_acct_info = False
 if 'edited_acct_id' not in st.session_state:
@@ -117,6 +115,8 @@ def validate_acct_id(acct_id):
 #####################################
 # Session Initializations
 # initialize_user_info()
+
+ 
 cnx=st.connection("snowflake")
 session = cnx.session()
 if 'auth_status' not in st.session_state:
@@ -125,14 +125,18 @@ if 'auth_status' not in st.session_state:
 # Temp for debugging
 st.session_state
 
+
+with st.sidebar:
+   st.sidebar.header("User")
+   uni_id = st.text_input('Enter your learn.snowflake.com UNI ID:')
+   uni_uuid = st.text_input('Enter the secret UUID displayed on the DORA is Listening Page of any Workshop:')
+   find_my_uni_record = st.button("Find my UNI User Info")
+
+
 # Page Header
 st.header('Are You Snow-A-Mazing?')
 st.write('Welcome to the learn.snowflake.com Workshop Badge Management app!')
 st.write('Using this app you can manage your badge name and email and you can view your results.')
-
-uni_id = st.text_input('Enter your learn.snowflake.com UNI ID:')
-uni_uuid = st.text_input('Enter the secret UUID displayed on the DORA is Listening Page of any Workshop:')
-find_my_uni_record = st.button("Find my UNI User Info")
 
 if find_my_uni_record:
    # reset all session vars
