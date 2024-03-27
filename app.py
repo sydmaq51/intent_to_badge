@@ -213,7 +213,7 @@ with tab4:
             
       st.session_state.chosen =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , options=badge_options
-                                                      , on_change=workshop_choice_changed()
+                                                      #, on_change=workshop_choice_changed()
                                                       , key=1)
 
       with st.form("edit_acct_info"):
