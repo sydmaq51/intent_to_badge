@@ -131,16 +131,17 @@ with tab3:
 
 ##########################################
 with tab4:
-    st.subheader("View Trial Account and Badges Awarded Information")
+    st.subheader("View Trial Account Information You've Entered")
     
     if st.session_state.auth_status == 'authed':
 
-        # show a table of all the entries this suser has made
+        # get a table of all the entries this user has made
         workshops_sql =  "select award_desc, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') "
         workshops_df = session.sql(workshops_sql)
         workshops_results = workshops_df.to_pandas()
         workshops_rows = workshops_results.shape[0]
-        
+
+        # show the entries
         if workshops_rows>=1:
             st.write("You have entered account info for the following badge workshops:")
             st.dataframe(workshops_results)
@@ -148,13 +149,16 @@ with tab4:
             # Drop list to choose a workshop to focus on
             badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
                                      'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
+            
             workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, key=1)
 
+            # After the choice is made, requery to get existing data
             for_edits_df =  "select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') and award_desc='" + workshop_choice + "'"
             for_edits_df = session.sql(workshops_sql)
             for_edits_pd_df = for_edits_df.to_pandas()
             for_edits_pd_df_rows = for_edits_pd_df.shape[0]
 
+            # if the data row doesnt exist just seed it with blanks
             if for_edits_pd_df_rows == 0:
                 st.session_state['new_acct_loc'] = '' 
                 st.session_state['new_acct_id'] = ''
@@ -164,7 +168,7 @@ with tab4:
             else:
                 st.write("there should only be 1 or zero rows.")
 
-            st.write(st.session_state.new_acct_loc)
+            # st.write(st.session_state.new_acct_loc)
 
             with st.form("edit_acct_info"):
                 # st.write("Edit Trial Account Info for " + workshop_choice)
