@@ -67,14 +67,16 @@ def workshop_choice_changed():
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
                    f"and award_desc='{st.session_state.workshop_choice}'")
-   # st.write(for_edits_df)
+   st.write(for_edits_df)
    for_edits_df = session.sql(workshops_sql)
    for_edits_pd_df = for_edits_df.to_pandas()
    for_edits_pd_df_rows = for_edits_pd_df.shape[0]
 
    # if the data row doesnt exist just seed it with blanks
    if for_edits_pd_df_rows == 1:
-      st.session_state['account_locator'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0]           
+      if for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] is not None:
+         st.session_state['account_locator'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] 
+      if for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0] is not None:
       st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
    else:
       st.write("there should only be 1 or zero rows.") 
@@ -202,10 +204,14 @@ with tab4:
    if st.session_state.auth_status == 'authed':
       get_user_workshop_acct_info()
       # Drop list to choose a workshop to focus on
-      badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW'], 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW'], 
-                                     'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
+      badge_options = pd.DataFrame({'badge_name':['Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW']
+                                    , 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW']
+                                    , 'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             
-      st.session_state.workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:", options=badge_options, on_change=workshop_choice_changed(), key=1)
+      st.session_state.workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
+                                                      , options=badge_options
+                                                      , on_change=workshop_choice_changed()
+                                                      , key=1)
 
       with st.form("edit_acct_info"):
             # st.write("Edit Trial Account Info for " + workshop_choice)
