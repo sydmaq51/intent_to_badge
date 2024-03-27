@@ -208,7 +208,7 @@ with tab4:
                                                       , ('< choose a badge >','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , on_change=workshop_choice_changed()
                                                       , key=1)
-      workshop_to_view = st.submit_button("Create/Edit Acct Info for Chosen Workshop") 
+      workshop_to_view = st.button("Create/Edit Acct Info for Chosen Workshop") 
 
       if workshop_to_view == '< choose a badge >':
          st.write("Choose a workshop from the drop list before clicking the button.")
