@@ -220,8 +220,8 @@ with tab4:
                st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
 
         else:
-            st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
-            new_badge_interest = st.button("Register for the " + st.session_state.workshop_acro + " Badge")
+           st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
+           new_badge_interest = st.button("Register for the " + st.session_state.workshop_acro + " Badge")
       
    else: # not authed
          st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
