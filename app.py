@@ -50,7 +50,9 @@ def get_user_profile_info():
 
 def get_user_workshop_acct_info():
    # get a table of all the entries this user has made
-   workshops_sql =  "select award_desc, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"') "
+   workshops_sql =  (f"select award_desc, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
+                     f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' and UNI_ID=trim('{st.session_state.uni_id}') " 
+                     f"and UNI_UUID=trim('{uni_uuid}')") 
    workshops_df = session.sql(workshops_sql)
    workshops_results = workshops_df.to_pandas()
    workshops_rows = workshops_results.shape[0]
@@ -60,7 +62,8 @@ def get_user_workshop_acct_info():
        st.write("You have entered account info for the following badge workshops:")
        st.dataframe(workshops_results)
 
-def workshop_choice_changed():
+def workshop_choice_changed(chosen):
+   st.session_state['workshop_choice'] = chosen
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
    for_edits_df =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
@@ -208,9 +211,9 @@ with tab4:
                                     , 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW']
                                     , 'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             
-      st.session_state.workshop_choice = st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
+      chosen =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , options=badge_options
-                                                      , on_change=workshop_choice_changed()
+                                                      , on_change=workshop_choice_changed(chosen)
                                                       , key=1)
 
       with st.form("edit_acct_info"):
