@@ -75,17 +75,17 @@ if find_my_uni_record:
 
       # all user vars need to be checked to make sure they aren't empty before we set session vars
       if user_results['BADGE_GIVEN_NAME'].iloc[0] is not None:
-          st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
+         st.session_state['given_name'] = user_results['BADGE_GIVEN_NAME'].iloc[0]
       if user_results['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
-          st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
+         st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
       if user_results['BADGE_FAMILY_NAME'].iloc[0] is not None:    
-          st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
+         st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
       if user_results['BADGE_EMAIL'].iloc[0] is not None:
-          st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]  
+         st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]  
       if user_results['DISPLAY_NAME'].iloc[0] is not None:
-          st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
-       else:
-            st.session_state['display_name'] = "PLEASE GO TO THE DISPLAY NAME TAB TO GENERATE A DISPLAY NAME FOR YOUR BADGE"
+         st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
+      else:
+         st.session_state['display_name'] = "PLEASE GO TO THE DISPLAY NAME TAB TO GENERATE A DISPLAY NAME FOR YOUR BADGE"
    else: # no rows returned
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, read the tips on the FINDING INFO tab, and try again]") 
 
