@@ -207,7 +207,7 @@ with tab4:
                                                       , key=1)
       workshop_to_view = st.button("Create/Edit Acct Info for Chosen Workshop") 
 
-      if workshop_to_view == '< choose a badge >':
+      if workshop_to_view:
          get_workshop_info()
          with st.form("edit_acct_info"):
             # st.write("Edit Trial Account Info for " + workshop_choice)
