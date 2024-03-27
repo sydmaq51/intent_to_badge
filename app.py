@@ -94,7 +94,22 @@ def get_workshop_info():
       st.write('You have not previously entered account information for this workshop. Please add the information below.')
    else:
       st.write("there should only be 1 or zero rows.") 
+
+def validate_acct_loc(acct_loc)
+   if len(acct_loc) < 7 or len(acct_loc) > 8:
+      st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
+   else: 
+      st.write("The ACCOUNT LOCATOR entered seems legit.")
       
+def validate_acct_id(acct_id)
+   if len(st.session_state.edited_acct_id) < 15 or len(st.session_state.edited_acct_id) > 18:
+         st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
+   elif st.session_state.edited_acct_id.find(".") < 0:
+         st.write("The ACCOUNT ID does not seem accurate. Please try again.")
+   else: 
+      st.write("The ACCOUNT ID entered seems legit.")
+
+
 #####################################
 # Session Initializations
 # initialize_user_info()
@@ -243,19 +258,7 @@ with tab4:
                
       if st.session_state.submit_new_acct_info==True: 
             st.write(f"You submited ACCOUNT IDENTIFIER {st.session_state.edited_acct_id} and ACCOUNT LOCATOR {st.session_state.edited_acct_loc} for Workshop {st.session_state.workshop_choice}")
-            if len(st.session_state.edited_acct_id) < 15 or len(st.session_state.edited_acct_id) > 18:
-               st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
-            elif st.session_state.edited_acct_id.find(".") < 0:
-               st.write("The ACCOUNT ID does not seem accurate. Please try again.")
-            elif len(st.session_state.edited_acct_loc) < 7 or len(st.session_state.edited_acct_loc) > 8:
-               st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
-            else:    
-               st.write(f"Planning to write {edited_acct_id} and {edited_acct_loc} to the database")
-               # get_user_workshop_acct_info()
 
-      #else:
-           #st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
-           # new_badge_interest = st.button("Register for the " + st.session_state.workshop_acro + " Badge")
       
    else: # not authed
          st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
