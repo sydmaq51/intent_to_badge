@@ -239,9 +239,9 @@ with tab4:
     
          if submit_button: #button clicked
                st.session_state.submit_new_acct_info=True
+               st.write(f"You submited ACCOUNT IDENTIFIER {edited_acct_id} and ACCOUNT LOCATOR {edited_acct_loc} for Workshop {st.session_state.workshop_choice}")
                
          if st.session_state.submit_new_acct_info==True: 
-            st.write(f"You submited ACCOUNT IDENTIFIER {edited_acct_id} and ACCOUNT LOCATOR {edited_acct_loc} for Workshop {st.session_state.workshop_choice}")
             if len(edited_acct_id) < 15 or len(edited_acct_id) > 18:
                st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
             elif edited_acct_id.find(".") < 0:
