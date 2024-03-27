@@ -34,7 +34,7 @@ if find_my_uni_record:
     st.session_state['family_name'] = ''
     st.session_state['badge_email'] = ''
     
-    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, badge_email, display_format, coalesce(display_name,'<no display name generated>') as display_name from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
+    this_user_sql =  "select badge_given_name, badge_middle_name, badge_family_name, badge_email, display_format, display_name from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('" + uni_id + "') and UNI_UUID=trim('"+ uni_uuid +"')"
     this_user_df = session.sql(this_user_sql)
     user_results = this_user_df.to_pandas()                          
     user_rows = user_results.shape[0]
@@ -47,7 +47,7 @@ if find_my_uni_record:
         st.session_state['middle_name'] = user_results['BADGE_MIDDLE_NAME'].iloc[0]
         st.session_state['family_name'] = user_results['BADGE_FAMILY_NAME'].iloc[0]
         st.session_state['badge_email'] = user_results['BADGE_EMAIL'].iloc[0]
-        st.session_state['display_format'] = user_results['DISPLAY_FORMAT'].iloc[0]    
+        st.session_state['display_format'] = user_results['DISPLAY_FORMAT'].iloc[0]  
         st.session_state['display_name'] = user_results['DISPLAY_NAME'].iloc[0]
     else:
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, read the tips on the FINDING INFO tab, and try again]") 
