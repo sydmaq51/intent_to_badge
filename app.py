@@ -62,8 +62,8 @@ def get_user_workshop_acct_info():
        st.write("You have entered account info for the following badge workshops:")
        st.dataframe(workshops_results)
 
-def workshop_choice_changed(chosen):
-   st.session_state['workshop_choice'] = chosen
+def workshop_choice_changed():
+   st.session_state['workshop_choice'] = st.session_state.chosen
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
    for_edits_df =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
@@ -211,9 +211,9 @@ with tab4:
                                     , 'award_name':['AWARD-DWW','AWARD-CMCW','AWARD-DABW','AWARD-DLKW','AWARD-DNGW']
                                     , 'workshop_acro':['DWW','CMCW','DABW','DLKW','DNGW']})
             
-      chosen =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
+      st.session_state.chosen =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , options=badge_options
-                                                      , on_change=workshop_choice_changed(chosen)
+                                                      , on_change=workshop_choice_changed()
                                                       , key=1)
 
       with st.form("edit_acct_info"):
