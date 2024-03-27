@@ -63,16 +63,14 @@ def get_user_workshop_acct_info():
        st.write("You have entered account info for the following badge workshops:")
        st.dataframe(workshops_results)
 
-def workshop_choice_changed():
+def get_workshop_info():   
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
-
-def get_workshop_info():   
    for_edits_sql =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
                    f"and award_desc='{st.session_state.workshop_choice}'")
-   st.write(for_edits_sql)
+   # st.write(for_edits_sql)
    for_edits_df = session.sql(for_edits_sql)
    for_edits_pd_df = for_edits_df.to_pandas()
    for_edits_pd_df_rows = for_edits_pd_df.shape[0]
@@ -205,14 +203,11 @@ with tab4:
    if st.session_state.auth_status == 'authed':
       get_user_workshop_acct_info()     # list of all accounts registered for all workskhops     
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
-                                                      , ('< choose a badge >','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
-                                                      , on_change=workshop_choice_changed()
+                                                      , ('Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , key=1)
       workshop_to_view = st.button("Create/Edit Acct Info for Chosen Workshop") 
 
       if workshop_to_view == '< choose a badge >':
-         st.write("Choose a workshop from the drop list before clicking the button.")
-      else:
          get_workshop_info()
          with st.form("edit_acct_info"):
             # st.write("Edit Trial Account Info for " + workshop_choice)
