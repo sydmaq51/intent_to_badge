@@ -142,7 +142,7 @@ with tab1:
         st.write("-----")
         st.markdown("*If your display name has not been generated, or you would like to make changes to information, use other tabs and edit your information*")
    else:
-        st.write("Please sign in using your UNI_ID and UUID in the section above.")
+        st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")
 ###################################
 with tab2:
    st.subheader("Edit or Confirm Your Name for Your Badge(s)")
