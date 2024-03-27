@@ -71,7 +71,7 @@ def workshop_choice_changed():
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
                    f"and award_desc='{st.session_state.workshop_choice}'")
-   st.write(for_edits_df)
+   st.write(for_edits_sql)
    for_edits_df = session.sql(for_edits_sql)
    for_edits_pd_df = for_edits_df.to_pandas()
    for_edits_pd_df_rows = for_edits_pd_df.shape[0]
