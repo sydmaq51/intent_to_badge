@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from snowflake.snowpark.functions import col
 
 if 'submit_new_acct_info' not in st.session_state:
    st.session_state.submit_new_acct_info = False
