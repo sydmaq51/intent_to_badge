@@ -227,6 +227,8 @@ with tab3:
 ##########################################
 with tab4:
    st.subheader("View Trial Account Information You've Entered")
+   st.session_state.edited_acct_id = 'test'
+   
    if st.session_state.auth_status == 'authed':
       # display of info for all registered workshops
       get_user_workshop_acct_info()        
@@ -240,7 +242,6 @@ with tab4:
 
       if workshop_to_view: #button clicked
          st.session_state.editing_workshop=True
-         # st.session_state.submit_new_acct_info=False
 
    ##******* gets sub form to show up ********
       # clicking above button makes this appear by setting property to True
@@ -260,7 +261,7 @@ with tab4:
             st.write(f"You submited ACCOUNT IDENTIFIER {st.session_state.edited_acct_id} and ACCOUNT LOCATOR {st.session_state.edited_acct_loc} for Workshop {st.session_state.workshop_choice}")
 
       st.write('Outside the form')
-      
+      st.write(st.session_state.edited_acct_id)
    else: # not authed
          st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
  
