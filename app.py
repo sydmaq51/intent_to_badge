@@ -129,7 +129,7 @@ with tab2:
  
 #######################################
 with tab3:
-    st.subheader("Format the Display of Your Name on Your Badge(s)")
+   st.subheader("Format the Display of Your Name on Your Badge(s)")
 
    if st.session_state.auth_status == 'authed':
       with st.form("display_formatting"):
