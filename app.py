@@ -95,13 +95,13 @@ def get_workshop_info():
    else:
       st.write("there should only be 1 or zero rows.") 
 
-def validate_acct_loc(acct_loc)
+def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
       st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
    else: 
       st.write("The ACCOUNT LOCATOR entered seems legit.")
       
-def validate_acct_id(acct_id)
+def validate_acct_id(acct_id):
    if len(st.session_state.edited_acct_id) < 15 or len(st.session_state.edited_acct_id) > 18:
          st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
    elif st.session_state.edited_acct_id.find(".") < 0:
