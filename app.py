@@ -125,7 +125,8 @@ with tab2:
             st.success('Badge Name & Email Updated', icon='🚀')
 
     else: # not authed
-        st.write("Please sign in using your UNI_ID and UUID in the section above.")  
+        st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
+ 
 #######################################
 with tab3:
     st.subheader("Format the Display of Your Name on Your Badge(s)")
@@ -169,6 +170,9 @@ with tab3:
                     
             session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',uni_id, uni_uuid, display_format, edited_display_name)
             st.success('Badge Display Name Updated', icon='🚀')
+      else: # not authed
+         st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
+ 
 
 ##########################################
 with tab4:
@@ -214,7 +218,10 @@ with tab4:
         else:
             st.write("If you intend to pursue the " + st.session_state.workshop_acro + " badge, you should click the Register button below.")
             new_badge_interest = st.button("Register for the " + st.session_state.workshop_acro + " Badge")
-
+      
+    else: # not authed
+         st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
+ 
         
         #with st.form("workshops"):  
          #   st.write("editing will happen here")
