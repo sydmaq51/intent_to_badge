@@ -18,7 +18,7 @@ def get_user_workshop_acct_info():
        st.write("You have entered account info for the following badge workshops:")
        st.dataframe(workshops_results)
    else:
-      st.write("You have not registered for any badges.")
+      st.write("You have not registered for any badges. Go to the next page to enter info about your Snowflake Trial Account.")
 
 cnx=st.connection("snowflake")
 session = cnx.session()
