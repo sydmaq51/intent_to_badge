@@ -1,6 +1,20 @@
 import streamlit as st
 import pandas as pd
 
+def validate_acct_loc(acct_loc):
+   if len(acct_loc) < 7 or len(acct_loc) > 8:
+      st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
+   else: 
+      st.write("The ACCOUNT LOCATOR entered seems legit.")
+      
+def validate_acct_id(acct_id):
+   if len(st.session_state.edited_acct_id) < 15 or len(st.session_state.edited_acct_id) > 18:
+         st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
+   elif st.session_state.edited_acct_id.find(".") < 0:
+         st.write("The ACCOUNT ID does not seem accurate. Please try again.")
+   else: 
+      st.write("The ACCOUNT ID entered seems legit.")
+
 cnx=st.connection("snowflake")
 session = cnx.session()
 
@@ -25,7 +39,9 @@ if st.session_state.auth_status == 'authed':
       submit_button = st.form_submit_button("Update Trial Account Info")
 
       if submit_button: 
-         st.session_state.submit_new_acct_info=True
+         validate_acct_id(edited_acct_id)
+         validate_acct_loc(edited_acct_loc)
+
          st.session_state.edited_acct_id = edited_acct_id
          st.session_state.edited_acct_loc = edited_acct_loc
 
