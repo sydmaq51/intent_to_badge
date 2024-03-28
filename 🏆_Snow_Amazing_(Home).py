@@ -96,4 +96,4 @@ if st.session_state.auth_status == 'authed':
       st.write("-----")
       st.markdown("*If your display name has not been generated, or you would like to make changes to information, go to the FORMAT DISPLAY NAME page.*")
 else:
-   st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
+   st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar.]")
