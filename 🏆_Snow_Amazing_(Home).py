@@ -24,7 +24,7 @@ def initialize_user_info():
    st.session_state['workshop_choice'] = '' 
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
-   st.session_state['submit_new_account_info'] = False
+   st.session_state['new_record'] = False
 
 def get_user_profile_info():
    #start over with authentication and populating vars
