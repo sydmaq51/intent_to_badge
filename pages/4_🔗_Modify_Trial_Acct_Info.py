@@ -68,6 +68,8 @@ if st.session_state.auth_status == 'authed':
       if load_or_create:
          if st.session_state.workshop_choice == '<Choose a Workshop>':
             st.write("Please choose a workskhop from the list.")
+            st.session_state.account_locator = ''
+            st.session_state.account_identifier = ''
          else:   
             # st.write(st.session_state.workshop_choice)
             get_workshop_info()
