@@ -9,32 +9,32 @@ if 'al_legit' not in st.session_state:
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
       st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
-      st.session_state.aid_legit=False
+      st.session_state.aid_legit = False
    else: 
       st.write("The ACCOUNT LOCATOR entered seems legit.")
-      st.session_state('aid_legit')=True
+      st.session_state.aid_legit = True
       
 def validate_acct_id(acct_id):
    if len(acct_id) < 15 or len(acct_id) > 18:
       st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
-      st.session_state('al_legit')=False
+      st.session_state.al_legit = False
    elif acct_id.find(".") < 0:
       st.write("The ACCOUNT ID does not seem accurate. Please try again.")
-      st.session_state('al_legit')=False
+      st.session_state.al_legit = False
    else: 
       st.write("The ACCOUNT ID entered seems legit.")
-      st.session_state('al_legit')=True
+      st.session_state.al_legit = True
 
 cnx=st.connection("snowflake")
 session = cnx.session()
 
 def workshop_chosen_changed():
-   st.session_state['editing_workshop']=False
+   st.session_state.editing_workshop = False
    st.session_state['submit_new_account_info'] = False
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
-   st.session_state('aid_legit')=False
-   st.session_state('al_legit')=False
+   st.session_state.aid_legit = False
+   st.session_state.al_legit = False
 
 # drop list with option button for editing
 if st.session_state.auth_status == 'authed':
