@@ -14,7 +14,7 @@ if st.session_state.auth_status == 'authed':
     submit_edits = st.form_submit_button("Update My Badge Name & Badge Email")  
     
     if submit_edits:
-      st.session_state.session.call('AMAZING.APP.UPDATE_BADGENAME_BADGEEMAIL_SP',uni_id, uni_uuid, edited_given, edited_middle, edited_family, edited_email)
+      st.session_state.session.call('AMAZING.APP.UPDATE_BADGENAME_BADGEEMAIL_SP',st.session_state.uni_id, st.session_state.uni_uuid, edited_given, edited_middle, edited_family, edited_email)
       get_user_profile_info() 
       st.success('Badge Name & Email Updated', icon='🚀')
 else: # not authed
