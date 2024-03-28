@@ -160,5 +160,5 @@ if st.session_state.auth_status == 'authed':
       st.markdown(md_str)
       st.write("-----")
       st.markdown("*If your display name has not been generated, or you would like to make changes to information, use other tabs and edit your information*")
-   else:
-        st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")
+else:
+   st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")
