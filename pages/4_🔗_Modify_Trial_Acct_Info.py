@@ -83,8 +83,8 @@ if st.session_state.auth_status == 'authed':
             st.write("Maybe a row was added?")
 
 
-else: # not authed
-   st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
+   else: # not authed
+      st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 
 
 
