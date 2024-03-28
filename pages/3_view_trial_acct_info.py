@@ -17,6 +17,8 @@ def get_user_workshop_acct_info():
    if workshops_rows>=1:
        st.write("You have entered account info for the following badge workshops:")
        st.dataframe(workshops_results)
+   else:
+      st.write("You have not registered for any badges.")
 
 cnx=st.connection("snowflake")
 session = cnx.session()
@@ -25,5 +27,6 @@ st.subheader("View Trial Account Information You've Entered")
 
 if st.session_state.auth_status == 'authed':
    # display of info for all registered workshops
-   get_user_workshop_acct_info()        
+   get_user_workshop_acct_info()
+   #st.dataframe(workshops_results)
 
