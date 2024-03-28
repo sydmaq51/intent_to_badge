@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
 
-
+  
 if 'aid_legit' not in st.session_state:
-   st.session_state('aid_legit')=False
+   st.session_state.aid_legit = False
 if 'al_legit' not in st.session_state:
-   st.session_state('al_legit')=False
+   st.session_state.al_legit = False
 
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
