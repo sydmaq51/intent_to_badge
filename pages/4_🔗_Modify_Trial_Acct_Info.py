@@ -25,13 +25,10 @@ def validate_acct_id(acct_id):
       st.write("The ACCOUNT ID entered seems legit.")
       st.session_state.al_legit = True
 
-cnx=st.connection("snowflake")
-session = cnx.session()
-
 def get_workshop_info():   
    st.session_state.aid_legit = False
    st.session_state.al_legit = False
-   st.session_state.new_record = False
+   st.session_state.new_record = 'False'
    for_edits_sql =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
@@ -43,17 +40,19 @@ def get_workshop_info():
 
    # if the data row doesnt exist just seed it with blanks
    if for_edits_pd_df_rows == 1:
+      st.session_state.new_record='False'
       if for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] is not None:
          st.session_state['account_locator'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] 
       if for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0] is not None:
-         st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
-      st.session_state.new_record='False'   
+         st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]      
    elif for_edits_pd_df_rows == 0:
       st.write('You have not previously entered account information for this workshop. Please add the information below.')
-       st.session_state.new_record='True'
+      st.session_state.new_record='True'
    else:
       st.write("there should only be 1 or zero rows.") 
 
+cnx=st.connection("snowflake")
+session = cnx.session()
 
 st.subheader("Add or Edit Trial Account Rows for Workshops")
 # drop list with option button for editing
