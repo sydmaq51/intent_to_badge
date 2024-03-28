@@ -35,7 +35,7 @@ def get_workshop_info():
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
                    f"and award_desc='{st.session_state.workshop_choice}'")
-   st.write(for_edits_sql)
+   //st.write(for_edits_sql)
    for_edits_df = session.sql(for_edits_sql)
    for_edits_pd_df = for_edits_df.to_pandas()
    for_edits_pd_df_rows = for_edits_pd_df.shape[0]
@@ -69,7 +69,7 @@ if st.session_state.auth_status == 'authed':
          if st.session_state.workshop_choice == '<Choose a Workshop>':
             st.write("Please choose a workskhop from the list.")
          else:   
-            st.write(st.session_state.workshop_choice)
+            //st.write(st.session_state.workshop_choice)
             get_workshop_info()
    
    with st.form("edit_acct_info"):
