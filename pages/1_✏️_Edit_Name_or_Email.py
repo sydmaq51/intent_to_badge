@@ -5,7 +5,7 @@ cnx=st.connection("snowflake")
 session = cnx.session()
 
 
-def get_user_profile_info():
+def preauthed_get_user_profile_info():
    #start over with authentication and populating vars
    this_user_sql =  (f"select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email "
                      f"from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('{st.session_state.uni_id}') "
@@ -14,10 +14,7 @@ def get_user_profile_info():
    user_results_pd_df = this_user_df.to_pandas()                          
    user_rows = user_results_pd_df.shape[0]
 
-   if user_rows>=1:
-      # if at least one row was found then the key must have been correct so we consider the user authorized
-      st.session_state['auth_status'] = 'authed'
-       
+   if user_rows>=1:       
       # 1 row found means the UNI_ID is legit and can be used to look up other information
       # all user vars need to be checked to make sure they aren't empty before we set session vars
       
@@ -37,6 +34,7 @@ def get_user_profile_info():
    else: # no rows returned
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs tab below for tips on FINDING YOUR INFO, and try again]") 
 
+####################### PAGE CONTENTS ###########
 st.subheader("Edit your Badge Name or Badge Email")
 
 if st.session_state.auth_status == 'authed':
