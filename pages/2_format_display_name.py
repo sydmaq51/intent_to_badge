@@ -39,7 +39,7 @@ if st.session_state.auth_status == 'authed':
             else: 
                 st.write('Choose a format for your name')
 
-            session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',uni_id, uni_uuid, display_format, edited_display_name)
+            session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',st.session_state.uni_id, st.session_state.uni_uuid, display_format, edited_display_name)
             get_user_profile_info()
             st.success('Badge Display Name Updated', icon='🚀')
 else: # not authed
