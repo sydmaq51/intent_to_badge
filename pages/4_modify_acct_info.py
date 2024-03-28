@@ -28,12 +28,9 @@ def validate_acct_id(acct_id):
 cnx=st.connection("snowflake")
 session = cnx.session()
 
-def workshop_chosen_changed():
-   get_workshop_info()  
+def get_workshop_info():   
    st.session_state.aid_legit = False
    st.session_state.al_legit = False
-
-def get_workshop_info():   
    for_edits_sql =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
@@ -55,14 +52,18 @@ def get_workshop_info():
    else:
       st.write("there should only be 1 or zero rows.") 
 
+
+st.subheader("Add or Edit Trial Account Rows for Workshops")
 # drop list with option button for editing
 if st.session_state.auth_status == 'authed':
-   st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
+   with st.form("select a workshop"):
+      st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
-                                                      , on_change = workshop_chosen_changed()
                                                       , key=1)
-    
-   #get_workshop_info()
+      load_or_create = st.button("Load or Create Workshop Acct Info")
+      if load_or_create:
+         #get_workshop_info()
+   
    with st.form("edit_acct_info"):
       st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
       edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
