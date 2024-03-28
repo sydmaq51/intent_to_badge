@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-  
 if 'aid_legit' not in st.session_state:
    st.session_state.aid_legit = False
 if 'al_legit' not in st.session_state:
@@ -10,7 +9,7 @@ if 'al_legit' not in st.session_state:
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
       st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
-      st.session_state('aid_legit')=False
+      st.session_state.aid_legit=False
    else: 
       st.write("The ACCOUNT LOCATOR entered seems legit.")
       st.session_state('aid_legit')=True
