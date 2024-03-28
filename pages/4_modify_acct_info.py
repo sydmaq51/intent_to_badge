@@ -33,7 +33,7 @@ if st.session_state.auth_status == 'authed':
             st.session_state.edited_acct_loc = edited_acct_loc
 
 
-   if st.session_state.submit_new_acct_info==True: 
+
       #st.write(f"You submited ACCOUNT IDENTIFIER {st.session_state.edited_acct_id} and ACCOUNT LOCATOR {st.session_state.edited_acct_loc} for Workshop {st.session_state.workshop_choice}")
       st.write("under the if")
 
