@@ -16,21 +16,18 @@ if st.session_state.auth_status == 'authed':
                                                       , ('Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , on_change = workshop_chosen_changed()
                                                       , key=1)
-   
+    
+   #get_workshop_info()
+   with st.form("edit_acct_info"):
+      st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
+      edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
+      edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
+      submit_button = st.form_submit_button("Update Trial Account Info")
 
-   # clicking above button makes this appear by setting property to True
-   if st.session_state.editing_workshop==True:    
-      get_workshop_info()
-      with st.form("edit_acct_info"):
-         st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
-         edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
-         edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
-         submit_button = st.form_submit_button("Update Trial Account Info")
-
-         if submit_button: 
-            st.session_state.submit_new_acct_info=True
-            st.session_state.edited_acct_id = edited_acct_id
-            st.session_state.edited_acct_loc = edited_acct_loc
+      if submit_button: 
+         st.session_state.submit_new_acct_info=True
+         st.session_state.edited_acct_id = edited_acct_id
+         st.session_state.edited_acct_loc = edited_acct_loc
 
 
 
