@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 
+cnx=st.connection("snowflake")
+session = cnx.session()
+
 def get_user_workshop_acct_info():
    # get a table of all the entries this user has made
    workshops_sql =  (f"select award_desc, organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
