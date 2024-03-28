@@ -1,19 +1,29 @@
 import streamlit as st
 import pandas as pd
 
+if 'aid_legit' not in session_state:
+   st.session_state('aid_legit')=False
+if 'al_legit' not in session_state:
+   st.session_state('al_legit')=False
+
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
       st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
+      st.session_state('aid_legit')=False
    else: 
       st.write("The ACCOUNT LOCATOR entered seems legit.")
+      st.session_state('aid_legit')=True
       
 def validate_acct_id(acct_id):
-   if len(st.session_state.edited_acct_id) < 15 or len(st.session_state.edited_acct_id) > 18:
-         st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
-   elif st.session_state.edited_acct_id.find(".") < 0:
-         st.write("The ACCOUNT ID does not seem accurate. Please try again.")
+   if len(acct_id) < 15 or len(acct_id) > 18:
+      st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
+      st.session_state('al_legit')=False
+   elif acct_id.find(".") < 0:
+      st.write("The ACCOUNT ID does not seem accurate. Please try again.")
+      st.session_state('al_legit')=False
    else: 
       st.write("The ACCOUNT ID entered seems legit.")
+      st.session_state('al_legit')=True
 
 cnx=st.connection("snowflake")
 session = cnx.session()
@@ -23,6 +33,8 @@ def workshop_chosen_changed():
    st.session_state['submit_new_account_info'] = False
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
+   st.session_state('aid_legit')=False
+   st.session_state('al_legit')=False
 
 # drop list with option button for editing
 if st.session_state.auth_status == 'authed':
@@ -45,9 +57,7 @@ if st.session_state.auth_status == 'authed':
          st.session_state.edited_acct_id = edited_acct_id
          st.session_state.edited_acct_loc = edited_acct_loc
 
-      st.write(f"You submited ACCOUNT IDENTIFIER {st.session_state.edited_acct_id} and ACCOUNT LOCATOR {st.session_state.edited_acct_loc} for Workshop {st.session_state.workshop_choice}")
 
-      st.write("EDITED ACCOUNT ID IS: "+ st.session_state.edited_acct_id)
 
 else: # not authed
          st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
