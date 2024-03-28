@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 
+cnx=st.connection("snowflake")
+session = cnx.session()
 
 def workshop_chosen_changed():
    st.session_state['editing_workshop']=False
