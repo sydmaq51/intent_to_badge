@@ -25,6 +25,8 @@ def initialize_user_info():
    st.session_state['account_locator'] = ''
    st.session_state['account_identifier'] = ''
    st.session_state['new_record'] = False
+   st.session_state['edited_acct_loc'] =''
+   st.session_state['edited_acct_id'] =''
 
 def get_user_profile_info():
    #start over with authentication and populating vars
