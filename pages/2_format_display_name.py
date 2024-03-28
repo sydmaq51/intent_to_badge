@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from snowflake.snowpark.context import get_active_session
 
 st.subheader("Format the Display of Your Name for Your Badge(s)")
 
