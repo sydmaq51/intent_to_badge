@@ -83,7 +83,7 @@ if st.session_state.auth_status == 'authed':
       if submit_button: 
          validate_acct_id(edited_acct_id)
          validate_acct_loc(edited_acct_loc)
-         if st.session_state.ai_legit == True and st.session_state.aid_legit==True:
+         if st.session_state.al_legit == True and st.session_state.aid_legit==True:
             st.session_state.edited_acct_id = edited_acct_id
             st.session_state.edited_acct_loc = edited_acct_loc
             session.call(AMAZING.APP.ADD_ACCT_INFO_SP, st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
