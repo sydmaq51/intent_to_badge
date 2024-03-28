@@ -5,7 +5,7 @@ cnx=st.connection("snowflake")
 session = cnx.session()
 
 
-def preauthed_get_user_profile_info():
+def get_user_profile_info():
    #start over with authentication and populating vars
    this_user_sql =  (f"select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email "
                      f"from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('{st.session_state.uni_id}') "
