@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
-from snowflake.snowpark.context import get_active_session
+
+cnx=st.connection("snowflake")
+st.session_state.session = cnx.session()
 
 def get_user_profile_info():
    #start over with authentication and populating vars
