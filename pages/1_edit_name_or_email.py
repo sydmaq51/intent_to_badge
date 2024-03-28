@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 cnx=st.connection("snowflake")
-st.session_state.session = cnx.session()
+session = cnx.session()
 
 def get_user_profile_info():
    #start over with authentication and populating vars
