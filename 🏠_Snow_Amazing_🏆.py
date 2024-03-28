@@ -53,10 +53,10 @@ def get_user_profile_info():
       if user_results_pd_df['DISPLAY_NAME'].iloc[0] is not None:
          st.session_state['display_name'] = user_results_pd_df['DISPLAY_NAME'].iloc[0]
       else:
-         st.session_state['display_name'] = "PLEASE GO TO THE DISPLAY NAME TAB TO GENERATE A DISPLAY NAME FOR YOUR BADGE"
+         st.session_state['display_name'] = "Please go to the FORMAT DISPLAY NAME page to generate a DISPLAY NAME for your badge(s)."
       st.dataframe(user_results_pd_df)
    else: # no rows returned
-        st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs tab below for tips on FINDING YOUR INFO, and try again]") 
+        st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs page, and try again]") 
 
 with st.sidebar:
    st.sidebar.header("User")
