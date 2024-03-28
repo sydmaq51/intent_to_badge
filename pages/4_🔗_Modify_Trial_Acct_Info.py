@@ -31,6 +31,7 @@ session = cnx.session()
 def get_workshop_info():   
    st.session_state.aid_legit = False
    st.session_state.al_legit = False
+   st.session_state.new_record = False
    for_edits_sql =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator " 
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
@@ -46,9 +47,10 @@ def get_workshop_info():
          st.session_state['account_locator'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] 
       if for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0] is not None:
          st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]
-      st.write('Finished the function, boss!')   
+      st.session_state.new_record='False'   
    elif for_edits_pd_df_rows == 0:
       st.write('You have not previously entered account information for this workshop. Please add the information below.')
+       st.session_state.new_record='True'
    else:
       st.write("there should only be 1 or zero rows.") 
 
@@ -77,8 +79,8 @@ if st.session_state.auth_status == 'authed':
          if st.session_state.ai_legit == True and st.session_state.aid_legit==True:
             st.session_state.edited_acct_id = edited_acct_id
             st.session_state.edited_acct_loc = edited_acct_loc
-            session.call
-
+            session.call(AMAZING.APP.ADD_ACCT_INFO_SP, st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
+            st.write("Maybe a row was added?")
 
 
 else: # not authed
