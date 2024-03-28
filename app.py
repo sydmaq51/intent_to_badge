@@ -84,7 +84,7 @@ if find_my_uni_record:
    # this will query the db and if finds a match will populate profile vars
    get_user_profile_info()
    
-st.subheader("Your Name and Email - Currently Stored in Our System")
+st.subheader("We Found You!")
 if st.session_state.auth_status == 'authed':
    st.markdown("**GIVEN NAME:** " + st.session_state.given_name)
    st.markdown("**MIDDLE/ALTERNATE NAME:** "+ st.session_state.middle_name) 
