@@ -33,7 +33,7 @@ def get_workshop_info():
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
                    f"and UNI_ID= trim('{st.session_state.uni_id}') and UNI_UUID=trim('{st.session_state.uni_uuid}') " 
                    f"and award_desc='{st.session_state.workshop_choice}'")
-   # st.write(for_edits_sql)
+   st.write(for_edits_sql)
    for_edits_df = session.sql(for_edits_sql)
    for_edits_pd_df = for_edits_df.to_pandas()
    for_edits_pd_df_rows = for_edits_pd_df.shape[0]
@@ -59,11 +59,12 @@ st.subheader("Add or Edit Trial Account Rows for Workshops")
 if st.session_state.auth_status == 'authed':
    with st.form("select a workshop"):
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
-                                                      , ('Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
+                                                      , ('Choose a Workshop>','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , key=1)
       load_or_create = st.form_submit_button("Load or Create Workshop Acct Info")
       
       if load_or_create:
+         st.write(st.session_state.workshop_choice)
          get_workshop_info()
    
    with st.form("edit_acct_info"):
