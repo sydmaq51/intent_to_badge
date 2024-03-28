@@ -16,12 +16,8 @@ if st.session_state.auth_status == 'authed':
                                                       , ('Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , on_change = workshop_chosen_changed()
                                                       , key=1)
-   workshop_to_view = st.button("Create/Edit Acct Info for Chosen Workshop") 
+   
 
-   if workshop_to_view: #button clicked
-      st.session_state.editing_workshop=True
-
-   ##******* gets sub form to show up ********
    # clicking above button makes this appear by setting property to True
    if st.session_state.editing_workshop==True:    
       get_workshop_info()
