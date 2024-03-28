@@ -7,7 +7,7 @@ st.set_page_config(
 )
 
 cnx=st.connection("snowflake")
-st.session_state.session = cnx.session()
+session = cnx.session()
 if 'auth_status' not in st.session_state:
     st.session_state['auth_status'] = 'not_authed'
    
