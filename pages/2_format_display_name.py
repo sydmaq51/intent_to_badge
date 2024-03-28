@@ -8,11 +8,11 @@ st.subheader("Format the Display of Your Name for Your Badge(s)")
 
 if st.session_state.auth_status == 'authed':
    with st.form("display_formatting"):
-      display_option_1 = edited_given.capitalize() + " " + edited_middle.capitalize() + " " + edited_family.capitalize() #lazy do it for me
-      display_option_2 = edited_given.capitalize() + " " + edited_middle.capitalize() + " " + edited_family #european w nobiliary
-      display_option_3 = edited_family.upper() + " " + edited_middle + " " + edited_given.capitalize()  #east asian with alt script middle
-      display_option_4 = edited_family.upper() + " " +  edited_given.capitalize() + " " + edited_middle.capitalize() #east asian with alt script middle
-      display_option_5 = edited_given.capitalize() + " " +  edited_middle.capitalize() + " " + edited_family.upper() #ze french
+      display_option_1 = st.session_state.given_name.capitalize() + " " + st.session_state.middle_name.capitalize() + " " + st.session_state.family_name.capitalize() #lazy do it for me
+      display_option_2 = st.session_state.given_name.capitalize() + " " + st.session_state.middle_name.capitalize() + " " + st.session_state.family_name #european w nobiliary
+      display_option_3 = st.session_state.family_name.upper() + " " + st.session_state.middle_name + " " + st.session_state.given_name.capitalize()  #east asian with alt script middle
+      display_option_4 = st.session_state.family_name.upper() + " " +  st.session_state.given_name.capitalize() + " " + st.session_state.middle_name.capitalize() #east asian with alt script middle
+      display_option_5 = st.session_state.given_name.capitalize() + " " +  st.session_state.middle_name.capitalize() + " " + st.session_state.family_name.upper() #ze french
 
       badge_name_order = st.radio("Name Display Order You Prefer:",                            
                                  [display_option_1, display_option_2, display_option_3, display_option_4, display_option_5],
