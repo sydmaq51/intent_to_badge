@@ -15,7 +15,7 @@ if st.session_state.auth_status == 'authed':
                                  [display_option_1, display_option_2, display_option_3, display_option_4, display_option_5],
                                   captions = ["Common in Anglo Traditions", "For names with nobiliary particles", "For use with dual script like 전 JEON Joon-kook 정국 ", "For cultures that put FAMILY name first", "Common for French and Francophonic"]
                                    )
-            submit_display_format = st.form_submit_button("Record My Name Display Preference")
+      submit_display_format = st.form_submit_button("Record My Name Display Preference")
 
       if submit_display_format:
             if badge_name_order == display_option_1:
