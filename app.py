@@ -6,7 +6,6 @@ st.set_page_config(
    page_icon= "🏆"
 )
 
-
 cnx=st.connection("snowflake")
 session = cnx.session()
 if 'auth_status' not in st.session_state:
@@ -59,7 +58,6 @@ def get_user_profile_info():
    else: # no rows returned
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs tab below for tips on FINDING YOUR INFO, and try again]") 
 
-
 with st.sidebar:
    st.sidebar.header("User")
    uni_id = st.text_input('Enter your learn.snowflake.com UNI ID:')
@@ -71,7 +69,6 @@ with st.sidebar:
 st.header('Are You Snow-A-Mazing?')
 st.write('Welcome to the learn.snowflake.com Workshop Badge Management app!')
 st.write('Using this app you can manage your badge name and email and you can view your results.')
-
 
 if find_my_uni_record:
    # reset all session vars
@@ -96,6 +93,6 @@ if st.session_state.auth_status == 'authed':
       md_str =  "**Name Will Display on Badge As:** :red[" + st.session_state.display_name + "]"       
       st.markdown(md_str)
       st.write("-----")
-      st.markdown("*If your display name has not been generated, or you would like to make changes to information, use other tabs and edit your information*")
+      st.markdown("*If your display name has not been generated, or you would like to make changes to information, go to the Your Display Name page.*")
 else:
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")
