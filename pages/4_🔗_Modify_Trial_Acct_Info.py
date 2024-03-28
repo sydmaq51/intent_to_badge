@@ -26,6 +26,8 @@ def validate_acct_id(acct_id):
       st.session_state.al_legit = True
 
 def get_workshop_info():   
+   st.session_state.account_locator = ''
+   st.session_state.account_identifier = ''
    st.session_state.aid_legit = False
    st.session_state.al_legit = False
    st.session_state.new_record = 'False'
