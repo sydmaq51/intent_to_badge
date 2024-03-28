@@ -81,9 +81,8 @@ if st.session_state.auth_status == 'authed':
             session.call(AMAZING.APP.ADD_ACCT_INFO_SP, st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
             st.write("Maybe a row was added?")
 
-
-   else: # not authed
-      st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
+else: # not authed
+   st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 
 
 
