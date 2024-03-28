@@ -39,11 +39,9 @@ if st.session_state.auth_status == 'authed':
             session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',uni_id, uni_uuid, display_format, edited_display_name)
             get_user_profile_info()
             st.success('Badge Display Name Updated', icon='🚀')
-   else: # not authed
-         st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
+else: # not authed
+   st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]")  
 
 
 
 
-with tab5:
-   st.write("just a placeholder for now")
