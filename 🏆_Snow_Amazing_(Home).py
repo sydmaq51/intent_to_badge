@@ -72,7 +72,7 @@ st.write('Using this app you can manage your badge name and email and you can vi
 
 if find_my_uni_record:
    # reset all session vars
-    initialize_user_info()
+   initialize_user_info()
 
    # Set uni_id and key to entries on form
    st.session_state['uni_id'] = uni_id
