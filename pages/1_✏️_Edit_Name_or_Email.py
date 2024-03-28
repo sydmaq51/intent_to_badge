@@ -52,4 +52,5 @@ if st.session_state.auth_status == 'authed':
       get_user_profile_info() 
       st.success('Badge Name & Email Updated', icon='🚀')
 else: # not authed
-        st.markdown(":red[Please sign in using your UNI_ID and UUID in the section above.]") 
+   st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
+
