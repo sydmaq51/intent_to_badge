@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from snowflake.snowpark.context import get_active_session
 
 st.subheader("Edit your Badge Name or Badge Email")
 
