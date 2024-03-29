@@ -13,7 +13,7 @@ st.write("You can search the table by rolling your cursor over the header and ch
 if st.session_state.auth_status == 'authed':
         all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter(col("uni_id")== st.session_state.uni_id)
         all_my_tests_pd_df = all_my_tests_df.to_pandas()
-        amt_rows = all_my_tests_pd_df.shape()
+        amt_rows = all_my_tests_pd_df.shape[0]
 
         if amt_rows > 0:
                 my_workshops = all_my_tests_pd_df['BADGE_ACRO'].unique()
