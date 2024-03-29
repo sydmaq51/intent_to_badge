@@ -15,12 +15,17 @@ if st.session_state.auth_status == 'authed':
         all_my_tests_pd_df = all_my_tests_df.to_pandas()
         amt_rows = all_my_tests_pd_df.shape[0]
 
+        workshop_filter = all_my_tests_pd_df['BADGE_ACRO'].unique()
+        step_filter= all_my_tests_pd_df['STEP'].unique()
+        
         if amt_rows > 0:
-                my_workshops = all_my_tests_pd_df['BADGE_ACRO'].unique()
-                mw_choice = st.selectbox("Filter to workshop records for:", my_workshops)
+                mw_choice = st.selectbox("Filter to workshop records for:", workshop_filter)
+                pf_choice = st.selectbox("Pass/Fail Filter:", (0,1)                         
                 st.markdown(":gray[*Please note that if you have only started one workshop, you will only have one choice in the list*]") 
 
-                st.dataframe(all_my_tests_pd_df
+                filtered_df = all_my_tests_pd_df.loc[(all_my_tests_pd_df['BADGE_WORKSHOP']=mw_choice) & (all_my_tests_pd_df['PASSED']=pf_choice)
+                                         
+                st.dataframe(filtered_df
                         , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP"]
                         , column_config={ 
                                 "STEP": "DORA Check #"
@@ -30,4 +35,6 @@ if st.session_state.auth_status == 'authed':
                         hide_index=True,
                         height=1200
                         )
+
+                                        
 
