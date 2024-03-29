@@ -18,7 +18,7 @@ if st.session_state.auth_status == 'authed':
         if amt_rows > 0:
                 my_workshops = all_my_tests_pd_df['BADGE_ACRO'].unique()
                 mw_choice = st.selectbox("Filter to workshop records for:", my_workshops)
-                st.markdown(:gray["Please note that if you have only started one workshop, you will only have one choice in the list"]) 
+                st.markdown(":gray[Please note that if you have only started one workshop, you will only have one choice in the list]") 
 
                 st.dataframe(all_my_tests_pd_df
                         , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP"]
