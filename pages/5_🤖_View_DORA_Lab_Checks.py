@@ -26,10 +26,8 @@ if st.session_state.auth_status == 'authed':
                                 "STEP": "DORA Check #"
                                 ,"ACCOUNT_LOCATOR": "Acct Loc"
                                 , "PASSED": "Passed"
-                        ,"DORA_TIMESTAMP": "Submission Date/Time"
-            },    
-             hide_index=True,
-             height=1200
-             
-            )
+                        ,"DORA_TIMESTAMP": "Submission Date/Time"},    
+                        hide_index=True,
+                        height=1200
+                        )
 
