@@ -15,6 +15,8 @@ st.dataframe(all_my_tests_pd_df
                         , "PASSED": "Passed"
                         ,"DORA_TIMESTAMP": "Submission Date/Time"
             },    
-             hide_index=True
+             hide_index=True,
+             height=1200
+             
             )
 
