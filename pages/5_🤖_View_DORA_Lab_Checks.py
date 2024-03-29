@@ -14,7 +14,7 @@ all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter(col("uni_id")
 all_my_tests_pd_df = all_my_tests_df.to_pandas()
 
 my_workshops = all_my_tests_pd_df['BADGE_ACRO'].unique()
-st.write(my_workshops)
+mw_choice = st.selectbox("Filter to workshop records for:", my_workshops)
 
 st.dataframe(all_my_tests_pd_df
              , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP"]
