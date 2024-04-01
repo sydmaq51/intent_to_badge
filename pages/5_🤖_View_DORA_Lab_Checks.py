@@ -16,15 +16,16 @@ if st.session_state.auth_status == 'authed':
         amt_rows = all_my_tests_pd_df.shape[0]
 
         workshop_filter = all_my_tests_pd_df['BADGE_ACRO'].unique()
-        step_filter= all_my_tests_pd_df['STEP'].unique()
+        # step_filter= all_my_tests_pd_df['STEP'].unique()
+        st.dataframe(all_my_tests_pd_df)
         
         if amt_rows > 0:
                 mw_choice = st.selectbox("Filter to workshop records for:", workshop_filter)
-                pf_choice = st.selectbox('Pass/Fail Filter:', ('True','False') )                        
+                # pf_choice = st.selectbox('Pass/Fail Filter:', ('True','False') )                        
                 st.markdown("*Please note that if you have only started one workshop, you will only have one choice in the list*") 
 
                 if mw_choice:
-                        filtered_df = all_my_tests_pd_df.loc[(all_my_tests_pd_df['BADGE_WORKSHOP'])== mw_choice] # & (all_my_tests_pd_df['PASSED']== pf_choice)
+                        filtered_df = all_my_tests_pd_df[all_my_tests_df['BADGE_WORKSHOP'] == mw_choice] 
                                          
                         st.dataframe(filtered_df
                                 , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP"]
