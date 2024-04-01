@@ -25,7 +25,7 @@ if st.session_state.auth_status == 'authed':
                 st.markdown("*Please note that if you have only started one workshop, you will only have one choice in the list*") 
 
                 if mw_choice:
-                        filtered_df = all_my_tests_pd_df[all_my_tests_df['BADGE_ACRO'] == mw_choice] 
+                        filtered_df = all_my_tests_pd_df[all_my_tests_df['BADGE_ACRO'].isin(mw_choice)] 
                                          
                         st.dataframe(filtered_df
                                 , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP"]
