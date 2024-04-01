@@ -17,7 +17,7 @@ if st.session_state.auth_status == 'authed':
 
         workshop_filter = all_my_tests_pd_df['BADGE_ACRO'].unique()
         # step_filter= all_my_tests_pd_df['STEP'].unique()
-        st.dataframe(all_my_tests_pd_df)
+        # st.dataframe(all_my_tests_pd_df)
         
         if amt_rows > 0:
                 mw_choice = st.selectbox("Filter to workshop records for:", workshop_filter)
