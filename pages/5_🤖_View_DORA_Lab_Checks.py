@@ -23,17 +23,18 @@ if st.session_state.auth_status == 'authed':
                 pf_choice = st.selectbox('Pass/Fail Filter:', ('True','False') )                        
                 st.markdown("*Please note that if you have only started one workshop, you will only have one choice in the list*") 
 
-                filtered_df = all_my_tests_pd_df.loc[(all_my_tests_pd_df['BADGE_WORKSHOP']=mw_choice) & (all_my_tests_pd_df['PASSED']=pf_choice)
+                if mw_choice:
+                        filtered_df = all_my_tests_pd_df.loc[(all_my_tests_pd_df['BADGE_WORKSHOP']= mw_choice) //& (all_my_tests_pd_df['PASSED']= pf_choice)
                                          
-                st.dataframe(filtered_df
-                        , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP"]
-                        , column_config={ 
+                        st.dataframe(filtered_df
+                                , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP"]
+                                , column_config={ 
                                 "STEP": "DORA Check #"
                                 ,"ACCOUNT_LOCATOR": "Acct Loc"
                                 , "PASSED": "Passed"
-                        ,"DORA_TIMESTAMP": "Submission Date/Time"},    
-                        hide_index=True,
-                        height=1200
+                                ,"DORA_TIMESTAMP": "Submission Date/Time"},    
+                                hide_index=True,
+                                height=1200
                         )
 
                                         
