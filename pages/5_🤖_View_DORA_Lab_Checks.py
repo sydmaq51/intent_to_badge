@@ -37,5 +37,6 @@ if st.session_state.auth_status == 'authed':
                                 height=1200
                         )
 
-                                        
+else: # not authed
+   st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")                                        
 
