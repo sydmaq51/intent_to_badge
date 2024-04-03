@@ -5,9 +5,9 @@ from snowflake.snowpark.functions import col
 cnx=st.connection("snowflake")
 session = cnx.session()
 
-st.subheader("View All DORA Tests You Have Run")
+st.subheader("View All DORA Tests You Have Run in the Last 90 Days")
 st.write("Click on column headings to sort. Use the drop list to filter the checks to just a single workshop.")
-st.write("You can search the table by rolling your cursor over the header and choosing the magnifying lens symbol.")
+st.write("You can search the table of results by rolling your cursor over the header and choosing the magnifying lens symbol.")
         
 if st.session_state.auth_status == 'authed':
         mw_choice = st.selectbox("Filter to show workshop records for:", ("DWW", "CMCW", "DABW", "DLKW", "DNGW" ))
