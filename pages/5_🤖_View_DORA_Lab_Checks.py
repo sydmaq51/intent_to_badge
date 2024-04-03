@@ -10,6 +10,7 @@ st.write("Click on column headings to sort. Use the drop list to filter the chec
 st.write("You can search the table by rolling your cursor over the header and choosing the magnifying lens symbol.")
         
 if st.session_state.auth_status == 'authed':
+        mw_choice = st.selectbox("Filter to show workshop records for:", ("DWW", "CMCW", "DABW", "DLKW", "DNGW" ), index=None)
         all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter(col("uni_id")== st.session_state.uni_id)
         all_my_tests_pd_df = all_my_tests_df.to_pandas()
         amt_rows = all_my_tests_pd_df.shape[0]
@@ -17,7 +18,6 @@ if st.session_state.auth_status == 'authed':
         # step_filter= all_my_tests_pd_df['STEP'].unique()
         # st.dataframe(all_my_tests_pd_df)
 
-        mw_choice = st.selectbox("Filter to show workshop records for:", ('DWW', 'CMCW', 'DABW', 'DLKW', 'DNGW' )
         
         if amt_rows > 0:
                
