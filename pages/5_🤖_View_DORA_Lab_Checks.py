@@ -17,7 +17,7 @@ if st.session_state.auth_status == 'authed':
         # step_filter= all_my_tests_pd_df['STEP'].unique()
         # st.dataframe(all_my_tests_pd_df)
 
-         mw_choice = st.selectbox("Filter to show workshop records for:", ('DWW', 'CMCW', 'DABW', 'DLKW', 'DNGW' )
+        mw_choice = st.selectbox("Filter to show workshop records for:", ('DWW', 'CMCW', 'DABW', 'DLKW', 'DNGW' )
         
         if amt_rows > 0:
                
