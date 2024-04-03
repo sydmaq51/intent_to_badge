@@ -11,23 +11,13 @@ st.write("You can search the table by rolling your cursor over the header and ch
         
 if st.session_state.auth_status == 'authed':
         mw_choice = st.selectbox("Filter to show workshop records for:", ("DWW", "CMCW", "DABW", "DLKW", "DNGW" ), index=None)
-        all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter(col("uni_id")== st.session_state.uni_id)
-        all_my_tests_pd_df = all_my_tests_df.to_pandas()
-        amt_rows = all_my_tests_pd_df.shape[0]
-
-        # step_filter= all_my_tests_pd_df['STEP'].unique()
-        # st.dataframe(all_my_tests_pd_df)
-
-        
-        if amt_rows > 0:
-               
-                # pf_choice = st.selectbox('Pass/Fail Filter:', ('True','False') )                        
-                st.markdown("*Please note that if you have only started one workshop, you will only have one choice in the list*") 
-
-                if mw_choice:
-                        filtered_df = all_my_tests_pd_df.loc[(all_my_tests_df['BADGE_ACRO']== mw_choice)] 
-                                         
-                        st.dataframe(filtered_df
+        if mw_choice:
+                all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter(col("uni_id")== st.session_state.uni_id & col("badge_acro"==mw_choice)
+                all_my_tests_pd_df = all_my_tests_df.to_pandas()
+                amt_rows = all_my_tests_pd_df.shape[0]
+                        
+                if amt_rows > 0:                         
+                        st.dataframe(all_my_tests_pd_df
                                 , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP"]
                                 , column_config={ 
                                 "STEP": "DORA Check #"
