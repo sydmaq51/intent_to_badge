@@ -19,12 +19,13 @@ if st.session_state.auth_status == 'authed':
                         
                 if amt_rows > 0:                         
                         st.dataframe(all_my_tests_pd_df
-                                , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP"]
+                                , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP", "LEARNER_SENT"]
                                 , column_config={ 
                                 "STEP": "DORA Check #"
                                 ,"ACCOUNT_LOCATOR": "Acct Loc"
                                 , "PASSED": "Passed"
-                                ,"DORA_TIMESTAMP": "Submission Date/Time"},    
+                                ,"DORA_TIMESTAMP": "Submission Date/Time"
+                                ,"LEARNER_SENT": "Check Details"},    
                                 hide_index=True,
                                 height=1200
                         )
