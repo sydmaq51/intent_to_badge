@@ -20,7 +20,7 @@ if st.session_state.auth_status == 'authed':
         # st.dataframe(all_my_tests_pd_df)
         
         if amt_rows > 0:
-                mw_choice = st.selectbox("Filter to workshop records for:", workshop_filter)
+                mw_choice = st.selectbox("Filter to show workshop records for:", workshop_filter)
                 # pf_choice = st.selectbox('Pass/Fail Filter:', ('True','False') )                        
                 st.markdown("*Please note that if you have only started one workshop, you will only have one choice in the list*") 
 
