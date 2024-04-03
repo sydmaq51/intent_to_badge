@@ -10,9 +10,7 @@ st.write("Click on column headings to sort. Use the drop list to filter the chec
 st.write("You can search the table of results by rolling your cursor over the header and choosing the magnifying lens symbol.")
         
 if st.session_state.auth_status == 'authed':
-        mw_choice = st.selectbox("Filter to show workshop records for:", ("DWW", "CMCW", "DABW", "DLKW", "DNGW" ))
-        if mw_choice:
-                all_my_badges_df = session.table("ACCREDIBLE.CREDS.BADGE_LOOKUP").filter((col("uni_id")== st.session_state.uni_id) & (col("badge_acro")== mw_choice))
+                all_my_badges_df = session.table("ACCREDIBLE.CREDS.BADGE_LOOKUP").filter(col("uni_id")== st.session_state.uni_id)
                 all_my_bdages_pd_df = all_my_tests_df.to_pandas()
                 badge_rows = all_my_badges_pd_df.shape[0]
                         
