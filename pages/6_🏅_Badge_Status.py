@@ -17,12 +17,10 @@ if st.session_state.auth_status == 'authed':
                          
                 if badge_rows > 0:                         
                         st.dataframe(all_my_badges_pd_df
-                                , column_order=["BADGE_TEMPLATE_NAME","BADGE_URL","UNI_ID","ACCOUNT_LOCATOR","EMAIL","ISSUED_AT"]
+                                , column_order=["AWARD_ACRONYM","BADGE_URL","EMAIL","ISSUED_AT"]
                                 , column_config={ 
-                                "BADGE_TEMPLATE_NAME": "Badge Name"
+                                "AWARD_ACRONYM": "Badge"       
                                 ,"BADGE_URL": "Link to Badge"
-                                ,"UNI_ID": "Your UNI ID"
-                                ,"ACCOUNT_LOCATOR": "Your Account Locator"
                                 ,"EMAIL": "Email on Badge"
                                 ,"ISSUED_AT": "Time/Date Issued"                                
                                 },    
