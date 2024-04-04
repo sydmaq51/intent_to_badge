@@ -20,7 +20,7 @@ if st.session_state.auth_status == 'authed':
                                 , column_order=["AWARD_ACRONYM","BADGE_URL","EMAIL","ISSUED_AT"]
                                 , column_config={ 
                                 "AWARD_ACRONYM": "Badge"       
-                                ,"BADGE_URL": "Link to Badge"
+                                ,"BADGE_URL": st.column_config.LinkColumn("Link to Badge")        
                                 ,"EMAIL": "Email on Badge"
                                 ,"ISSUED_AT": "Time/Date Issued"                                
                                 },    
