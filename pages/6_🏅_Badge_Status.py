@@ -25,7 +25,7 @@ if st.session_state.auth_status == 'authed':
                                 ,"ISSUED_AT": "Time/Date Issued"                                
                                 },    
                                 hide_index=True,
-                                height=1200
+                                height=200
                         )
                 else:
                  st.markdown(":red[Sorry, we do not show that you have earned any badges, yet]")
