@@ -27,6 +27,8 @@ if st.session_state.auth_status == 'authed':
                                 hide_index=True,
                                 height=1200
                         )
+                else:
+                 st.markdown(":red[Sorry, we do not show that you have earned any badges, yet]")
 
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")                                        
