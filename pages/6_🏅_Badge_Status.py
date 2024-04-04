@@ -11,7 +11,7 @@ st.write("You can search the table of results by rolling your cursor over the he
         
 if st.session_state.auth_status == 'authed':
                 all_my_badges_df = session.table("AMAZING.APP.BADGE_LOOKUP").filter(col("uni_id")== st.session_state.uni_id)
-                all_my_bdages_pd_df = all_my_tests_df.to_pandas()
+                all_my_bdages_pd_df = all_my_badges_df.to_pandas()
                 badge_rows = all_my_badges_pd_df.shape[0]
                          
                 if badge_rows > 0:                         
