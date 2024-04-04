@@ -13,7 +13,7 @@ if st.session_state.auth_status == 'authed':
                 all_my_badges_df = session.table("AMAZING.APP.BADGE_LOOKUP").filter(col("uni_id")== st.session_state.uni_id)
                 all_my_bdages_pd_df = all_my_tests_df.to_pandas()
                 badge_rows = all_my_badges_pd_df.shape[0]
-                        
+                         
                 if badge_rows > 0:                         
                         st.dataframe(all_my_badges_pd_df
                                 , column_order=["BADGE_TEMPLATE_NAME","BADGE_URL","UNI_ID","ACCOUNT_LOCATOR","EMAIL","ISSUED_AT"]
