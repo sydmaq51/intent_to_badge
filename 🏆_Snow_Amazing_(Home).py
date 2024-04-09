@@ -68,7 +68,7 @@ with st.sidebar:
    # st.session_state
 
 # Page Header
-st.header('Are You Snow-A-Mazing?')
+st.header('Are You Snow-Amazing?')
 st.write('Welcome to the learn.snowflake.com Workshop Badge Management app!')
 st.write('Using this app you can manage your badge name and email and you can view your results.')
 
