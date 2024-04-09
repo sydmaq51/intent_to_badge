@@ -65,7 +65,7 @@ with st.sidebar:
    uni_id = st.text_input('Enter your learn.snowflake.com UNI ID:')
    uni_uuid = st.text_input('Enter the secret UUID displayed on the DORA is Listening Page of any Workshop:')
    find_my_uni_record = st.button("Find my UNI User Info")
-   st.session_state
+   # st.session_state
 
 # Page Header
 st.header('Are You Snow-A-Mazing?')
