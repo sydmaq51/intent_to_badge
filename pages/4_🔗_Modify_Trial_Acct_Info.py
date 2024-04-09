@@ -94,7 +94,10 @@ if st.session_state.auth_status == 'authed':
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 
-
+st.markdown('-------')
+st.subheader('How to find your Trial Account Information:')
+st.image('https://learn.snowflake.com/asset-v1:snowflake+X+X+type@asset+block@dil_1.png','Finding your Account ID')
+st.image('https://learn.snowflake.com/asset-v1:snowflake+X+X+type@asset+block@dil_3.png','Finding your Account Locator')
 
 
 
