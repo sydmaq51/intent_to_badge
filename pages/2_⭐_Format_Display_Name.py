@@ -33,7 +33,7 @@ def get_user_profile_info():
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs tab below for tips on FINDING YOUR INFO, and try again]") 
 
 
-st.subheader("Format the Display of Your Name for Your Badge(s)")
+st.subheader(":star: Format the Display of Your Name for Your Badge(s)")
 st.write("You must generate a Display Name for your badge. If you do not, your badge cannot be issued. Please edit the parts of your name on the :pencil2: page and choose a display format on this page") 
 
 if st.session_state.auth_status == 'authed':
