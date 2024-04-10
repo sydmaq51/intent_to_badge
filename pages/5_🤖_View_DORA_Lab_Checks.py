@@ -5,7 +5,7 @@ from snowflake.snowpark.functions import col
 cnx=st.connection("snowflake")
 session = cnx.session()
 
-st.subheader("View All DORA Tests You Have Run in the Last 90 Days")
+st.subheader(":robot: View All DORA Tests You Have Run in the Last 90 Days")
 st.write("Click on column headings to sort. Use the drop list to filter the checks to just a single workshop.")
 st.write("You can search the table of results by rolling your cursor over the header and choosing the magnifying lens symbol.")
         
