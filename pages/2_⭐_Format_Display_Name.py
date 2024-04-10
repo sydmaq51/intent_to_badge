@@ -76,7 +76,7 @@ else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
  
 st.markdown("-------")
-display_display = "CURRENT DISPLAY NAME IS: :blue[" + st.session_state['display_name'] + "]")
+display_display = "CURRENT DISPLAY NAME IS: :blue[" + st.session_state['display_name'] + "]"
 st.markdown(display_display)
 
 
