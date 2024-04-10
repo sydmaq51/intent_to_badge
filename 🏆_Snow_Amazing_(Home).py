@@ -40,6 +40,7 @@ def get_user_profile_info():
    if user_rows>=1:
       # if at least one row was found then the key must have been correct so we consider the user authorized
       st.session_state['auth_status'] = 'authed'
+      st.dataframe(user_results_pd_df)  
        
       # 1 row found means the UNI_ID is legit and can be used to look up other information
       # all user vars need to be checked to make sure they aren't empty before we set session vars
@@ -57,7 +58,7 @@ def get_user_profile_info():
       else:
          st.session_state['display_name'] = "Please go to the FORMAT DISPLAY NAME page to generate a DISPLAY NAME for your badge(s)."
 
-      st.dataframe(user_results_pd_df)   
+ 
    else: # no rows returned
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs page, and try again. Also, make sure you didn't include any stray spaces or returns in the entry boxes.]") 
 
