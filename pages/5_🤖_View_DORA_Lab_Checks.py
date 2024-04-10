@@ -34,6 +34,8 @@ if st.session_state.auth_status == 'authed':
                                 # df.filter((col("A") > 1) & (col("B") < 100))
                         elif passed_valid == "Only Passed & Valid":
                                 filtered_df = all_my_tests_pd_df
+                        else:
+                                filtered_df = all_my_tests_pd_df
                         st.dataframe(filtered_df
                                 , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP", "LEARNER_SENT"]
                                 , column_config={ 
