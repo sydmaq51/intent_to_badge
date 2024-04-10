@@ -11,7 +11,15 @@ st.write("You can search the table of results by rolling your cursor over the he
         
 if st.session_state.auth_status == 'authed':
         mw_choice = st.selectbox("Filter to show workshop records for:", ("DWW", "CMCW", "DABW", "DLKW", "DNGW" ))
+        passed_valid = st.radio(
+                            "Which tests do you want to see?",
+                                ["All Tests", "Only Passed", "Only Passed & Valid"],
+                            index=None,
+        )
+
+st.write("You selected:", genre)
         if mw_choice:
+                
                 all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col("uni_id")== st.session_state.uni_id) & (col("badge_acro")== mw_choice))
                 # df.filter((col("A") > 1) & (col("B") < 100))
                 all_my_tests_pd_df = all_my_tests_df.to_pandas()
