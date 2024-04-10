@@ -76,7 +76,7 @@ else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
  
 st.markdown("-------")
-if st.session_state['display_name'] == 'Please go to the FORMAT DISPLAY NAME page to generate a DISPLAY NAME for your badge(s).':
+if st.session_state['display_name'] == 'Please go to the :star: page to generate a DISPLAY NAME for your badge(s).':
    display_display = ":red[Choose a display name above and click the button to save it.]"
    st.markdown(display_display)
 else:
