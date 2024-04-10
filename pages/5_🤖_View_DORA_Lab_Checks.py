@@ -14,7 +14,7 @@ if st.session_state.auth_status == 'authed':
         passed_valid = st.radio(
                             "Which tests do you want to see?",
                                 ["All Tests", "Only Passed", "Only Passed & Valid"],
-                            index=None,
+                            index=1,
         )
 
         st.write("You have chosen to see:", passed_valid)
