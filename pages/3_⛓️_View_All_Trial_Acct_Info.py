@@ -23,8 +23,8 @@ def get_user_workshop_acct_info():
 cnx=st.connection("snowflake")
 session = cnx.session()
 
-st.subheader("View Trial Account Information You've Entered")
-
+st.subheader(":chains: View Trial Account Information You've Entered")
+st.write("Entering your trial account information LINKS it to your work in learn.snowflake.com. Below are the links you have already created. Every badge workshop must have both Account ID information and Account Locator information. Please go to the :link: page to add information.")
 if st.session_state.auth_status == 'authed':
    # display of info for all registered workshops
    get_user_workshop_acct_info()
