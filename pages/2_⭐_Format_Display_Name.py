@@ -80,7 +80,7 @@ if st.session_state['display_name'] == 'Please go to the :star: page to generate
    display_display = ":red[Choose a display name above and click the button to save it. If none of the options look right to you, go back to the :pencil2: page and edit parts of your name there.]"
    st.markdown(display_display)
 else:
-   display_display = "CURRENT DISPLAY NAME IS: :blue[" + st.session_state['display_name'] + "]"
+   display_display = "CURRENT DISPLAY NAME IS: :green[" + st.session_state['display_name'] + "]"
    st.markdown(display_display)
 
 
