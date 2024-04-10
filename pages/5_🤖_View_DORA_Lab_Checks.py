@@ -21,18 +21,20 @@ if st.session_state.auth_status == 'authed':
 
         
         if mw_choice:
-                filter_definition = "(col('uni_id')=='" + st.session_state.uni_id + "') & (col('badge_acro')=='" + mw_choice + "')"
-                st.write(filter_definition)
-                # all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col('uni_id')== st.session_state.uni_id) & (col('badge_acro')== mw_choice))
-                all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter(filter_definition)
-                if passed_valid == "Only_Passed":
-                        st.dataframe(all_my_tests_df.filter(col("passed")==TRUE))
-                # df.filter((col("A") > 1) & (col("B") < 100))
+                all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col('uni_id')== st.session_state.uni_id) & (col('badge_acro')== mw_choice))
                 all_my_tests_pd_df = all_my_tests_df.to_pandas()
                 amt_rows = all_my_tests_pd_df.shape[0]
                         
-                if amt_rows > 0:                         
-                        st.dataframe(all_my_tests_pd_df
+                if amt_rows > 0:    
+                        if passed_valid == "All Tests":
+                                filtered_df = all_my_tests_pd_df
+                        elif passed_valid == "Only Passed":
+                                # st.dataframe(all_my_tests_pd_df.filter(col("passed")==TRUE))
+                                filtered_df = all_my_tests_df[all_my_tests_df["passed"].str.contains("True")]
+                                # df.filter((col("A") > 1) & (col("B") < 100))
+                        elif passed_valid = "Only Passed & Valid":
+                                filtered_df = all_my_tests_pd_df
+                        st.dataframe(filtered_df
                                 , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP", "LEARNER_SENT"]
                                 , column_config={ 
                                 "STEP": "DORA Check #"
