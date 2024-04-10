@@ -76,7 +76,7 @@ with st.sidebar:
 st.header('Are You Snow-Amazing?')
 st.write('Welcome to the learn.snowflake.com Workshop Badge Management app!')
 st.write('Using this app you can manage your badge name and email and you can view your results.')
-st.dataframe(user_results_pd_df)  
+
 
 if find_my_uni_record:
    # reset all session vars
