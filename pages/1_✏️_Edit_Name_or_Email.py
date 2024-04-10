@@ -36,7 +36,7 @@ def get_user_profile_info():
 
 ####################### PAGE CONTENTS ###########
 st.subheader("Edit your Badge Name or Badge Email")
-
+st.write("Please use any characters or alphabet you would like. We want you to be able to display your name in your mother tongue.")
 if st.session_state.auth_status == 'authed':
   with st.form("badge_name_and_email"):
     st.write("Confirm Your Name for Any Badges That Might Be Issued")     
