@@ -31,7 +31,7 @@ if st.session_state.auth_status == 'authed':
                                 filtered_df = all_my_tests_pd_df
                         elif passed_valid == "Only Passed":
                                 # st.dataframe(all_my_tests_pd_df.filter(col("passed")==TRUE))
-                                filtered_df = all_my_tests_pd_df[all_my_tests_pd_df["passed"] == True]
+                                filtered_df = all_my_tests_pd_df[all_my_tests_pd_df["PASSED"] == True]
                                 # df.filter((col("A") > 1) & (col("B") < 100))
                         elif passed_valid == "Only Passed & Valid":
                                 filtered_df = all_my_tests_pd_df
