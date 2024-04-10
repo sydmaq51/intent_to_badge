@@ -52,7 +52,7 @@ def get_user_profile_info():
          st.session_state['family_name'] = user_results_pd_df['BADGE_FAMILY_NAME'].iloc[0]
       if user_results_pd_df['BADGE_EMAIL'].iloc[0] is not None:
          st.session_state['badge_email'] = user_results_pd_df['BADGE_EMAIL'].iloc[0]  
-      if user_results_pd_df['DISPLAY_NAME'].iloc[0].length() >= 2 :
+      if user_results_pd_df['DISPLAY_NAME'].iloc[0].len() >= 2 :
          st.session_state['display_name'] = user_results_pd_df['DISPLAY_NAME'].iloc[0]
       else:
          st.session_state['display_name'] = "Please go to the FORMAT DISPLAY NAME page to generate a DISPLAY NAME for your badge(s)."
