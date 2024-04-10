@@ -59,7 +59,7 @@ def get_user_profile_info():
       if len(user_results_pd_df['DISPLAY_NAME'].iloc[0]) > 2:
          st.session_state['display_name'] = user_results_pd_df['DISPLAY_NAME'].iloc[0]
       else:
-         st.session_state['display_name'] = "Please go to the FORMAT DISPLAY NAME page to generate a DISPLAY NAME for your badge(s)."
+         st.session_state['display_name'] = "Please go to the :star: page to generate a DISPLAY NAME for your badge(s)."
 
  
    else: # no rows returned
