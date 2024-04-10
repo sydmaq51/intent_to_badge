@@ -40,7 +40,6 @@ def get_user_profile_info():
    if user_rows>=1:
       # if at least one row was found then the key must have been correct so we consider the user authorized
       st.session_state['auth_status'] = 'authed'
-      st.dataframe(user_results_pd_df)  
        
       # 1 row found means the UNI_ID is legit and can be used to look up other information
       # all user vars need to be checked to make sure they aren't empty before we set session vars
@@ -77,6 +76,7 @@ with st.sidebar:
 st.header('Are You Snow-Amazing?')
 st.write('Welcome to the learn.snowflake.com Workshop Badge Management app!')
 st.write('Using this app you can manage your badge name and email and you can view your results.')
+st.dataframe(user_results_pd_df)  
 
 if find_my_uni_record:
    # reset all session vars
