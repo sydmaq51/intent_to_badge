@@ -47,12 +47,16 @@ def get_user_profile_info():
       
       if user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0] is not None:
          st.session_state['given_name'] = user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0]
+      
       if user_results_pd_df['BADGE_MIDDLE_NAME'].iloc[0] is not None:    
          st.session_state['middle_name'] = user_results_pd_df['BADGE_MIDDLE_NAME'].iloc[0]
+      
       if user_results_pd_df['BADGE_FAMILY_NAME'].iloc[0] is not None:    
          st.session_state['family_name'] = user_results_pd_df['BADGE_FAMILY_NAME'].iloc[0]
+      
       if user_results_pd_df['BADGE_EMAIL'].iloc[0] is not None:
          st.session_state['badge_email'] = user_results_pd_df['BADGE_EMAIL'].iloc[0]  
+         
       if user_results_pd_df['DISPLAY_NAME'].iloc[0] is not None:
          st.session_state['display_name'] = user_results_pd_df['DISPLAY_NAME'].iloc[0]
       else:
