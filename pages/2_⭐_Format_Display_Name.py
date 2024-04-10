@@ -35,8 +35,7 @@ def get_user_profile_info():
 
 st.subheader(":star: Format the Display of Your Name for Your Badge(s)")
 st.write("You must generate a Display Name for your badge. If you do not, your badge cannot be issued. Please edit the parts of your name on the :pencil2: page and choose a display format on this page") 
-st.markdown("-------")
-st.write("CURRENT DISPLAY NAME IS: " + st.session_state['display_name'])
+
 if st.session_state.auth_status == 'authed':
    with st.form("display_formatting"):
       display_option_1 = st.session_state.given_name.title() + " " + st.session_state.middle_name.title() + " " + st.session_state.family_name.title() #lazy do it for me
@@ -76,7 +75,8 @@ if st.session_state.auth_status == 'authed':
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
  
-
-
+st.markdown("-------")
+display_display = "CURRENT DISPLAY NAME IS: :blue[" + st.session_state['display_name'] + "]")
+st.markdown(display_display)
 
 
