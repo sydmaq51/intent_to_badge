@@ -97,7 +97,7 @@ if st.session_state.auth_status == 'authed':
    st.markdown("**FAMILY NAME:** " + st.session_state.family_name)
    st.markdown("**EMAIL:** " + st.session_state.badge_email)
    if st.session_state.display_name != "Please go to the :star: page to generate a DISPLAY NAME for your badge(s).":
-      st.markdown("**Name Will Display on Badge As:** :blue[" + st.session_state.display_name) + "]"
+      st.markdown("**Name Will Display on Badge as:** :blue[" + st.session_state.display_name) + "]"
    else:
       md_str =  "**Name Will Display on Badge As:** :red[" + st.session_state.display_name + "]"       
       st.markdown(md_str)
