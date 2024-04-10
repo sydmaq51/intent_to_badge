@@ -18,10 +18,11 @@ if st.session_state.auth_status == 'authed':
         )
 
         st.write("You have chosen to see:", passed_valid)
+
         
         if mw_choice:
-                
-                all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col("uni_id")== st.session_state.uni_id) & (col("badge_acro")== mw_choice))
+                filter_definition = (col("uni_id")== "st.session_state.uni_id) & (col("badge_acro")== mw_choice)"
+                all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter(filter_definition)
                 # df.filter((col("A") > 1) & (col("B") < 100))
                 all_my_tests_pd_df = all_my_tests_df.to_pandas()
                 amt_rows = all_my_tests_pd_df.shape[0]
