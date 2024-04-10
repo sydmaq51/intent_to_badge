@@ -24,7 +24,7 @@ if st.session_state.auth_status == 'authed':
                 filter_definition = "(col('uni_id')=='" + st.session_state.uni_id + "') & (col('badge_acro')=='" + mw_choice + "')"
                 st.write(filter_definition)
                 # all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col('uni_id')== st.session_state.uni_id) & (col('badge_acro')== mw_choice))
-                # all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter(filter_definition)
+                all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter(filter_definition)
                 if passed_valid == "Only_Passed":
                         st.dataframe(all_my_tests_df.filter(col("passed")==TRUE))
                 # df.filter((col("A") > 1) & (col("B") < 100))
