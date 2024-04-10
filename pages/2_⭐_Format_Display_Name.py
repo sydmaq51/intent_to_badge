@@ -27,7 +27,7 @@ def get_user_profile_info():
       if user_results_pd_df['DISPLAY_NAME'].iloc[0] is not None:
          st.session_state['display_name'] = user_results_pd_df['DISPLAY_NAME'].iloc[0]
       else:
-         st.session_state['display_name'] = "PLEASE GO TO THE DISPLAY NAME TAB TO GENERATE A DISPLAY NAME FOR YOUR BADGE"
+         st.session_state['display_name'] = "PLEASE GENERATE A DISPLAY NAME FOR YOUR BADGE"
       st.dataframe(user_results_pd_df)
    else: # no rows returned
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs tab below for tips on FINDING YOUR INFO, and try again]") 
@@ -36,7 +36,7 @@ def get_user_profile_info():
 st.subheader(":star: Format the Display of Your Name for Your Badge(s)")
 st.write("You must generate a Display Name for your badge. If you do not, your badge cannot be issued. Please edit the parts of your name on the :pencil2: page and choose a display format on this page") 
 st.markdown("-------")
-# st.write("YOUR DISPLAY NAME IS: " + user_results_pd_df['DISPLAY_NAME'].iloc[0])
+st.write("CURRENT DISPLAY NAME IS: " + st.session_state['display_name'])
 if st.session_state.auth_status == 'authed':
    with st.form("display_formatting"):
       display_option_1 = st.session_state.given_name.title() + " " + st.session_state.middle_name.title() + " " + st.session_state.family_name.title() #lazy do it for me
