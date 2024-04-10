@@ -35,7 +35,7 @@ def get_user_profile_info():
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs tab below for tips on FINDING YOUR INFO, and try again]") 
 
 ####################### PAGE CONTENTS ###########
-st.subheader("Edit your Badge Name or Badge Email")
+st.subheader(":pencil2: Edit your Badge Name or Badge Email")
 st.write("Please use any characters or alphabet you would like. We want you to be able to display your name in your mother tongue.")
 if st.session_state.auth_status == 'authed':
   with st.form("badge_name_and_email"):
