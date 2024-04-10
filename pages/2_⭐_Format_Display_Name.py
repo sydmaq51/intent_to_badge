@@ -76,7 +76,11 @@ else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
  
 st.markdown("-------")
-display_display = "CURRENT DISPLAY NAME IS: :blue[" + st.session_state['display_name'] + "]"
-st.markdown(display_display)
+if st.session_state['display_name'] == 'Please go to the FORMAT DISPLAY NAME page to generate a DISPLAY NAME for your badge(s).':
+   display_display = ":red[Choose a display name above and click the button]"
+   st.markdown(display_display)
+else:
+   display_display = "CURRENT DISPLAY NAME IS: :blue[" + st.session_state['display_name'] + "]"
+   st.markdown(display_display)
 
 
