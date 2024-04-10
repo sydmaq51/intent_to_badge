@@ -102,6 +102,6 @@ if st.session_state.auth_status == 'authed':
       md_str =  "**Name Will Display on Badge As:** :red[" + st.session_state.display_name + "]"       
       st.markdown(md_str)
       st.write("-----")
-      st.markdown("*If your display name has not been generated, or you would like to make changes to information, go to the FORMAT DISPLAY NAME page.*")
+      st.markdown("*If your display name has not been generated, or you would like to make changes to your name, email, or display name, go to the :pencil2: and :star: pages.*")
 else:
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar.]")
