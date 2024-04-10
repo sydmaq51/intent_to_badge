@@ -21,7 +21,7 @@ if st.session_state.auth_status == 'authed':
 
         
         if mw_choice:
-                filter_definition = "(col('uni_id')=='" + st.session_state.uni_id + "') & (col('badge_acro')=='" + mw_choice + "')"
+                filter_definition = "(col(\"uni_id\")=='" + st.session_state.uni_id + "') & (col('badge_acro')=='" + mw_choice + "')"
                 st.write(filter_definition)
                 # all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col('uni_id')== st.session_state.uni_id) & (col('badge_acro')== mw_choice))
                 all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter(filter_definition)
