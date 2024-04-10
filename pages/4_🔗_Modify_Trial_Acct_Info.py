@@ -56,7 +56,7 @@ def get_workshop_info():
 cnx=st.connection("snowflake")
 session = cnx.session()
 
-st.subheader("Add or Edit Trial Account Rows for Workshops")
+st.subheader(":link: Add or Edit Trial Account Rows for Workshops")
 # drop list with option button for editing
 if st.session_state.auth_status == 'authed':
    with st.form("select a workshop"):
