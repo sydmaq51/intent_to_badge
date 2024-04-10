@@ -37,7 +37,7 @@ st.subheader("Format the Display of Your Name for Your Badge(s)")
 
 if st.session_state.auth_status == 'authed':
    with st.form("display_formatting"):
-      display_option_1 = st.session_state.given_name.capitalize() + " " + st.session_state.middle_name.capitalize() + " " + st.session_state.family_name.capitalize() #lazy do it for me
+      display_option_1 = st.session_state.given_name.title() + " " + st.session_state.middle_name.capitalize() + " " + st.session_state.family_name.capitalize() #lazy do it for me
       display_option_2 = st.session_state.given_name.capitalize() + " " + st.session_state.middle_name.capitalize() + " " + st.session_state.family_name #european w nobiliary
       display_option_3 = st.session_state.family_name.upper() + " " + st.session_state.middle_name + " " + st.session_state.given_name.capitalize()  #east asian with alt script middle
       display_option_4 = st.session_state.family_name.upper() + " " +  st.session_state.given_name.capitalize() + " " + st.session_state.middle_name.capitalize() #east asian with alt script middle
