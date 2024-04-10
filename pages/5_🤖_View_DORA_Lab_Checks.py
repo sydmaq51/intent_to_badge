@@ -36,9 +36,10 @@ if st.session_state.auth_status == 'authed':
                         else:
                                 filtered_df = all_my_tests_pd_df
                         st.dataframe(filtered_df
-                                , column_order=["STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP", "LEARNER_SENT"]
+                                , column_order=["VALID","STEP","ACCOUNT_LOCATOR","PASSED", "DORA_TIMESTAMP", "LEARNER_SENT"]
                                 , column_config={ 
-                                "STEP": "DORA Check #"
+                                 "VALID": "Check is Valid"        
+                                , "STEP": "DORA Check #"
                                 ,"ACCOUNT_LOCATOR": "Acct Loc"
                                 , "PASSED": "Passed"
                                 ,"DORA_TIMESTAMP": "Submission Date/Time"
