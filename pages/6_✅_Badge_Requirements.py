@@ -14,5 +14,7 @@ st.markdown("Good news! You only have to do these two steps one time (unless you
 
 st.markdown('------------')
 
-st.markdown("**STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page. 
+st.markdown("**STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.") 
 st.markdown("To create or edit the info on the :chains: page, use the :link: page. Without this LINK established for each badge, DORA does not know who is doing the work and sending her the tests.")         
+st.markdown("Every badge entry on the :chains: page should have both Account Locator and Account ID field completed.")
+st.markdown("Some older entries where you have already received your badge may have empty values. That is okay for older badges but for new badges, all columns must be complete.")
