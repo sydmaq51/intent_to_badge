@@ -79,18 +79,22 @@ if st.session_state.auth_status == 'authed':
                 display_format = 1  
                 edited_display_name = display_option_1  
                 display_name_flag ='True'
+                st.session_state.display_format = 1
             elif badge_name_order == display_option_2:
                 display_format = 2
                 edited_display_name = display_option_2
                 display_name_flag ='True' 
+                st.session_state.display_format = 2
             elif badge_name_order == display_option_3:
                 display_format = 3
                 edited_display_name = display_option_3 
                 display_name_flag ='True' 
+                st.session_state.display_format = 3
             elif badge_name_order == display_option_4:
                 display_format = 4
                 edited_display_name = display_option_4
                 display_name_flag ='True' 
+                st.session_state.display_format = 4
             elif badge_name_order == display_option_5:
                 display_format = 5
                 edited_display_name = display_option_5
