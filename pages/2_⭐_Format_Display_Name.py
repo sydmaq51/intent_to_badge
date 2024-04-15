@@ -18,7 +18,7 @@ def get_user_profile_info():
       # 1 row found means the UNI_ID is legit and can be used to look up other information
       # all user vars need to be checked to make sure they aren't empty before we set session vars
       
-      st.dataframe(user_results_pd.df)   
+      st.dataframe(user_results_pd_df)   
 
          
       if user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0] is not None:
