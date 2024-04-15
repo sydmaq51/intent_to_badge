@@ -101,10 +101,10 @@ if st.session_state.auth_status == 'authed':
                
             if display_name_flag =='True':
                session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',st.session_state.uni_id, st.session_state.uni_uuid, int(display_format), edited_display_name)
+               get_user_profile_info()
                st.success('Badge Display Name Updated', icon='🚀')
                time.sleep(2)
-               get_user_profile_info()
-
+               
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
  
