@@ -31,7 +31,9 @@ st.markdown('---------------------')
 st.subheader(":x: Troubleshooting")
 st.markdown("Did you make one of these common mistakes?")
 st.markdown(":x: Have you received this badge already? We check the UNI ID before issueing. We don't issue twice to the same UNI ID.")
-st.markdown(":x: Has someone using the same Snowflake Trial Account already received the badge? We don't issue twice on the same Trial Account")
+st.markdown(":x: Has someone using the same Snowflake Trial Account already received the badge? We don't issue twice on the same Trial Account.")
 st.markdown(":x: Did you accidently skip a test? Look closely at your tests, is any number in the sequence missing?")
+st.markdown(":x: Did mis-spell your email? It happens so often. If you did this, you'll have to file a ticket to get it corrected.")
+st.markdown(":x: Have you checked ACHIEVE.SNOWFLAKE.COM and/or your Email Inbox to see if your badge was already issued? The :sports_medal: page has some lag time between when your badge is issued and when it shows up in that list.")
 
 
