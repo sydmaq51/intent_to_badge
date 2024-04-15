@@ -89,6 +89,7 @@ if find_my_uni_record:
    # Set uni_id and key to entries on form
    st.session_state['uni_id'] = uni_id
    st.session_state['uni_uuid'] = uni_uuid
+   st.write(st.session_state.display_format)
 
    # this will query the db and if finds a match will populate profile vars
    get_user_profile_info()
