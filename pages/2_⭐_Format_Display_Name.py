@@ -43,7 +43,10 @@ st.subheader(":star: Format the Display of Your Name for Your Badge(s)")
 st.write("You must generate a Display Name for your badge. If you do not, your badge cannot be issued. Please edit the parts of your name on the :pencil2: page and choose a display format on this page") 
 
 if st.session_state.auth_status == 'authed':
+   st.markdown("--------")
    st.write(st.session_state.display_name)
+   st.markdown("-------")
+   st.markdown("")
    with st.form("display_formatting"):
       display_option_1 = st.session_state.given_name.title() + " " + st.session_state.middle_name.title() + " " + st.session_state.family_name.title() #lazy do it for me
       display_option_2 = st.session_state.given_name.capitalize() + " " + st.session_state.middle_name + " " + st.session_state.family_name #european w nobiliary
