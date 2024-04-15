@@ -51,7 +51,7 @@ def display_display_name():
 
 st.header(":star: Format the Display of Your Name for Your Badge(s)")
 st.write("You must generate a Display Name for your badge. If you do not, your badge cannot be issued. Please edit the parts of your name on the :pencil2: page and choose a display format on this page") 
-# st.write(st.session_state.display_format)
+st.write(st.session_state.badge_email)
 
 if st.session_state.auth_status == 'authed':
    st.markdown("--------")
