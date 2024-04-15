@@ -16,8 +16,6 @@ def get_user_profile_info():
    if user_rows>=1:       
       # 1 row found means the UNI_ID is legit and can be used to look up other information
       # all user vars need to be checked to make sure they aren't empty before we set session vars
-
-         
       if user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0] is not None:
          st.session_state['given_name'] = user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0]  
          
@@ -31,8 +29,10 @@ def get_user_profile_info():
          
       if user_results_pd_df['DISPLAY_NAME'].iloc[0] is not None:
          st.session_state['display_name'] = user_results_pd_df['DISPLAY_NAME'].iloc[0]
+         st.session_state['display_name_flag']='True'
       else:
          st.session_state['display_name'] = "PLEASE GENERATE A DISPLAY NAME FOR YOUR BADGE"
+         st.session_state['display_name_flag']='False'
       st.dataframe(user_results_pd_df)
       
    else: # no rows returned
