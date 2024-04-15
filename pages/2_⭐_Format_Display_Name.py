@@ -43,7 +43,7 @@ def display_display_name():
       display_display = (':red[PLEASE CHOOSE A DISPLAY NAME. WE CANNOT ISSUE ANY NEW BADGES WITHOUT A DISPLAY NAME.]')
       st.subheader(display_display)
     else:
-      display_display = ("Your Display Name for Badges will be: " + st.session_state.display_name)
+      display_display = (st.session_state.display_name)
       st.subheader(display_display)
       
 
