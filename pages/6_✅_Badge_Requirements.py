@@ -26,5 +26,9 @@ st.markdown("*View your tests on the :robot_face: page. Filter down to PASSED an
 st.markdown("*A test that is PASSED but NOT VALID is a test that was changed by you before sending it to DORA.*")
 st.markdown("*You can FAIL any or all tests many times as long as you pass each test at least one time (and it is valid). When each test has at least one VALID/PASSED entry you can receive your badge.*")
 
+st.markdown('---------------------')
+
+st.subheader(":cross_mark: Troubleshooting")
+st.markdown("Did you make one of these common mistakes?")
 
 
