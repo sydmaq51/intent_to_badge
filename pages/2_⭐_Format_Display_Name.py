@@ -44,7 +44,7 @@ def display_display_name():
       st.subheader(display_display)
     else:
       display_display = (st.session_state.display_name)
-      st.subheader(display_display)
+      st.subheader(":green[DISPLAY NAME:  " + display_display + "]")
       
 
 st.header(":star: Format the Display of Your Name for Your Badge(s)")
