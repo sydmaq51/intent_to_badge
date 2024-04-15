@@ -41,9 +41,9 @@ def get_user_profile_info():
 def display_display_name():
     if st.session_state.display_name_flag =='False':
       display_display = (':red[PLEASE CHOOSE A DISPLAY NAME. WE CANNOT ISSUE ANY NEW BADGES WITHOUT A DISPLAY NAME.]')
-   else:
+    else:
       display_display = ("Your Display Name for Badges will be:" + st.session_state.display_name)
-   return display_display
+    return display_display
 
 st.subheader(":star: Format the Display of Your Name for Your Badge(s)")
 st.write("You must generate a Display Name for your badge. If you do not, your badge cannot be issued. Please edit the parts of your name on the :pencil2: page and choose a display format on this page") 
