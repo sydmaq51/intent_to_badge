@@ -30,7 +30,7 @@ def get_user_profile_info():
          st.session_state['display_name'] = "PLEASE GENERATE A DISPLAY NAME FOR YOUR BADGE"
       st.dataframe(user_results_pd_df)
    else: # no rows returned
-        st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs tab below for tips on FINDING YOUR INFO, and try again]") 
+        st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered and remove any spaces or other unecessary characters.]") 
 
 
 st.subheader(":star: Format the Display of Your Name for Your Badge(s)")
@@ -47,7 +47,7 @@ if st.session_state.auth_status == 'authed':
       badge_name_order = st.radio("Name Display Order You Prefer:",                            
                                  [display_option_1, display_option_2, display_option_3, display_option_4, display_option_5],
                                   captions = ["Common in Anglo Traditions", "For names with nobiliary particles (van der, de la, von, zu, etc.)", "For use with dual script like 전 JEON Joon-kook 정국 ", "For cultures that put FAMILY name first", "Common for French and Francophonic"]
-                                   )
+                                  index = none )
       submit_display_format = st.form_submit_button("Record My Name Display Preference")
 
       if submit_display_format:
