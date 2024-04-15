@@ -41,10 +41,10 @@ def get_user_profile_info():
 def display_display_name():
     if st.session_state.display_name_flag =='False':
       display_display = (':red[PLEASE CHOOSE A DISPLAY NAME. WE CANNOT ISSUE ANY NEW BADGES WITHOUT A DISPLAY NAME.]')
-      st.subheader(display_display)
+      # st.subheader(display_display)
     else:
-      display_display = (st.session_state.display_name)
-      st.subheader(":green[DISPLAY NAME:  " + display_display + "]")
+      display_display = (":green[DISPLAY NAME:  "+ st.session_state.display_name + "]")
+      # st.subheader( + display_display + "]")
       
 
 st.header(":star: Format the Display of Your Name for Your Badge(s)")
@@ -97,7 +97,7 @@ if st.session_state.auth_status == 'authed':
             session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',st.session_state.uni_id, st.session_state.uni_uuid, display_format, edited_display_name)
             get_user_profile_info()
             st.success('Badge Display Name Updated', icon='🚀')
-            display_display_name()
+            
 
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
