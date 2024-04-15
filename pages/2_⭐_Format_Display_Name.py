@@ -36,7 +36,7 @@ def get_user_profile_info():
          
       # if user_results_pd_df['display_format'] is not None:
          # st.session_state['display_format'] = str(user_results_pd_df['DISPLAY_FORMAT'].iloc[0])
-      
+      st.dataframe(user_results_pd_df)
    else: # no rows returned
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered and remove any spaces or other unecessary characters.]") 
 
@@ -100,9 +100,9 @@ if st.session_state.auth_status == 'authed':
                
             if display_name_flag =='True':
                session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',st.session_state.uni_id, st.session_state.uni_uuid, int(display_format), edited_display_name)
-               get_user_profile_info()
                st.success('Badge Display Name Updated', icon='🚀')
-            
+               time.sleep(2)
+               get_user_profile_info()
 
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
