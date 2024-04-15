@@ -50,7 +50,7 @@ st.write("You must generate a Display Name for your badge. If you do not, your b
 
 if st.session_state.auth_status == 'authed':
    st.markdown("--------")
-   st.write(display_display())
+   st.write(display_display_name())
    st.markdown("-------")
    st.markdown("")
    with st.form("display_formatting"):
