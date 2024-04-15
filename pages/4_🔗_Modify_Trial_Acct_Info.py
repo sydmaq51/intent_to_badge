@@ -92,7 +92,7 @@ if st.session_state.auth_status == 'authed':
             st.session_state.account_identifier = ''
             st.success('Snowflake Trial Account Workshop Data Updated', icon='🚀')
             time.sleep(2)
-            st.change_page("_View_All_Trial_Acct_Info")
+            st.switch_page("pages/5__View_All_Trial_Acct_Info.py")
 
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
