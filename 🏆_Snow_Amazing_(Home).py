@@ -20,6 +20,7 @@ def initialize_user_info():
    st.session_state['family_name'] = ''
    st.session_state['badge_email'] = ''
    st.session_state['display_name'] = ''
+   st.session_state['display_format'] = 0
    # workshop/account fields are set back to nothing 
    st.session_state['workshop_choice'] = '' 
    st.session_state['account_locator'] = ''
