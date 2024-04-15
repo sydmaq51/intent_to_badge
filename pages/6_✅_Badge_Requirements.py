@@ -24,7 +24,7 @@ st.markdown('---------------------')
 st.markdown(":white_check_mark: **STEP 4:** For EVERY BADGE you hope to recieve, you need to complete every DORA check and see both PASSED and VALID for that test.") 
 st.markdown("*View your tests on the :robot_face: page. Filter down to PASSED and VALID. These are the only tests DORA considers.*")
 st.markdown("*A test that is PASSED but NOT VALID is a test that was changed by you before sending it to DORA.*")
-st.markdown("*You can fail any or all tests many times as long as you pass each test at least one time (and it is valid) you will still receive your badge.*")
+st.markdown("*You can FAIL any or all tests many times as long as you pass each test at least one time (and it is valid) you will still receive your badge.*")
 
 
 
