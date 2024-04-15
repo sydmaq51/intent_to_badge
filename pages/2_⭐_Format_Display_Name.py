@@ -44,7 +44,7 @@ st.write("You must generate a Display Name for your badge. If you do not, your b
 
 if st.session_state.auth_status == 'authed':
    st.markdown(st.session_state.display_name)
-   st.markdown(st.session_state.display_format)
+   # st.markdown(st.session_state.display_format)
    with st.form("display_formatting"):
       display_option_1 = st.session_state.given_name.title() + " " + st.session_state.middle_name.title() + " " + st.session_state.family_name.title() #lazy do it for me
       display_option_2 = st.session_state.given_name.capitalize() + " " + st.session_state.middle_name + " " + st.session_state.family_name #european w nobiliary
