@@ -35,7 +35,7 @@ def get_user_profile_info():
          st.session_state['display_name_flag']='False'
          
       if user_results_pd_df['display_format'] is not None:
-         st.session_state['display_format'] = user_results_pd_df['DISPLAY_FORMAT'].iloc[0]
+         st.session_state['display_format'] = str(user_results_pd_df['DISPLAY_FORMAT'].iloc[0])
       
    else: # no rows returned
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered and remove any spaces or other unecessary characters.]") 
@@ -51,7 +51,8 @@ def display_display_name():
 
 st.header(":star: Format the Display of Your Name for Your Badge(s)")
 st.write("You must generate a Display Name for your badge. If you do not, your badge cannot be issued. Please edit the parts of your name on the :pencil2: page and choose a display format on this page") 
-# st.write(st.session_state.display_format)
+st.write(st.session_state.display_format)
+
 if st.session_state.auth_status == 'authed':
    st.markdown("--------")
    display_display_name()
