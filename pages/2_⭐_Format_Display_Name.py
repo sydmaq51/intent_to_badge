@@ -44,7 +44,7 @@ st.write("You must generate a Display Name for your badge. If you do not, your b
 
 if st.session_state.auth_status == 'authed':
    st.markdown("--------")
-   if st.session_state.display_name_flage == False:
+   if st.session_state.display_name_flag == False:
       st.write('PLEASE CHOOSE A DISPLAY NAME')
    else:
       st.write("Your Display Name for Badges will be:")
