@@ -12,7 +12,7 @@ def get_user_profile_info():
    this_user_df = session.sql(this_user_sql)
    user_results_pd_df = this_user_df.to_pandas()                          
    user_rows = user_results_pd_df.shape[0]
-   
+   st.write(user_results_pd_df)
    
    if user_rows>=1:       
       # 1 row found means the UNI_ID is legit and can be used to look up other information
