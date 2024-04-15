@@ -17,12 +17,7 @@ def get_user_profile_info():
    if user_rows>=1:       
       # 1 row found means the UNI_ID is legit and can be used to look up other information
       # all user vars need to be checked to make sure they aren't empty before we set session vars
-      if st.session_state['display_name'] == 'Please go to the :star: page to generate a DISPLAY NAME for your badge(s).':
-         display_display = ":red[Choose a display name above and click the button to save it. If none of the options look right to you, go back to the :pencil2: page and edit parts of your name there.]"
-         st.markdown(display_display)
-      else:
-         display_display = "CURRENT DISPLAY NAME IS: :green[" + st.session_state['display_name'] + "]"
-         st.markdown(display_display)
+      
          
       if user_results_pd_df['DISPLAY_FORMAT'].iloc[0] is not None:
          st.session_state['display_format']= user_results_pd_df['DISPLAY_FORMAT'].iloc[0] 
