@@ -52,7 +52,7 @@ if st.session_state.auth_status == 'authed':
    st.markdown("-------")
    st.markdown("")
    with st.form("display_formatting"):
-      display_option_0 = 'NO DISPLAY FORMAT CHOSEN'
+      display_option_0 = "NO DISPLAY FORMAT CHOSEN"
       display_option_1 = st.session_state.given_name.title() + " " + st.session_state.middle_name.title() + " " + st.session_state.family_name.title() #lazy do it for me
       display_option_2 = st.session_state.given_name.capitalize() + " " + st.session_state.middle_name + " " + st.session_state.family_name #european w nobiliary
       display_option_3 = st.session_state.family_name.upper() + " " + st.session_state.middle_name + " " + st.session_state.given_name.capitalize()  #east asian with alt script middle
@@ -60,7 +60,7 @@ if st.session_state.auth_status == 'authed':
       display_option_5 = st.session_state.given_name.capitalize() + " " +  st.session_state.middle_name.capitalize() + " " + st.session_state.family_name.upper() #ze french
 
       badge_name_order = st.radio("Name Display Order You Prefer:",                            
-                                 [display_option_1, display_option_2, display_option_3, display_option_4, display_option_5],
+                                 [display_option_0, display_option_1, display_option_2, display_option_3, display_option_4, display_option_5],
                                   captions = ["Common in Anglo Traditions", "For names with nobiliary particles (van der, de la, von, zu, etc.)", "For use with dual script like 전 JEON Joon-kook 정국 ", "For cultures that put FAMILY name first", "Common for French and Francophonic"],
                                   index = 0 #st.session_state.display_format
                                  )
