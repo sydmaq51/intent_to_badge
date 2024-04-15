@@ -38,17 +38,19 @@ def get_user_profile_info():
    else: # no rows returned
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered and remove any spaces or other unecessary characters.]") 
 
+def display_display_name():
+    if st.session_state.display_name_flag =='False':
+      display_display = (':red[PLEASE CHOOSE A DISPLAY NAME. WE CANNOT ISSUE ANY NEW BADGES WITHOUT A DISPLAY NAME.]')
+   else:
+      display_display = ("Your Display Name for Badges will be:" + st.session_state.display_name)
+   return display_display
 
 st.subheader(":star: Format the Display of Your Name for Your Badge(s)")
 st.write("You must generate a Display Name for your badge. If you do not, your badge cannot be issued. Please edit the parts of your name on the :pencil2: page and choose a display format on this page") 
 
 if st.session_state.auth_status == 'authed':
    st.markdown("--------")
-   if st.session_state.display_name_flag =='False':
-      st.markdown(':red[PLEASE CHOOSE A DISPLAY NAME. WE CANNOT ISSUE ANY NEW BADGES WITHOUT A DISPLAY NAME.]')
-   else:
-      st.write("Your Display Name for Badges will be:")
-      st.write(st.session_state.display_name)
+   st.markdown(display_display)
    st.markdown("-------")
    st.markdown("")
    with st.form("display_formatting"):
