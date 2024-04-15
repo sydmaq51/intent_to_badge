@@ -28,7 +28,7 @@ st.markdown("*You can FAIL any or all tests many times as long as you pass each 
 
 st.markdown('---------------------')
 
-st.subheader(":cross_mark: Troubleshooting")
+st.subheader(":x: Troubleshooting")
 st.markdown("Did you make one of these common mistakes?")
 
 
