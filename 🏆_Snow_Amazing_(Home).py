@@ -97,7 +97,7 @@ if find_my_uni_record:
    
 
 if st.session_state.auth_status == 'authed':
-   # st.write(st.session_state.display_format)
+   st.write(st.session_state.display_format)
    st.subheader("We Found You!")
    st.markdown("**GIVEN NAME:** " + st.session_state.given_name)
    st.markdown("**MIDDLE/ALTERNATE NAME:** "+ st.session_state.middle_name) 
