@@ -85,7 +85,7 @@ st.write('Using this app you can manage your badge name and email and you can vi
 if find_my_uni_record:
    # reset all session vars
    initialize_user_info()
-   st.write(st.session_state.email)
+   st.write(st.session_state.badge_email)
 
    # Set uni_id and key to entries on form
    st.session_state['uni_id'] = uni_id
@@ -97,7 +97,7 @@ if find_my_uni_record:
    
 
 if st.session_state.auth_status == 'authed':
-   st.write(st.session_state.display_format)
+  
    st.subheader("We Found You!")
    st.markdown("**GIVEN NAME:** " + st.session_state.given_name)
    st.markdown("**MIDDLE/ALTERNATE NAME:** "+ st.session_state.middle_name) 
