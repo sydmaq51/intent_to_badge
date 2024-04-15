@@ -12,13 +12,10 @@ def get_user_profile_info():
    this_user_df = session.sql(this_user_sql)
    user_results_pd_df = this_user_df.to_pandas()                          
    user_rows = user_results_pd_df.shape[0]
-   st.write(user_results_pd_df)
    
    if user_rows>=1:       
       # 1 row found means the UNI_ID is legit and can be used to look up other information
       # all user vars need to be checked to make sure they aren't empty before we set session vars
-      
-      st.dataframe(user_results_pd_df)   
 
          
       if user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0] is not None:
@@ -46,6 +43,8 @@ st.subheader(":star: Format the Display of Your Name for Your Badge(s)")
 st.write("You must generate a Display Name for your badge. If you do not, your badge cannot be issued. Please edit the parts of your name on the :pencil2: page and choose a display format on this page") 
 
 if st.session_state.auth_status == 'authed':
+   st.markdown(st.session_state.display_name)
+   st.markdown(st.session_state.display_format)
    with st.form("display_formatting"):
       display_option_1 = st.session_state.given_name.title() + " " + st.session_state.middle_name.title() + " " + st.session_state.family_name.title() #lazy do it for me
       display_option_2 = st.session_state.given_name.capitalize() + " " + st.session_state.middle_name + " " + st.session_state.family_name #european w nobiliary
