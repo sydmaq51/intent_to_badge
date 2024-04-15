@@ -6,7 +6,7 @@ session = cnx.session()
 
 def get_user_profile_info():
    #start over with authentication and populating vars
-   this_user_sql =  (f"select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email, display_format "
+   this_user_sql =  (f"select badge_given_name, badge_middle_name, badge_family_name, display_name, badge_email, display_format::text "
                      f"from UNI_USER_BADGENAME_BADGEEMAIL where UNI_ID=trim('{st.session_state.uni_id}') "
                      f"and UNI_UUID=trim('{st.session_state.uni_uuid}')")
    this_user_df = session.sql(this_user_sql)
@@ -99,7 +99,7 @@ if st.session_state.auth_status == 'authed':
                 display_name_flag ='False'
                
             if display_name_flag =='True':
-               session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',st.session_state.uni_id, st.session_state.uni_uuid, display_format, edited_display_name)
+               session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',st.session_state.uni_id, st.session_state.uni_uuid, int(display_format), edited_display_name)
                get_user_profile_info()
                st.success('Badge Display Name Updated', icon='🚀')
             
