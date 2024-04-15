@@ -22,20 +22,27 @@ def get_user_profile_info():
       else:
          display_display = "CURRENT DISPLAY NAME IS: :green[" + st.session_state['display_name'] + "]"
          st.markdown(display_display)
-      
-      
+         
+      if user_results_pd_df['DISPLAY_FORMAT'].iloc[0] is not None:
+         st.session_state['display_format']= user_results_pd_df['DISPLAY_FORMAT'].iloc[0] 
+         
       if user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0] is not None:
          st.session_state['given_name'] = user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0]  
+         
          st.session_state['middle_name'] = user_results_pd_df['BADGE_MIDDLE_NAME'].iloc[0] #this is on purpose
+         
       if user_results_pd_df['BADGE_FAMILY_NAME'].iloc[0] is not None:    
          st.session_state['family_name'] = user_results_pd_df['BADGE_FAMILY_NAME'].iloc[0]
+         
       if user_results_pd_df['BADGE_EMAIL'].iloc[0] is not None:
          st.session_state['badge_email'] = user_results_pd_df['BADGE_EMAIL'].iloc[0]  
+         
       if user_results_pd_df['DISPLAY_NAME'].iloc[0] is not None:
          st.session_state['display_name'] = user_results_pd_df['DISPLAY_NAME'].iloc[0]
       else:
          st.session_state['display_name'] = "PLEASE GENERATE A DISPLAY NAME FOR YOUR BADGE"
       st.dataframe(user_results_pd_df)
+      
    else: # no rows returned
         st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered and remove any spaces or other unecessary characters.]") 
 
