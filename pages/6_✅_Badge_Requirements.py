@@ -30,5 +30,8 @@ st.markdown('---------------------')
 
 st.subheader(":x: Troubleshooting")
 st.markdown("Did you make one of these common mistakes?")
+st.markdown(":x: Have you received this badge already? We check the UNI ID before issueing. We don't issue twice to the same UNI ID.")
+st.markdown(":x: Has someone using the same Snowflake Trial Account already received the badge? We don't issue twice on the same Trial Account")
+st.markdown(":x: Did you accidently skip a test? Look closely at your tests, is any number in the sequence missing?")
 
 
