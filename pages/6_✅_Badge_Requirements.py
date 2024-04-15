@@ -14,4 +14,5 @@ st.markdown("Good news! You only have to do these two steps one time (unless you
 
 st.markdown('------------')
 
-st.markdown("**STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page. Without this LINK established, DORA does not know who is doing the work and sending her the tests.")         
+st.markdown("**STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page. 
+st.markdown("To create or edit the info on the :chains: page, use the :link: page. Without this LINK established for each badge, DORA does not know who is doing the work and sending her the tests.")         
