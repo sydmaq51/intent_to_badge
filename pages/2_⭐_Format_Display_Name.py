@@ -41,10 +41,10 @@ def get_user_profile_info():
 def display_display_name():
     if st.session_state.display_name_flag =='False':
       display_display = (':red[PLEASE CHOOSE A DISPLAY NAME. WE CANNOT ISSUE ANY NEW BADGES WITHOUT A DISPLAY NAME.]')
-      # st.subheader(display_display)
+      st.subheader(display_display)
     else:
       display_display = (":green[DISPLAY NAME:  "+ st.session_state.display_name + "]")
-      # st.subheader( + display_display + "]")
+      st.subheader(display_display)
       
 
 st.header(":star: Format the Display of Your Name for Your Badge(s)")
@@ -52,7 +52,7 @@ st.write("You must generate a Display Name for your badge. If you do not, your b
 
 if st.session_state.auth_status == 'authed':
    st.markdown("--------")
-   st.write(display_display_name())
+   display_display_name()
    st.markdown("-------")
    st.markdown("")
    with st.form("display_formatting"):
