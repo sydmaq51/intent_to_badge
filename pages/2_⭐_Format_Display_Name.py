@@ -61,7 +61,8 @@ if st.session_state.auth_status == 'authed':
       badge_name_order = st.radio("Name Display Order You Prefer:",                            
                                  [display_option_1, display_option_2, display_option_3, display_option_4, display_option_5],
                                   captions = ["Common in Anglo Traditions", "For names with nobiliary particles (van der, de la, von, zu, etc.)", "For use with dual script like 전 JEON Joon-kook 정국 ", "For cultures that put FAMILY name first", "Common for French and Francophonic"],
-                                  index = st.session_state.display_format)
+                                  index = st.session_state.display_format
+                                 )
       submit_display_format = st.form_submit_button("Record My Name Display Preference")
 
       if submit_display_format:
