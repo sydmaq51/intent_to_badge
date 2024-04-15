@@ -68,20 +68,25 @@ if st.session_state.auth_status == 'authed':
 
       if submit_display_format:
             if badge_name_order == display_option_1:
-                display_format = 1
-                edited_display_name = display_option_1     
+                display_format = 1  
+                edited_display_name = display_option_1  
+                display_name_flag ='True'
             elif badge_name_order == display_option_2:
                 display_format = 2
-                edited_display_name = display_option_2    
+                edited_display_name = display_option_2
+                display_name_flag ='True' 
             elif badge_name_order == display_option_3:
                 display_format = 3
-                edited_display_name = display_option_3         
+                edited_display_name = display_option_3 
+                display_name_flag ='True' 
             elif badge_name_order == display_option_4:
                 display_format = 4
                 edited_display_name = display_option_4
+                display_name_flag ='True' 
             elif badge_name_order == display_option_5:
                 display_format = 5
                 edited_display_name = display_option_5
+                display_name_flag ='True'
             else: 
                 st.write('Choose a format for your name')
 
