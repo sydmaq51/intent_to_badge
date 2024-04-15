@@ -10,5 +10,7 @@ st.markdown('----------')
 
 st.markdown("**STEP 1:** Tell us your name and email. Edit as needed. This is done on the :pencil2: page.") 
 st.markdown("**STEP 2:** Generate a Display Name. This is NEW! It gives you full control over how your name is displayed on any badge that issued. This is done on the :star: page.") 
+st.markdown("Good news! You only have to do these two steps one time (unless your name or email changes) and it will apply to all future badges.")
+
 
          
