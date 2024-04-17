@@ -37,7 +37,9 @@ def get_user_profile_info():
 ####################### PAGE CONTENTS ###########
 st.subheader(":pencil2: Edit your Badge Name or Badge Email")
 st.write("Please use any characters or alphabet you would like. We want you to be able to display your name in your mother tongue.")
-if st.session_state.auth_status == 'authed':
+if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not-authed':
+   st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
+elif st.session_state.auth_status == 'authed':
   with st.form("badge_name_and_email"):
     st.write("Confirm Your Name for Any Badges That Might Be Issued")     
     edited_given = st.text_input("Given Name (Name used to greet you)", st.session_state.given_name)
@@ -50,6 +52,5 @@ if st.session_state.auth_status == 'authed':
       session.call('AMAZING.APP.UPDATE_BADGENAME_BADGEEMAIL_SP',st.session_state.uni_id, st.session_state.uni_uuid, edited_given, edited_middle, edited_family, edited_email)
       get_user_profile_info() 
       st.success('Badge Name & Email Updated', icon='🚀')
-else: # not authed
-   st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 
+   
