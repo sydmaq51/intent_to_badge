@@ -26,6 +26,17 @@ def validate_acct_id(acct_id):
       st.write("The ACCOUNT ID entered seems legit.")
       st.session_state.al_legit = True
 
+def validate_acme(acme_acct_loc):
+   if acme_acct_loc = 'ACME':
+      st.write('The name of your account is ACME, the ACCOUNT LOCATOR IS SOMETHING DIFFERENT. Please look again.')
+   elif len(acme_acct_loc) < 7 or len(acct_loc) > 8:
+      st.write("The ACME ACCOUNT LOCATOR does not seem accurate. Please try again.")
+      st.session_state.acme_legit = False
+   else: 
+      st.write("The ACCOUNT LOCATOR entered seems legit.")
+      st.session_state.aid_legit = True
+
+
 def get_workshop_info():   
    st.session_state.account_locator = ''
    st.session_state.account_identifier = ''
@@ -85,7 +96,7 @@ if st.session_state.auth_status == 'authed':
       edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled=st.session_state.subform_toggle)
       edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled=st.session_state.subform_toggle)
       if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == False:
-         edited_acme = st.text_input("Enter your Account Locator for ACME (Your LOCATOR is NOT ACME, that is the Account NAME!):")
+         edited_acme = st.text_input("ACME Account Locator:")
       
       submit_button = st.form_submit_button("Update Trial Account Info", disabled=st.session_state.subform_toggle)
 
@@ -93,10 +104,17 @@ if st.session_state.auth_status == 'authed':
          if st.session_state.workshop_choice != '<Choose a Workshop>' and st.session_state.workshop_choice != ':red[NO WORKSHOP CHOSEN]':
             validate_acct_id(edited_acct_id)
             validate_acct_loc(edited_acct_loc)
+            if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == False:
+               validate_acme(edited_acme)    
             if st.session_state.al_legit == True and st.session_state.aid_legit==True:
                st.session_state.edited_acct_id = edited_acct_id
                st.session_state.edited_acct_loc = edited_acct_loc
-               session.call('AMAZING.APP.ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
+               st.session_state.edited_acme = edited_acme
+               if st.session_state.workshop_choice == 'Badge 2: CMCW':
+                  session.call('AMAZING.APP.CMCW_ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, edited_acme)
+                  # PROCEDURE AMAZING.APP.CMCW_ADD_ACCT_INFO_SP
+               else:   
+                  session.call('AMAZING.APP.ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
                st.session_state.account_locator = ''
                st.session_state.account_identifier = ''
                st.success('Snowflake Trial Account Workshop Data Updated', icon='🚀')
