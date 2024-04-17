@@ -61,7 +61,7 @@ st.subheader(":link: Add or Edit Trial Account Rows for Workshops")
 # drop list with option button for editing
 if st.session_state.auth_status == 'authed':
    with st.form("select a workshop"):
-      st.session_state.subform_toggle = 'False'
+      st.session_state.subform_toggle = False   #subform is open - not disabled
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('<Choose a Workshop>','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , key=1)
@@ -73,13 +73,15 @@ if st.session_state.auth_status == 'authed':
             st.markdown(":red[Please choose a workskhop from the list before clicking the button.]")
             st.session_state.account_locator = ''
             st.session_state.account_identifier = ''
+            st.session_state.subform_toggle = True #subform is disabled
          else:   
             # st.write(st.session_state.workshop_choice)
+            st.session_state.subform_toggle= False #subform can be edited
             get_workshop_info()
    
    with st.form("edit_acct_info"):
       st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
-      edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier)
+      edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled=st.session_state.subform_toggle)
       edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator)
       submit_button = st.form_submit_button("Update Trial Account Info")
 
