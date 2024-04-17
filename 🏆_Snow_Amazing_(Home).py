@@ -60,6 +60,7 @@ def get_user_profile_info():
          
       if user_results_pd_df['DISPLAY_NAME'].iloc[0] is not None:
          st.session_state['display_name'] = user_results_pd_df['DISPLAY_NAME'].iloc[0]
+         st.session_state['display_name_flag'] = 'True'
       else:
          st.session_state['display_name'] = "Please go to the :star: page to generate a DISPLAY NAME for your badge(s)."
          st.session_state['display_name_flag'] = "False"
