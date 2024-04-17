@@ -9,15 +9,15 @@ if 'al_legit' not in st.session_state:
 
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
-      st.write("The ACCOUNT LOCATOR does not seem accurate. Please try again.")
+      st.markdown(":green[The ACCOUNT LOCATOR does not seem accurate. Please try again.]")
       st.session_state.aid_legit = False
    else: 
-      st.write("The ACCOUNT LOCATOR entered seems legit.")
+      st.markdown(":red[The ACCOUNT LOCATOR entered seems legit.]")
       st.session_state.aid_legit = True
       
 def validate_acct_id(acct_id):
    if len(acct_id) < 15 or len(acct_id) > 18:
-      st.write(":red[The ACCOUNT ID you entered does not seem accurate. Please try again.]")
+      st.markdown(":red[The ACCOUNT ID you entered does not seem accurate. Please try again.]")
       st.session_state.al_legit = False
    elif acct_id.find(".") < 0:
       st.markdown(":red[The ACCOUNT ID does not seem accurate. Please try again.]")
@@ -32,10 +32,10 @@ def validate_acme(acme_acct_loc):
    elif acme_acct_loc is null:
       st.session_state.acme_legit = True # bc they may not be to that step yet.
    elif len(acme_acct_loc) < 7 or len(acct_loc) > 8:
-      st.write(":red[The ACME ACCOUNT LOCATOR does not seem accurate. Please try again.]")
+      st.markdown(":red[The ACME ACCOUNT LOCATOR does not seem accurate. Please try again.]")
       st.session_state.acme_legit = False
    else: 
-      st.write(":green[The ACME ACCOUNT LOCATOR you entered seems legit.]")
+      st.markdown(":green[The ACME ACCOUNT LOCATOR you entered seems legit.]")
       st.session_state.acme_legit = True
 
 
