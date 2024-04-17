@@ -37,7 +37,7 @@ def get_user_profile_info():
 ####################### PAGE CONTENTS ###########
 st.subheader(":pencil2: Edit your Badge Name or Badge Email")
 st.write("Please use any characters or alphabet you would like. We want you to be able to display your name in your mother tongue.")
-if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not-authed':
+if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not_authed': 
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 elif st.session_state.auth_status == 'authed':
   with st.form("badge_name_and_email"):
