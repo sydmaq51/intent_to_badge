@@ -111,8 +111,8 @@ if st.session_state.auth_status == 'authed':
             if st.session_state.al_legit == True and st.session_state.aid_legit==True:
                st.session_state.edited_acct_id = edited_acct_id
                st.session_state.edited_acct_loc = edited_acct_loc
-               st.session_state.edited_acme = edited_acme
-               if st.session_state.workshop_choice == 'Badge 2: CMCW':
+               # st.session_state.edited_acme = edited_acme
+               if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.acme_legit == True:
                   session.call('AMAZING.APP.CMCW_ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, edited_acme)
                   # PROCEDURE AMAZING.APP.CMCW_ADD_ACCT_INFO_SP
                else:   
