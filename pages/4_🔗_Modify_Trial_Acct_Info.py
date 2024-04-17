@@ -61,6 +61,7 @@ st.subheader(":link: Add or Edit Trial Account Rows for Workshops")
 # drop list with option button for editing
 if st.session_state.auth_status == 'authed':
    with st.form("select a workshop"):
+      st.session_state.subform_toggle = 'False'
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('<Choose a Workshop>','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , key=1)
@@ -78,9 +79,9 @@ if st.session_state.auth_status == 'authed':
    
    with st.form("edit_acct_info"):
       st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
-      edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled = True)
-      edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled = True)
-      submit_button = st.form_submit_button("Update Trial Account Info", disabled = True)
+      edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled = st.session_state.subform_toggle)
+      edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled = st.session_state.subform_toggle)
+      submit_button = st.form_submit_button("Update Trial Account Info", disabled = st.session_state.subform_toggle)
 
       if submit_button: 
          if st.session_state.workshop_choice != '<Choose a Workshop>' and st.session_state.workshop_choice != ':red[NO WORKSHOP CHOSEN]':
