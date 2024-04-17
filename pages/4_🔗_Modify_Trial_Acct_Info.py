@@ -27,7 +27,7 @@ def validate_acct_id(acct_id):
       st.session_state.al_legit = True
 
 def validate_acme(acme_acct_loc):
-   if acme_acct_loc = 'ACME':
+   if acme_acct_loc == 'ACME':
       st.write('The name of your account is ACME, the ACCOUNT LOCATOR IS SOMETHING DIFFERENT. Please look again.')
    elif len(acme_acct_loc) < 7 or len(acct_loc) > 8:
       st.write("The ACME ACCOUNT LOCATOR does not seem accurate. Please try again.")
