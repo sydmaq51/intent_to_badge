@@ -82,17 +82,18 @@ if st.session_state.auth_status == 'authed':
       submit_button = st.form_submit_button("Update Trial Account Info")
 
       if submit_button: 
-         validate_acct_id(edited_acct_id)
-         validate_acct_loc(edited_acct_loc)
-         if st.session_state.al_legit == True and st.session_state.aid_legit==True:
-            st.session_state.edited_acct_id = edited_acct_id
-            st.session_state.edited_acct_loc = edited_acct_loc
-            session.call('AMAZING.APP.ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
-            st.session_state.account_locator = ''
-            st.session_state.account_identifier = ''
-            st.success('Snowflake Trial Account Workshop Data Updated', icon='🚀')
-            time.sleep(2)
-            st.switch_page("pages/3_⛓️_View_All_Trial_Acct_Info.py")
+         if st.session_state.workskhop_choice and st.session_state.workshop_choice <> '<Choose a Workshop>':
+            validate_acct_id(edited_acct_id)
+            validate_acct_loc(edited_acct_loc)
+            if st.session_state.al_legit == True and st.session_state.aid_legit==True:
+               st.session_state.edited_acct_id = edited_acct_id
+               st.session_state.edited_acct_loc = edited_acct_loc
+               session.call('AMAZING.APP.ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
+               st.session_state.account_locator = ''
+               st.session_state.account_identifier = ''
+               st.success('Snowflake Trial Account Workshop Data Updated', icon='🚀')
+               time.sleep(2)
+               st.switch_page("pages/3_⛓️_View_All_Trial_Acct_Info.py")
 
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
