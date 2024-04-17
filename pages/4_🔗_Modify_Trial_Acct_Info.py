@@ -12,7 +12,7 @@ def validate_acct_loc(acct_loc):
       st.markdown(":green[The ACCOUNT LOCATOR does not seem accurate. Please try again.]")
       st.session_state.aid_legit = False
    else: 
-      st.markdown(":white_check_mark: :red[The ACCOUNT LOCATOR entered seems legit.]")
+      st.markdown(":white_check_mark: :green[The ACCOUNT LOCATOR entered seems legit.]")
       st.session_state.aid_legit = True
       
 def validate_acct_id(acct_id):
@@ -23,7 +23,7 @@ def validate_acct_id(acct_id):
       st.markdown(":red[The ACCOUNT ID does not seem accurate. Please try again.]")
       st.session_state.al_legit = False
    else: 
-      st.markdown(":green[The ACCOUNT ID entered seems legit.]")
+      st.markdown(":white_check_mark: :green[The ACCOUNT ID entered seems legit.]")
       st.session_state.al_legit = True
 
 def validate_acme(acme_acct_loc):
@@ -35,7 +35,7 @@ def validate_acme(acme_acct_loc):
       st.markdown(":red[The ACME ACCOUNT LOCATOR does not seem accurate. Please try again.]")
       st.session_state.acme_legit = False
    else: 
-      st.markdown(":green[The ACME ACCOUNT LOCATOR you entered seems legit.]")
+      st.markdown(":white_check_mark: :green[The ACME ACCOUNT LOCATOR you entered seems legit.]")
       st.session_state.acme_legit = True
 
 
