@@ -83,7 +83,7 @@ if st.session_state.auth_status == 'authed':
       st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
       edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled=st.session_state.subform_toggle)
       edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled=st.session_state.subform_toggle)
-      if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record=False:
+      if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == False:
          edited_acme_acct_loc = st.text_input("Enter your Account Locator for ACME (It is NOT ACME!):")
       
       submit_button = st.form_submit_button("Update Trial Account Info", disabled=st.session_state.subform_toggle)
