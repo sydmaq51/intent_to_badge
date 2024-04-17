@@ -50,7 +50,8 @@ def get_workshop_info():
          st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]      
    elif for_edits_pd_df_rows == 0:
       st.write('You have not previously entered account information for this workshop. Please add the information below.')
-      st.session_state.new_record='True'
+      st.session_state.new_record= 'True'
+      st.session_state.record_type = 'MAIN'
    else:
       st.write("there should only be 1 or zero rows.") 
 
@@ -95,7 +96,7 @@ if st.session_state.auth_status == 'authed':
             if st.session_state.al_legit == True and st.session_state.aid_legit==True:
                st.session_state.edited_acct_id = edited_acct_id
                st.session_state.edited_acct_loc = edited_acct_loc
-               session.call('AMAZING.APP.ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
+               session.call('AMAZING.APP.ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, st.session_state.record_type)
                st.session_state.account_locator = ''
                st.session_state.account_identifier = ''
                st.success('Snowflake Trial Account Workshop Data Updated', icon='🚀')
