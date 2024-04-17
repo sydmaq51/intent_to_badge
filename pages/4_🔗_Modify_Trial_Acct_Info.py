@@ -28,11 +28,11 @@ def validate_acct_id(acct_id):
 
 def validate_acme(acme_acct_loc):
    if acme_acct_loc == 'ACME':
-      st.markdown(':x: :red[The ACCOUNT LOCATOR is not ACME, that is the Account Name. Please look again.]')
+      st.markdown(':x: :red[Your ACME ACCOUNT LOCATOR is not "ACME", that is the Account NAME. Please try again.]')
    elif acme_acct_loc is null:
       st.session_state.acme_legit = True # bc they may not be to that step yet.
    elif len(acme_acct_loc) < 7 or len(acct_loc) > 8:
-      st.markdown(":x: :red[The ACME ACCOUNT LOCATOR does not seem accurate. Please try again.]")
+      st.markdown(":x: :red[Your ACME ACCOUNT LOCATOR does not seem accurate. Please try again.]")
       st.session_state.acme_legit = False
    else: 
       st.markdown(":white_check_mark: :green[The ACME ACCOUNT LOCATOR you entered seems legit.]")
