@@ -17,24 +17,24 @@ def validate_acct_loc(acct_loc):
       
 def validate_acct_id(acct_id):
    if len(acct_id) < 15 or len(acct_id) > 18:
-      st.write("The ACCOUNT ID you entered does not seem accurate. Please try again.")
+      st.write(":red[The ACCOUNT ID you entered does not seem accurate. Please try again.]")
       st.session_state.al_legit = False
    elif acct_id.find(".") < 0:
-      st.write("The ACCOUNT ID does not seem accurate. Please try again.")
+      st.markdown(":red[The ACCOUNT ID does not seem accurate. Please try again.]")
       st.session_state.al_legit = False
    else: 
-      st.write("The ACCOUNT ID entered seems legit.")
+      st.markdown(":green[The ACCOUNT ID entered seems legit.]")
       st.session_state.al_legit = True
 
 def validate_acme(acme_acct_loc):
    if acme_acct_loc == 'ACME':
-      st.write('The name of your account is ACME, the ACCOUNT LOCATOR IS SOMETHING DIFFERENT. Please look again.')
+      st.markdown(':red[The ACCOUNT LOCATOR is not ACME, that is the Account Name. Please look again.]')
    elif len(acme_acct_loc) < 7 or len(acct_loc) > 8:
-      st.write("The ACME ACCOUNT LOCATOR does not seem accurate. Please try again.")
+      st.write(":red[The ACME ACCOUNT LOCATOR does not seem accurate. Please try again.]")
       st.session_state.acme_legit = False
    else: 
-      st.write("The ACCOUNT LOCATOR entered seems legit.")
-      st.session_state.aid_legit = True
+      st.write(":green[The ACME ACCOUNT LOCATOR you entered seems legit.]")
+      st.session_state.acme_legit = True
 
 
 def get_workshop_info():   
