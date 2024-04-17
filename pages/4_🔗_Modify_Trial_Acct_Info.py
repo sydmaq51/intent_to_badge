@@ -83,7 +83,7 @@ if st.session_state.auth_status == 'authed':
       submit_button = st.form_submit_button("Update Trial Account Info")
 
       if submit_button: 
-         if st.session_state.workshop_choice != '<Choose a Workshop>':
+         if st.session_state.workshop_choice != '<Choose a Workshop>' and st.session_state.workshop_choice != ':red[NO WORKSHOP CHOSEN]':
             validate_acct_id(edited_acct_id)
             validate_acct_loc(edited_acct_loc)
             if st.session_state.al_legit == True and st.session_state.aid_legit==True:
