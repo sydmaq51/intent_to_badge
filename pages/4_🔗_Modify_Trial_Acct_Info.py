@@ -62,12 +62,13 @@ st.subheader(":link: Add or Edit Trial Account Rows for Workshops")
 if st.session_state.auth_status == 'authed':
    with st.form("select a workshop"):
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
-                                                      , (':red[<Choose a Workshop>]','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
+                                                      , ('<Choose a Workshop>','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , key=1)
       load_or_create = st.form_submit_button("Load or Create Workshop Acct Info")
       
       if load_or_create:
          if st.session_state.workshop_choice == '<Choose a Workshop>':
+            st.sesstion_state.workshop_choice = ':red[NO WORKSHOP CHOSEN]'
             st.markdown(":red[Please choose a workskhop from the list before clicking the button.]")
             st.session_state.account_locator = ''
             st.session_state.account_identifier = ''
