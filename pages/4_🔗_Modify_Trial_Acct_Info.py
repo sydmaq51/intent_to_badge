@@ -43,14 +43,14 @@ def get_workshop_info():
 
    # if the data row doesnt exist just seed it with blanks
    if for_edits_pd_df_rows == 1:
-      st.session_state.new_record='False'
+      st.session_state.new_record= False
       if for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] is not None:
          st.session_state['account_locator'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] 
       if for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0] is not None:
          st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]      
    elif for_edits_pd_df_rows == 0:
       st.write('You have not previously entered account information for this workshop. Please add the information below.')
-      st.session_state.new_record= 'True'
+      st.session_state.new_record= True
       st.session_state.edited_acme = '' # if a new record can't be acme so acme is blank
    else:
       st.write("there should only be 1 or zero rows.") 
