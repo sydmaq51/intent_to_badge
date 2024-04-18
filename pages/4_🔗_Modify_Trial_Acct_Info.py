@@ -116,7 +116,7 @@ if st.session_state.auth_status == 'authed':
                st.session_state.edited_acct_loc = edited_acct_loc
                
                if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.acme_legit == True:
-                  session.call('AMAZING.APP.CMCW_ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, edited_acme)
+                  session.call('AMAZING.APP.CMCW_UPDATE_ACCT_INFO_SP', st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, edited_acme)
                else:   
                   session.call('AMAZING.APP.ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
                st.session_state.account_locator = ''
