@@ -45,8 +45,10 @@ def validate_acme(acme_acct_loc):
 def get_workshop_info():   
    st.session_state.account_locator = ''
    st.session_state.account_identifier = ''
+   st.session_state.acme_acct_loc = ''
    st.session_state.aid_legit = False
    st.session_state.al_legit = False
+   st.session_state.acme_legit = False
    st.session_state.new_record = 'False'
    for_edits_sql =  (f"select organization_id ||\'.\'|| account_name as ACCOUNT_IDENTIFIER, account_locator, acme_acct_loc " 
                    f"from AMAZING.APP.USER_ACCOUNT_INFO_BY_COURSE where type = 'MAIN' "
@@ -63,7 +65,9 @@ def get_workshop_info():
       if for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] is not None:
          st.session_state['account_locator'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] 
       if for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0] is not None:
-         st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]      
+         st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]  
+      if for_edits_pd_df['ACME_ACCT_LOC'].iloc[0] is not None:
+         st.session_state['acme_acct_loc'] = for_edits_pd_df['ACME_ACCT_LOC'].iloc[0]
    elif for_edits_pd_df_rows == 0:
       st.write('You have not previously entered account information for this workshop. Please add the information below.')
       st.session_state.new_record= 'True'
@@ -104,7 +108,7 @@ elif st.session_state.auth_status == 'authed':
       edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled=st.session_state.subform_toggle)
       edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled=st.session_state.subform_toggle)
       if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == 'False':
-         edited_acme = st.text_input("ACME Account Locator:",'')
+         edited_acme = st.text_input("ACME Account Locator:",st.session_state.acme_acct_loc)
          st.markdown(":gray[*ACME entry should be blank until after Lesson 4 when you set up the ACME account.*]")
       submit_button = st.form_submit_button("Update Trial Account Info", disabled=st.session_state.subform_toggle)
 
