@@ -56,14 +56,14 @@ def get_workshop_info():
 
    # if the data row doesnt exist just seed it with blanks
    if for_edits_pd_df_rows == 1:
-      st.session_state.new_record= False
+      st.session_state.new_record= 'False'
       if for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] is not None:
          st.session_state['account_locator'] = for_edits_pd_df['ACCOUNT_LOCATOR'].iloc[0] 
       if for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0] is not None:
          st.session_state['account_identifier'] = for_edits_pd_df['ACCOUNT_IDENTIFIER'].iloc[0]      
    elif for_edits_pd_df_rows == 0:
       st.write('You have not previously entered account information for this workshop. Please add the information below.')
-      st.session_state.new_record= True
+      st.session_state.new_record= 'True'
       st.session_state.edited_acme = '' # if a new record can't be acme so acme is blank
    else:
       st.write("there should only be 1 or zero rows.") 
@@ -97,7 +97,7 @@ if st.session_state.auth_status == 'authed':
       st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
       edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled=st.session_state.subform_toggle)
       edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled=st.session_state.subform_toggle)
-      if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == False:
+      if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == 'False':
          edited_acme = st.text_input("ACME Account Locator:")
       
       submit_button = st.form_submit_button("Update Trial Account Info", disabled=st.session_state.subform_toggle)
@@ -106,7 +106,7 @@ if st.session_state.auth_status == 'authed':
          if st.session_state.workshop_choice != '<Choose a Workshop>' and st.session_state.workshop_choice != ':red[NO WORKSHOP CHOSEN]':
             validate_acct_id(edited_acct_id)
             validate_acct_loc(edited_acct_loc)
-            if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == False:
+            if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == 'False':
                validate_acme(edited_acme)    
             if st.session_state.al_legit == True and st.session_state.aid_legit==True:
                st.session_state.edited_acct_id = edited_acct_id
