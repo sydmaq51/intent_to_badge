@@ -76,7 +76,10 @@ session = cnx.session()
 
 st.subheader(":link: Add or Edit Trial Account Rows for Workshops")
 # drop list with option button for editing
-if st.session_state.auth_status == 'authed':
+
+if  st.session_state.auth_status == 'not_authed' or 'auth_status' not in st.session_state: 
+   st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
+elif st.session_state.auth_status == 'authed':
    with st.form("select a workshop"):
       st.session_state.subform_toggle = False   #subform is open - not disabled
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
