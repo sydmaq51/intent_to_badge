@@ -27,7 +27,7 @@ def validate_acct_id(acct_id):
       st.session_state.al_legit = True
 
 def validate_acme(acme_acct_loc):
-   if isnull(acme_acct)_loc:
+   if isnull(acme_acct):
       st.write("ACME entry should be blank until after Lesson 4 when you set up the ACME account.")
       st.session_state.acme_legit = True
    elif acme_acct_loc == 'ACME':
