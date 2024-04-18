@@ -30,6 +30,9 @@ def validate_acme(acme_acct_loc):
    if acme_acct_loc is None:
       st.write("ACME entry should be blank until after Lesson 4 when you set up the ACME account.")
       st.session_state.acme_legit = True
+   elif acme_acct_loc =='':
+      st.write("ACME entry should be blank until after Lesson 4 when you set up the ACME account.")
+      st.session_state.acme_legit = True   
    elif acme_acct_loc == 'ACME':
       st.markdown(':x: :red[Your ACME ACCOUNT LOCATOR is not "ACME", that is the Account NAME. Please try again.]')
    elif len(acme_acct_loc) < 7 or len(acct_loc) > 8:
