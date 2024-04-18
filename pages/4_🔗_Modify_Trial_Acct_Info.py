@@ -77,7 +77,7 @@ session = cnx.session()
 st.subheader(":link: Add or Edit Trial Account Rows for Workshops")
 # drop list with option button for editing
 
-if  st.session_state.auth_status == 'not_authed' or 'auth_status' not in st.session_state: 
+if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not_authed': 
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 elif st.session_state.auth_status == 'authed':
    with st.form("select a workshop"):
