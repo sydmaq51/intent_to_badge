@@ -28,10 +28,9 @@ def validate_acct_id(acct_id):
 
 def validate_acme(acme_acct_loc):
    if acme_acct_loc is None:
-      st.write("ACME entry should be blank until after Lesson 4 when you set up the ACME account.")
+      
       st.session_state.acme_legit = True
    elif acme_acct_loc =='':
-      st.write("ACME entry should be blank until after Lesson 4 when you set up the ACME account.")
       st.session_state.acme_legit = True   
    elif acme_acct_loc == 'ACME':
       st.markdown(':x: :red[Your ACME ACCOUNT LOCATOR is not "ACME", that is the Account NAME. Please try again.]')
@@ -106,7 +105,7 @@ elif st.session_state.auth_status == 'authed':
       edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled=st.session_state.subform_toggle)
       if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == 'False':
          edited_acme = st.text_input("ACME Account Locator:",'')
-      
+         st.markdown("ACME entry should be blank until after Lesson 4 when you set up the ACME account.")
       submit_button = st.form_submit_button("Update Trial Account Info", disabled=st.session_state.subform_toggle)
 
       if submit_button: 
