@@ -1,4 +1,4 @@
-import streamlit as st
+markimport streamlit as st
 import pandas as pd
 import time
 
@@ -114,7 +114,7 @@ elif st.session_state.auth_status == 'authed':
             validate_acct_loc(edited_acct_loc)
             if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == 'False':
                validate_acme(edited_acme)  
-               st.markdwon("*ACME entry should be blank until after Lesson 4 when you set up the ACME account.*")
+               st.markdown("*ACME entry should be blank until after Lesson 4 when you set up the ACME account.*")
             if st.session_state.al_legit == True and st.session_state.aid_legit==True:
                st.session_state.edited_acct_id = edited_acct_id
                st.session_state.edited_acct_loc = edited_acct_loc
