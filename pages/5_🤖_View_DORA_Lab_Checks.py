@@ -50,7 +50,7 @@ elif st.session_state.auth_status == 'authed':
                                 ,"DORA_TIMESTAMP": "Submission Date/Time"
                                 ,"LEARNER_SENT": "Check Details"},    
                                 hide_index=True,
-                                height=1200
+                                height=900
                         )
          
 else: # not authed
