@@ -13,17 +13,17 @@ if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 
 elif st.session_state.auth_status == 'authed':
-        mw_choice = st.selectbox("Filter to show workshop records for:", ("DWW", "CMCW", "DABW", "DLKW", "DNGW" ))
-        passed_valid = st.radio(
+         mw_choice = st.selectbox("Filter to show workshop records for:", ("DWW", "CMCW", "DABW", "DLKW", "DNGW" ))
+         passed_valid = st.radio(
                             "Which tests do you want to see?",
                                 ["All Tests", "Only Passed", "Only Passed & Valid"],
                             index=0,
-        )
+         )
 
-        st.write("You have chosen to see:", passed_valid)
+         st.write("You have chosen to see:", passed_valid)
 
         
-        if mw_choice != 'CMCW':
+         if mw_choice != 'CMCW':
                 all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col('uni_id')== st.session_state.uni_id) & (col('badge_acro')== mw_choice))
                 all_my_tests_pd_df = all_my_tests_df.to_pandas()
                 amt_rows = all_my_tests_pd_df.shape[0]
@@ -50,7 +50,7 @@ elif st.session_state.auth_status == 'authed':
                                 hide_index=True,
                                 height=1200
                         )
-           elif mw_choice == 'CMCW':
+         elif mw_choice == 'CMCW':
                st.write('Sorry, this view is still under construction.')
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")                                        
