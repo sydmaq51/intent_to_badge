@@ -23,7 +23,7 @@ elif st.session_state.auth_status == 'authed':
         st.write("You have chosen to see:", passed_valid)
 
         
-        if mw_choice:
+        if mw_choice != 'CMCW':
                 all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col('uni_id')== st.session_state.uni_id) & (col('badge_acro')== mw_choice))
                 all_my_tests_pd_df = all_my_tests_df.to_pandas()
                 amt_rows = all_my_tests_pd_df.shape[0]
@@ -50,7 +50,8 @@ elif st.session_state.auth_status == 'authed':
                                 hide_index=True,
                                 height=1200
                         )
-
+         elif mw_choice == 'CMCW':
+               st.write('Sorry, this view is still under construction.')
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")                                        
 
