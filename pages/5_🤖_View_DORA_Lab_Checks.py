@@ -1,4 +1,4 @@
-import streamlit as st
+k baimport streamlit as st
 import pandas as pd
 from snowflake.snowpark.functions import col
 
@@ -51,7 +51,7 @@ elif st.session_state.auth_status == 'authed':
                                 height=1200
                         )
          elif mw_choice == 'CMCW':
-               st.write('Sorry, this view is still under construction.')
+               st.write('Sorry, this view is still under construction. Check back in 15 minutes.')
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")                                        
 
