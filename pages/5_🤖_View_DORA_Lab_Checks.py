@@ -1,4 +1,4 @@
-k baimport streamlit as st
+import streamlit as st
 import pandas as pd
 from snowflake.snowpark.functions import col
 
