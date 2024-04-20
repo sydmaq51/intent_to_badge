@@ -16,7 +16,7 @@ def get_user_workshop_acct_info():
    # show the entries
    if workshops_rows>=1:
        st.write("You have entered account info for the following badge workshops:")
-       st.dataframe(workshops_results)
+       st.dataframe(workshops_results, hide_index=True)
    else:
       st.write("You have not registered for any badges. Go to the next page to enter info about your Snowflake Trial Account.")
 
