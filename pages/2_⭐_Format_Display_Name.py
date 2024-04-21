@@ -18,8 +18,7 @@ def get_user_profile_info():
       # 1 row found means the UNI_ID is legit and can be used to look up other information
       # all user vars need to be checked to make sure they aren't empty before we set session vars
       if user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0] is not None:
-         st.session_state['given_name'] = user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0].replace("'","''")  
-         
+         st.session_state['given_name'] = user_results_pd_df['BADGE_GIVEN_NAME'].iloc[0]   
          st.session_state['middle_name'] = user_results_pd_df['BADGE_MIDDLE_NAME'].iloc[0] #this is on purpose
          
       if user_results_pd_df['BADGE_FAMILY_NAME'].iloc[0] is not None:    
@@ -107,7 +106,7 @@ elif st.session_state.auth_status == 'authed':
                 display_name_flag ='False'
                
             if display_name_flag =='True':
-               session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',st.session_state.uni_id, st.session_state.uni_uuid, int(display_format), edited_display_name)
+               session.call('AMAZING.APP.UPDATE_BADGE_DISPLAYNAME_SP',st.session_state.uni_id, st.session_state.uni_uuid, int(display_format), edited_display_name.replace("'","''"))
                get_user_profile_info()
                st.success('Badge Display Name Updated', icon='🚀')
                time.sleep(3)
