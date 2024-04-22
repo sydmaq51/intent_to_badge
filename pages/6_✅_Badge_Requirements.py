@@ -10,7 +10,7 @@ if "link_row_exists" not in st.session_state:
 
 def get_user_workshop_acct_info(current_interest):
    # get a table of all the entries this user has made
-   workshops_sql =  (f"select award_desc, ACCOUNT_IDENTIFIER, account_locator " 
+   workshop_sql =  (f"select award_desc, ACCOUNT_IDENTIFIER, account_locator " 
                      f"from AMAZING.APP.USER_LINK_ROWS where UNI_ID=trim('{st.session_state.uni_id}') " 
                      f"and UNI_UUID=trim('{st.session_state.uni_uuid}') and award_desc like '%" +current_interest+ "%' ") 
    workshop_df = session.sql(workshop_sql)
