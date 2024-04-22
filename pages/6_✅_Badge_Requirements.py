@@ -13,8 +13,8 @@ def get_user_workshop_acct_info(current_interest):
    workshops_sql =  (f"select award_desc, ACCOUNT_IDENTIFIER, account_locator " 
                      f"from AMAZING.APP.USER_LINK_ROWS where UNI_ID=trim('{st.session_state.uni_id}') " 
                      f"and UNI_UUID=trim('{st.session_state.uni_uuid}') and award_desc like '%" +current_interest+ "%' ") 
-   workshops_df = session.sql(workshops_sql)
-   workshops_results = workshops_df.to_pandas()
+   workshop_df = session.sql(workshop_sql)
+   workshop_results = workshop_df.to_pandas()
    row_exists = workshop_results.shape[0]
    if row_exists == 0:
       st.session_state.link_row_exists = False
