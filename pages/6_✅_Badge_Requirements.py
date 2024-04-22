@@ -25,8 +25,8 @@ def get_user_workshop_acct_info():
       emoji_3 = ":x:"
    else: 
       # user_results_pd_df['BADGE_FAMILY_NAME'].iloc[0]
-      st.write(workshop_results['ACCOUNT_IDENTIFIER'].iloc[1])
-      st.write(workshop_results['ACCOUNT_LOCATOR'].iloc[2])
+      st.write(workshop_results['ACCOUNT_IDENTIFIER'].iloc[0])
+      st.write(workshop_results['ACCOUNT_LOCATOR'].iloc[0])
       st.session_state.link_row_exists = True
       emoji_3 = ":white_check_mark:"
    st.markdown(emoji_3 + " **STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.")
