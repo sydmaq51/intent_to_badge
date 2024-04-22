@@ -16,14 +16,13 @@ st.markdown("**CURRENT STATUS:** Your name is listed as " + st.session_state.giv
 st.markdown('----------')
 
 st.write(st.session_state.display_name)
-if st.session_state.display_name is None:
+if st.session_state.display_name == "Please go to the ⭐ page to generate a DISPLAY NAME for your badge(s).":
   emoji_1 = ":x:"
 else:
   emoji_1 = ":white_check_mark:"
 st.markdown(":white_check_mark: **STEP 2:** Generate a Display Name. :green[This is NEW!]") 
 st.markdown("*The Display Name feature gives you full control over how your name is displayed on any badge that is issued. This is done on the :star: page.*") 
 st.markdown("")
-st.markdown("*Good news! You only have to do steps 1 and 2 the first time you use this app (unless your name or email changes). All future badges will have your correct information.*")
 st.markdown('------------')
 st.markdown(":white_check_mark: **STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.") 
 st.markdown("To create or edit the info on the :chains: page, use the :link: page. Without this LINK established for each badge, DORA does not know who is doing the work so she cannot issue the badge.")         
