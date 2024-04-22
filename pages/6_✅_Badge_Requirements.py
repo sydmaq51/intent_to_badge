@@ -23,10 +23,10 @@ st.write("This app is new as of April 9th, 2024. You may have used other methods
 st.markdown('----------')
 
 if st.session_state.given_name is None:
-  emoji_1 = ":x:"
-  label_1 =  "**CURRENT STATUS:** Your name is listed as :blue[" + st.session_state.given_name + " " + st.session_state.middle_name + " " + st.session_state.family_name +"]"
+  emoji_1 = ":x:"  
 else:
   emoji_1 = ":white_check_mark:"
+label_1 =  "**CURRENT STATUS:** Your name is listed as :blue[" + st.session_state.given_name + " " + st.session_state.middle_name + " " + st.session_state.family_name +"]"
 st.markdown(emoji_1 + " **STEP 1:** Tell us your name and email.") 
 st.markdown(label_1)
 st.markdown("*Edit as needed. This is done on the :pencil2:  page.*") 
