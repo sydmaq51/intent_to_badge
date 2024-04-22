@@ -14,7 +14,7 @@ if 'subform_choice_title' not in st.session_state:
 def reset_subform():
    st.session_state.subform_toggle = True #True is disabled
    st.session_state['account_locator'] = None
-   st.session_state.workshop_choice_title = ":red[<Choose a Workshop>]"
+   st.session_state.workshop_choice_title = ":gray[<Click Button to Load Workshop Record>]"
 
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
