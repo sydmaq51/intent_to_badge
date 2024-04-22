@@ -34,7 +34,7 @@ if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 
 elif st.session_state.auth_status == 'authed':
-   if st.session_state.link_row_exists == False:
+   if st.session_state.display_name is None:
      emoji_1 = ":x:"  
    else:
      emoji_1 = ":white_check_mark:"
