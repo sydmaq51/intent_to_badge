@@ -68,7 +68,7 @@ elif st.session_state.auth_status == 'authed':
      emoji_3 = ":x:"  
    else:
      emoji_3 = ":white_check_mark:"
-   st.markdown(":white_check_mark: **STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.") 
+   st.markdown(emoji_3 + " **STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.") 
    get_user_workshop_acct_info(current_interest)
    st.markdown("To create or edit the info on the :chains: page, use the :link: page. Without this LINK established for each badge, DORA does not know who is doing the work so she cannot issue the badge.")         
    st.markdown("Every badge entry on the :chains: page should have both Account Locator and Account ID field completed.")
