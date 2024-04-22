@@ -13,10 +13,8 @@ def get_user_workshop_acct_info(current_interest):
    workshops_df = session.sql(workshops_sql)
    workshops_results = workshops_df.to_pandas()
    st.write("Your Link row for " + current_interest+ ":")
-       st.dataframe(workshops_results, hide_index=True)
-   else:
-      st.markdown(":blue[You have not created links for any badges, yet. Go to the next page to enter info about your Snowflake Trial Account.]")
-
+   st.dataframe(workshops_results, hide_index=True)
+   
 
 st.subheader(":white_check_mark: Badge Requirements")
 st.write("Please check the requirements listed on this page. We get SO MANY inquiries that we should not get. This app should provide you with what you need to SELF-SERVICE any issues.")
