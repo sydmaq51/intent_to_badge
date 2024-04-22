@@ -17,7 +17,9 @@ def reset_subform():
    st.session_state.workshop_choice_title = ":grey[*Click Button to Load Workshop Record for Editing*]"
 
 def validate_acct_loc(acct_loc):
-   if len(acct_loc) < 7 or len(acct_loc) > 8:
+   if acct_loc is None:
+      st.markdown(":x: :red[This field cannot be blank]")
+   elif len(acct_loc) < 7 or len(acct_loc) > 8:
       st.markdown(":x: :green[The ACCOUNT LOCATOR does not seem accurate. Please try again.]")
       st.session_state.aid_legit = False
    else: 
@@ -25,7 +27,9 @@ def validate_acct_loc(acct_loc):
       st.session_state.aid_legit = True
       
 def validate_acct_id(acct_id):
-   if len(acct_id) < 15 or len(acct_id) > 18:
+   if acct_loc is None:
+      st.markdown(":x: :red[This field cannot be blank]")
+   elif len(acct_id) < 15 or len(acct_id) > 18:
       st.markdown(":x: :red[The ACCOUNT ID you entered does not seem accurate. Please try again.]")
       st.session_state.al_legit = False
    elif acct_id.find(".") < 0:
@@ -37,7 +41,6 @@ def validate_acct_id(acct_id):
 
 def validate_acme(acme_acct_loc):
    if acme_acct_loc is None:
-      
       st.session_state.acme_legit = True
    elif acme_acct_loc =='':
       st.session_state.acme_legit = True   
