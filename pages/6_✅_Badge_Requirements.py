@@ -5,6 +5,9 @@ import streamlit as st
 cnx=st.connection("snowflake")
 session = cnx.session()
 
+if "link_row_exists" not in st.session_state:
+   st.session_state['link_row_exists']=False
+
 def get_user_workshop_acct_info(current_interest):
    # get a table of all the entries this user has made
    workshops_sql =  (f"select award_desc, ACCOUNT_IDENTIFIER, account_locator " 
@@ -12,6 +15,11 @@ def get_user_workshop_acct_info(current_interest):
                      f"and UNI_UUID=trim('{st.session_state.uni_uuid}') and award_desc like '%" +current_interest+ "%' ") 
    workshops_df = session.sql(workshops_sql)
    workshops_results = workshops_df.to_pandas()
+   row_exists = workshop_results.shape[0]
+   if row_exists = 0:
+      st.session_state.link_row_exists = False
+   else: 
+      st.session_state.link_row_exists = True
    st.write("Your Link row for " + current_interest+ ":")
    st.dataframe(workshops_results, hide_index=True)
    
@@ -22,7 +30,7 @@ st.write("Please check the requirements listed on this page. We get SO MANY inqu
 st.write("This app is new as of April 9th, 2024. You may have used other methods to get badges in the past. The concepts are the same but the methods have changed.")
 st.markdown('----------')
 
-if st.session_state.given_name is None:
+if st.session_state.link_row_exists == False:
   emoji_1 = ":x:"  
 else:
   emoji_1 = ":white_check_mark:"
@@ -51,7 +59,10 @@ st.subheader("Repeat Steps 3 & 4 For EVERY NEW BADGE You Pursue")
 current_interest=st.selectbox("I want to check my status for:", ("DWW","CMCW", "DABW", "DLKW", "DNGW"))
 st.markdown('---------------------')
 
-
+if st.session_state.given_name is None:
+  emoji_3 = ":x:"  
+else:
+  emoji_3 = ":white_check_mark:"
 st.markdown(":white_check_mark: **STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.") 
 get_user_workshop_acct_info(current_interest)
 st.markdown("To create or edit the info on the :chains: page, use the :link: page. Without this LINK established for each badge, DORA does not know who is doing the work so she cannot issue the badge.")         
