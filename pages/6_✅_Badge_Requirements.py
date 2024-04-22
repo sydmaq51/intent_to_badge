@@ -36,7 +36,7 @@ st.markdown('----------')
 
 if "DISPLAY NAME" in st.session_state.display_name:
   emoji_2 = ":x:"
-  label_2 = ":red[YOU HAVE NOT GENERATED A DISPLAY NAME FOR YOUR BADGE]")
+  label_2 = ":red[YOU HAVE NOT GENERATED A DISPLAY NAME FOR YOUR BADGE]"
 else:
   emoji_2 = ":white_check_mark:"
   label_2 = "**YOU CHOSE DISPLAY NAME: ** :green[" + st.session_state.display_name + "]"
