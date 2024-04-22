@@ -23,13 +23,21 @@ def get_user_workshop_acct_info():
    if row_exists == 0:
       st.session_state.link_row_exists = False
       emoji_3 = ":x:"
-   else: 
+      label_3 = ":red[Please create a link row for this workshop that will tie your Snowflake Trial to your learning account.]"
+   elif: 
       # user_results_pd_df['BADGE_FAMILY_NAME'].iloc[0]
-      st.write(workshop_results['ACCOUNT_IDENTIFIER'].iloc[0])
-      st.write(workshop_results['ACCOUNT_LOCATOR'].iloc[0])
+      if workshop_results['ACCOUNT_IDENTIFIER'].iloc[0] is None:
+         emoji_3 = ":x:"
+         label_3 = (":red[Please enter the Account Identifier of your Snowflake Trial Account in the Link Row for this workshop.]")
+      else:
+         if workshop_results['ACCOUNT_LOCATOR'].iloc[0] is None:
+            emoji_3 = ":x:"
+            label_3 = (":red[Please enter the Account Locator of your Snowflake Trial Account in the Link Row for this workshop.]")
+   else: 
       st.session_state.link_row_exists = True
       emoji_3 = ":white_check_mark:"
    st.markdown(emoji_3 + " **STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.")
+   st.markdown(label_3)
    st.write("Your Link row for " + st.session_state.current_interest+ ":")
    st.dataframe(workshop_results, hide_index=True, use_container_width=True)
    
