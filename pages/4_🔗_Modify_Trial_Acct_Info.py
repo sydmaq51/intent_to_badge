@@ -85,7 +85,7 @@ def get_workshop_info():
 cnx=st.connection("snowflake")
 session = cnx.session()
 
-st.subheader(":link: Add or Edit Trial Account Rows for Workshops")
+st.subheader(":link: Add or Edit Trial Account LINK Rows for Workshops")
 # drop list with option button for editing
 
 if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not_authed': 
@@ -97,7 +97,7 @@ elif st.session_state.auth_status == 'authed':
    st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('<Choose a Workshop>','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , key=1 , on_change=reset_subform())
-   load_or_create = st.form_submit_button("Load or Create Workshop Acct Info")
+   load_or_create = st.button("Load or Create Workshop Acct Info")
       
    if load_or_create:
          if st.session_state.workshop_choice == '<Choose a Workshop>':
@@ -116,6 +116,7 @@ elif st.session_state.auth_status == 'authed':
       st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
       edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled=st.session_state.subform_toggle)
       edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled=st.session_state.subform_toggle)
+      
       if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == 'False':
          edited_acme = st.text_input("ACME Account Locator:",st.session_state.acme_acct_loc)
          st.markdown(":gray[*ACME entry should be blank until after Lesson 4 when you set up the ACME account.*]")
