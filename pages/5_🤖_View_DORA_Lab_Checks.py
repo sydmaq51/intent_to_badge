@@ -53,7 +53,7 @@ elif st.session_state.auth_status == 'authed':
                                 height=900
                         )
          
-                        st.write("NOTE: If no rows are loaded make sure you have created your LINK row correctly. The LINK row for each workshop must be ACCURATE and COMPLETE before DORA checks can be shown. If you have confirmed your LINK row is accurate, consider whether the app may have timed out. Try logging in again if some time has passed.")
+                        st.write("NOTE: If no rows are loaded make sure you have created your LINK row correctly. The LINK row for each workshop must be ACCURATE and COMPLETE before DORA checks can be shown. If you have confirmed your LINK row is accurate, consider whether the app may have timed out. Try logging in again if some time has passed (more than 15 minutes idle) since you first logged in.")
 
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")                                        
