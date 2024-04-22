@@ -88,7 +88,7 @@ elif st.session_state.auth_status == 'authed':
       st.session_state.subform_toggle = False   #subform is open - not disabled
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('<Choose a Workshop>','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
-                                                      , key=1, on_change=st.session_state.subform_toggle=False)
+                                                      , key=1)
       load_or_create = st.form_submit_button("Load or Create Workshop Acct Info")
       
       if load_or_create:
