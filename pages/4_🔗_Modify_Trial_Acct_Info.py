@@ -9,7 +9,7 @@ if 'al_legit' not in st.session_state:
 if 'subform_toggle' not in st.session_state:
    st.session_state.subform_toggle = True #True is disabled
 if 'subform_choice_title' not in st.session_state:
-   st.session_state.subform_choice_title = ':red[Please Load or Create a Record to Edit by clicking button above]"
+   st.session_state.subform_choice_title = ":red[Please Load or Create a Record to Edit by clicking button above]"
 
 def reset_subform():
    st.session_state.subform_toggle = True #True is disabled
