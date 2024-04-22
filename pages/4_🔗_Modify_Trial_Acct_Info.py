@@ -122,7 +122,7 @@ elif st.session_state.auth_status == 'authed':
       st.markdown("**" + st.session_state.workshop_choice_title + "**")
       edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled=st.session_state.subform_toggle)
       edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled=st.session_state.subform_toggle)
-
+      edited_acme = None
       # this section just controls whether the ACME field is showing
       # this is for people who come back to edit their entry prior to creating the ACME account and might
       # be confused by the extra field -- we have to show it, but we also let them know it's okay not to fill it in
