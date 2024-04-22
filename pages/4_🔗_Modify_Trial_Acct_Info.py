@@ -27,7 +27,7 @@ def validate_acct_loc(acct_loc):
       st.session_state.aid_legit = True
       
 def validate_acct_id(acct_id):
-   if acct_loc == None:
+   if acct_id == None:
       st.markdown(":x: :red[This field cannot be blank]")
    elif len(acct_id) < 15 or len(acct_id) > 18:
       st.markdown(":x: :red[The ACCOUNT ID you entered does not seem accurate. Please try again.]")
