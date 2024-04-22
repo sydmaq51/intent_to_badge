@@ -68,7 +68,7 @@ elif st.session_state.auth_status == 'authed':
    st.markdown('------------')
 
    st.subheader("Repeat Steps 3 & 4 For EVERY NEW BADGE You Pursue")
-   with form("current_workshop_interest"):
+   with st.form("current_workshop_interest"):
       st.session_state.current_interest=st.selectbox("I want to check my status for:"
                                  , ("DWW","CMCW", "DABW", "DLKW", "DNGW")
                                  )
