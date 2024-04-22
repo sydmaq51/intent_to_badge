@@ -53,7 +53,7 @@ elif st.session_state.auth_status == 'authed':
                                 height=900
                         )
          
-   st.write("NOTE: If no rows are loaded make sure you have created your LINK row correctly. If your LINK row looks right, make sure the app has not timed out. Try logging in again if some time has passed.")
+                        st.write("NOTE: If no rows are loaded make sure you have created your LINK row correctly. If your LINK row looks right, make sure the app has not timed out. Try logging in again if some time has passed.")
 
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")                                        
