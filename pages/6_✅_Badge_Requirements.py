@@ -62,7 +62,8 @@ elif st.session_state.auth_status == 'authed':
 
    st.subheader("Repeat Steps 3 & 4 For EVERY NEW BADGE You Pursue")
    current_interest=st.selectbox("I want to check my status for:"
-                                 , ("DWW","CMCW", "DABW", "DLKW", "DNGW"))
+                                 , ("DWW","CMCW", "DABW", "DLKW", "DNGW")
+                                , on_change= st.rerun())
    st.markdown('---------------------')
 
    if st.session_state.link_row_exists == False:
