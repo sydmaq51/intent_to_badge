@@ -25,11 +25,19 @@ st.markdown(emoji_2 + " **STEP 2:** Generate a Display Name. :green[This is NEW!
 st.markdown("*The Display Name feature gives you full control over how your name is displayed on any badge that is issued. This is done on the :star: page.*") 
 st.markdown("")
 st.markdown('------------')
+
+st.subheader("Repeat Steps 3 & 4 For EVERY NEW BADGE You Pursue")
+current_interest=st.selectbox("I want to check my status for:", ("DWW","CMCW", "DABW", "DLKW", "DNGW"))
+st.markdown('---------------------')
+
+
 st.markdown(":white_check_mark: **STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.") 
 st.markdown("To create or edit the info on the :chains: page, use the :link: page. Without this LINK established for each badge, DORA does not know who is doing the work so she cannot issue the badge.")         
 st.markdown("Every badge entry on the :chains: page should have both Account Locator and Account ID field completed.")
 st.markdown("")
 st.markdown("*Some older entries where you have already received your badge may have empty values. That is okay for older badges but for NEW badges, ALL columns MUST be complete.*")
+
+
 
 st.markdown('---------------------')
 st.markdown(":white_check_mark: **STEP 4:** For EVERY BADGE you hope to recieve, you need to complete every DORA check and see both PASSED and VALID for that test.") 
