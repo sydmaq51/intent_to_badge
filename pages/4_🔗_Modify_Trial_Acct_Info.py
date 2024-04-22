@@ -8,11 +8,13 @@ if 'al_legit' not in st.session_state:
    st.session_state.al_legit = False
 if 'subform_toggle' not in st.session_state:
    st.session_state.subform_toggle = True #True is disabled
+if 'subform_choice_title' not in st.session_state:
+   st.session_state.subform_choice_title = ':red[Please Load or Create a Record to Edit by clicking button above]"
 
 def reset_subform():
    st.session_state.subform_toggle = True #True is disabled
    st.session_state['account_locator'] = None
-   st.session_state.workshop_choice = ":red[<Choose a Workshop>"
+   st.session_state.workshop_choice_title = ":red[<Choose a Workshop>"
 
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
@@ -108,12 +110,13 @@ elif st.session_state.auth_status == 'authed':
             st.session_state.subform_toggle = True #subform is disabled
          else:   
             # st.write(st.session_state.workshop_choice)
+            st.session_state.workshop_choice_title = "Edit Trial Account Info for " + st.session_state.workshop_choice
             st.session_state.subform_toggle= False #subform can be edited
             get_workshop_info()
    st.markdown("----------")
    # SUBFORM
    with st.form("edit_acct_info"):
-      st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
+      st.markdown("**" + st.session_state.workshop_choice_title + "**")
       edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled=st.session_state.subform_toggle)
       edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled=st.session_state.subform_toggle)
       
