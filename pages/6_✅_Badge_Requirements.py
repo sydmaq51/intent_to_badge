@@ -1,5 +1,6 @@
 
 import streamlit as st
+import time
 
 
 cnx=st.connection("snowflake")
@@ -9,7 +10,7 @@ if "current_interest" not in st.session_state:
    st.session_state['current_interest']='DWW'
 
 def update_3_and_4():
-   get_user_workshop_acct_info()
+   time.wait(2)
 
 def get_user_workshop_acct_info():
    # get a table of all the entries this user has made
