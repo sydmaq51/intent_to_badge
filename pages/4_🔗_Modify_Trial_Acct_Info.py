@@ -109,8 +109,7 @@ elif st.session_state.auth_status == 'authed':
             st.session_state.account_identifier = ''
             st.session_state.subform_toggle = True #subform is disabled
          else:   
-            # st.write(st.session_state.workshop_choice)
-            st.session_state.workshop_choice_title = "Edit Trial Account Info for " + st.session_state.workshop_choice
+            st.session_state.workshop_choice_title = "Edit Trial Account Info for :blue[" + st.session_state.workshop_choice + "]"
             st.session_state.subform_toggle= False #subform can be edited
             get_workshop_info()
    st.markdown("----------")
