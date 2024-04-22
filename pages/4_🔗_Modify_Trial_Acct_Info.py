@@ -6,6 +6,11 @@ if 'aid_legit' not in st.session_state:
    st.session_state.aid_legit = False
 if 'al_legit' not in st.session_state:
    st.session_state.al_legit = False
+if 'subform_toggle' not in st.session_state:
+   st.session_state.subform_toggle = False
+
+def disable_subform():
+   st.session_state.subform_toggle = False
 
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
@@ -88,7 +93,7 @@ elif st.session_state.auth_status == 'authed':
       st.session_state.subform_toggle = False   #subform is open - not disabled
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('<Choose a Workshop>','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
-                                                      , key=1)
+                                                      , key=1 , on_change=disable_subform())
       load_or_create = st.form_submit_button("Load or Create Workshop Acct Info")
       
       if load_or_create:
