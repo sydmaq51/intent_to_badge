@@ -13,7 +13,7 @@ if 'subform_choice_title' not in st.session_state:
 
 def reset_subform():
    st.session_state.subform_toggle = True #True is disabled
-   st.session_state['account_locator'] = None
+   # st.session_state['account_locator'] = None
    st.session_state.workshop_choice_title = ":grey[*Click Button to Load Workshop Record for Editing*]"
 
 def validate_acct_loc(acct_loc):
