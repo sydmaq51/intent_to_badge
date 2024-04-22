@@ -8,6 +8,7 @@ st.write("This app is new as of April 9th, 2024. You may have used other methods
 st.markdown('----------')
 st.markdown(":white_check_mark: **STEP 1:** Tell us your name and email.") 
 st.markdown("*Edit as needed. This is done on the :pencil2:  page.*") 
+st.markdown("**CURRENT STATUS:** Your name is listed as " + st.session_state.given_name + " " + st.session_state.middle_name")
 st.markdown('----------')
 st.markdown(":white_check_mark: **STEP 2:** Generate a Display Name. :green[This is NEW!]") 
 st.markdown("*The Display Name feature gives you full control over how your name is displayed on any badge that is issued. This is done on the :star: page.*") 
