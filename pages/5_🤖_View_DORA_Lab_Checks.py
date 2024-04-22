@@ -8,7 +8,7 @@ session = cnx.session()
 st.subheader(":robot_face: View All DORA Tests You Have Run in the Last 90 Days")
 st.write("Click on column headings to sort. Use the drop list to filter the checks to just a single workshop.")
 st.write("You can search the table of results by rolling your cursor over the header and choosing the magnifying lens symbol.")
-st.write("NOTE: If no rows are loaded make sure you have created your LINK row correctly. If your LINK row looks right, make sure the app has not timed out. Try logging in again if some time has passed.")
+
 if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not_authed': 
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 
@@ -53,6 +53,8 @@ elif st.session_state.auth_status == 'authed':
                                 height=900
                         )
          
+   st.write("NOTE: If no rows are loaded make sure you have created your LINK row correctly. If your LINK row looks right, make sure the app has not timed out. Try logging in again if some time has passed.")
+
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")                                        
 
