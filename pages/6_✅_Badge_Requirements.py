@@ -53,7 +53,7 @@ elif st.session_state.auth_status == 'authed':
      emoji_2 = ":white_check_mark:"
      label_2 = "**YOU CHOSE DISPLAY NAME: ** :green[" + st.session_state.display_name + "]"
   
-   st.markdown(emoji_2 + " **STEP 2:** Generate a Display Name. :green[This is NEW!]") 
+   st.markdown(emoji_2 + " **STEP 2:** Generate a Display Name. :green[(This is NEW!)]") 
    st.markdown(label_2)
    st.markdown("*The Display Name feature gives you full control over how your name is displayed on any badge that is issued. This is done on the :star: page.*") 
    st.markdown("")
