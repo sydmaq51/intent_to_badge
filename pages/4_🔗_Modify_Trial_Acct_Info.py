@@ -12,6 +12,7 @@ if 'subform_toggle' not in st.session_state:
 def reset_subform():
    st.session_state.subform_toggle = True #True is disabled
    st.session_state['account_locator'] = None
+   st.session_state.workshop_choice = ":red[<Choose a Workshop>"
 
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
@@ -90,6 +91,7 @@ st.subheader(":link: Add or Edit Trial Account Rows for Workshops")
 if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not_authed': 
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 elif st.session_state.auth_status == 'authed':
+# TOP FORM 
    with st.form("select a workshop"):
       st.session_state.subform_toggle = False   #subform is open - not disabled
       st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
@@ -108,7 +110,8 @@ elif st.session_state.auth_status == 'authed':
             # st.write(st.session_state.workshop_choice)
             st.session_state.subform_toggle= False #subform can be edited
             get_workshop_info()
-   
+
+   # SUBFORM
    with st.form("edit_acct_info"):
       st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
       edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled=st.session_state.subform_toggle)
