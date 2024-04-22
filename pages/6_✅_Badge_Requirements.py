@@ -97,7 +97,7 @@ elif st.session_state.auth_status == 'authed':
    get_user_workshop_acct_info()
    
    st.markdown(":white_check_mark: **STEP 4:** For EVERY BADGE you hope to recieve, you need to complete every DORA check and see both PASSED and VALID for that test.") 
-   st.write("THIS SECTION IS STILL UNDER CONSTRUCTION. WE WILL HAVE INTERACTIVE FEEDBACK BY APRIL 23, 2024. Please check back.")
+   st.write(":blue[THIS SECTION IS STILL UNDER CONSTRUCTION. WE WILL HAVE INTERACTIVE FEEDBACK BY APRIL 23, 2024. PLEASE CHECK BACK.]")
    st.markdown("*View your tests on the :robot_face: page. Filter down to PASSED and VALID. These are the only tests DORA considers.*")
    st.markdown("*A test that is PASSED but NOT VALID is a test that was changed by you before sending it to DORA.*")
    st.markdown("*You can FAIL any or all tests many times as long as you pass each test at least one time (and it is valid). When each test has at least one VALID/PASSED entry you can receive your badge.*")
