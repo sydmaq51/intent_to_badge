@@ -93,4 +93,6 @@ elif st.session_state.auth_status == 'authed':
    st.markdown(":x: Did mis-spell your email? It happens so often. If you did this, you'll have to file a ticket to get it corrected.")
    st.markdown(":x: Have you checked ACHIEVE.SNOWFLAKE.COM and/or your Email Inbox to see if your badge was already issued? The :sports_medal: page has some lag time between when your badge is issued and when it shows up in that list.")
 
+else:
+   st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 
