@@ -64,7 +64,7 @@ elif st.session_state.auth_status == 'authed':
    current_interest=st.selectbox("I want to check my status for:", ("DWW","CMCW", "DABW", "DLKW", "DNGW"))
    st.markdown('---------------------')
 
-   if st.session_state.given_name is None:
+   if st.session_state.link_row_exists == False:
      emoji_3 = ":x:"  
    else:
      emoji_3 = ":white_check_mark:"
