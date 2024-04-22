@@ -18,8 +18,11 @@ def get_user_workshop_acct_info(current_interest):
    row_exists = workshop_results.shape[0]
    if row_exists == 0:
       st.session_state.link_row_exists = False
+      emoji_3 = ":x:"
    else: 
       st.session_state.link_row_exists = True
+      emoji_3 = ":white_check_mark:"
+   st.markdown(emoji_3 + " **STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.")
    st.write("Your Link row for " + current_interest+ ":")
    st.dataframe(workshop_results, hide_index=True, use_container_width=True)
    
@@ -72,7 +75,7 @@ elif st.session_state.auth_status == 'authed':
      emoji_3 = ":white_check_mark:"
    else:
       emoji_3 = ":question_mark:"
-   st.markdown(emoji_3 + " **STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.") 
+    
    get_user_workshop_acct_info(current_interest)
    st.markdown("To create or edit the info on the :chains: page, use the :link: page. Without this LINK established for each badge, DORA does not know who is doing the work so she cannot issue the badge.")         
    st.markdown("Every badge entry on the :chains: page should have both Account Locator and Account ID field completed.")
