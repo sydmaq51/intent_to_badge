@@ -92,14 +92,14 @@ if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
 elif st.session_state.auth_status == 'authed':
 # TOP FORM 
-   with st.form("select a workshop"):
-      st.session_state.subform_toggle = False   #subform is open - not disabled
-      st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
+   #with st.form("select a workshop"):
+   st.session_state.subform_toggle = False   #subform is open - not disabled
+   st.session_state.workshop_choice =  st.selectbox("Choose Workshop/Badge want to enter/edit account info for:"
                                                       , ('<Choose a Workshop>','Badge 1: DWW', 'Badge 2: CMCW', 'Badge 3: DABW', 'Badge 4: DLKW', 'Badge 5: DNGW')
                                                       , key=1 , on_change=reset_subform())
-      load_or_create = st.form_submit_button("Load or Create Workshop Acct Info")
+   load_or_create = st.form_submit_button("Load or Create Workshop Acct Info")
       
-      if load_or_create:
+   if load_or_create:
          if st.session_state.workshop_choice == '<Choose a Workshop>':
             st.session_state.workshop_choice = ':red[NO WORKSHOP CHOSEN]'
             st.markdown(":red[Please choose a workskhop from the list before clicking the button.]")
@@ -110,7 +110,7 @@ elif st.session_state.auth_status == 'authed':
             # st.write(st.session_state.workshop_choice)
             st.session_state.subform_toggle= False #subform can be edited
             get_workshop_info()
-
+   st.markdown("----------")
    # SUBFORM
    with st.form("edit_acct_info"):
       st.markdown("**Edit Trial Account Info for " + st.session_state.workshop_choice + "**")
