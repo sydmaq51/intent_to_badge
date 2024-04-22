@@ -5,8 +5,8 @@ import streamlit as st
 cnx=st.connection("snowflake")
 session = cnx.session()
 
-# if "link_row_exists" not in st.session_state:
-   # st.session_state['link_row_exists']=False
+if "current_interest" not in st.session_state:
+   st.session_state['current_interest']='DWW'
 
 def get_user_workshop_acct_info():
    # get a table of all the entries this user has made
