@@ -131,7 +131,7 @@ elif st.session_state.auth_status == 'authed':
          if st.session_state.workshop_choice != '<Choose a Workshop>' and st.session_state.workshop_choice != ':red[NO WORKSHOP CHOSEN]':
             validate_acct_id(edited_acct_id)
             validate_acct_loc(edited_acct_loc)
-            if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == 'False':
+            if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == 'True':
                validate_acme(edited_acme)  
                st.markdown("*ACME entry should be blank until after Lesson 4 when you set up the ACME account.*")
             if st.session_state.al_legit == True and st.session_state.aid_legit==True:
