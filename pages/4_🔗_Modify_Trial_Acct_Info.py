@@ -116,12 +116,16 @@ elif st.session_state.auth_status == 'authed':
             st.session_state.subform_toggle= False #subform can be edited
             get_workshop_info()
    st.markdown("----------")
+   
    # SUBFORM
    with st.form("edit_acct_info"):
       st.markdown("**" + st.session_state.workshop_choice_title + "**")
       edited_acct_id = st.text_input("Enter Your Account Identifier as found in your Snowflake Account:", st.session_state.account_identifier, disabled=st.session_state.subform_toggle)
       edited_acct_loc = st.text_input("Enter Your Account Locator as found in your Snowflake Account:", st.session_state.account_locator, disabled=st.session_state.subform_toggle)
-      
+
+      # this section just controls whether the ACME field is showing
+      # this is for people who come back to edit their entry prior to creating the ACME account and might
+      # be confused by the extra field -- we have to show it, but we also let them know it's okay not to fill it in
       if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == 'False':
          edited_acme = st.text_input("ACME Account Locator:",st.session_state.acme_acct_loc)
          st.markdown(":gray[*ACME entry should be blank until after Lesson 4 when you set up the ACME account.*]")
@@ -131,14 +135,20 @@ elif st.session_state.auth_status == 'authed':
          if st.session_state.workshop_choice != '<Choose a Workshop>' and st.session_state.workshop_choice != ':red[NO WORKSHOP CHOSEN]':
             validate_acct_id(edited_acct_id)
             validate_acct_loc(edited_acct_loc)
+            
+            # this section controls what happens after submission - it is designed to accept a blank acme field 
+            # or validate it if its not blank (and reassure that being blank is okay
             if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.new_record == 'False':
                validate_acme(edited_acme)  
                st.markdown("*ACME entry should be blank until after Lesson 4 when you set up the ACME account.*")
+
+            # this section is after both the main entries have been validated 
             if st.session_state.al_legit == True and st.session_state.aid_legit==True:
                st.session_state.edited_acct_id = edited_acct_id
                st.session_state.edited_acct_loc = edited_acct_loc
+               validate_acme(edited_acme)
                
-               if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.acme_legit == True and len(edited_acme) > 4:
+               if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.acme_legit == True:
                   session.call('AMAZING.APP.CMCW_UPDATE_ACCT_INFO_SP', st.session_state.uni_id, st.session_state.uni_uuid, edited_acct_id, edited_acct_loc, edited_acme)
                else:   
                   session.call('AMAZING.APP.ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
