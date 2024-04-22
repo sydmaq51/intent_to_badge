@@ -7,10 +7,10 @@ if 'aid_legit' not in st.session_state:
 if 'al_legit' not in st.session_state:
    st.session_state.al_legit = False
 if 'subform_toggle' not in st.session_state:
-   st.session_state.subform_toggle = False
+   st.session_state.subform_toggle = True #True is disabled
 
 def disable_subform():
-   st.session_state.subform_toggle = False
+   st.session_state.subform_toggle = True #True is disabled
 
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
