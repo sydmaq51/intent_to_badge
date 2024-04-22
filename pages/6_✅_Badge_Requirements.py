@@ -61,13 +61,16 @@ elif st.session_state.auth_status == 'authed':
    st.markdown('------------')
 
    st.subheader("Repeat Steps 3 & 4 For EVERY NEW BADGE You Pursue")
-   current_interest=st.selectbox("I want to check my status for:", ("DWW","CMCW", "DABW", "DLKW", "DNGW"))
+   current_interest=st.selectbox("I want to check my status for:"
+                                 , ("DWW","CMCW", "DABW", "DLKW", "DNGW"))
    st.markdown('---------------------')
 
    if st.session_state.link_row_exists == False:
      emoji_3 = ":x:"  
-   else:
+   elif st.session_state.link_row_exists == True:
      emoji_3 = ":white_check_mark:"
+   else:
+      emoji_3 = ":question_mark:"
    st.markdown(emoji_3 + " **STEP 3:** For EVERY BADGE you hope to receive, you will need to see a row on the :chains: page.") 
    get_user_workshop_acct_info(current_interest)
    st.markdown("To create or edit the info on the :chains: page, use the :link: page. Without this LINK established for each badge, DORA does not know who is doing the work so she cannot issue the badge.")         
