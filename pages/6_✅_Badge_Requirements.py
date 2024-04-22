@@ -16,7 +16,7 @@ def get_user_workshop_acct_info(current_interest):
    workshops_df = session.sql(workshops_sql)
    workshops_results = workshops_df.to_pandas()
    row_exists = workshop_results.shape[0]
-   if row_exists = 0:
+   if row_exists == 0:
       st.session_state.link_row_exists = False
    else: 
       st.session_state.link_row_exists = True
