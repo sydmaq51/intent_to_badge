@@ -21,7 +21,7 @@ def get_user_workshop_acct_info(current_interest):
    else: 
       st.session_state.link_row_exists = True
    st.write("Your Link row for " + current_interest+ ":")
-   st.dataframe(workshop_results, hide_index=True)
+   st.dataframe(workshop_results, hide_index=True, use_container_width=True)
    
 
 st.subheader(":white_check_mark: Badge Requirements")
