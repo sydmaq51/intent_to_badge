@@ -17,7 +17,7 @@ st.markdown("**CURRENT STATUS:** Your name is listed as " + st.session_state.giv
 st.markdown('----------')
 
 st.write(st.session_state.display_name)
-if st.session_state.display_name.contains("DISPLAY NAME"):
+if "DISPLAY NAME" in st.session_state.display_name:
   emoji_2 = ":x:"
 else:
   emoji_2 = ":white_check_mark:"
