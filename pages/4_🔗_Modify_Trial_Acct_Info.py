@@ -9,8 +9,9 @@ if 'al_legit' not in st.session_state:
 if 'subform_toggle' not in st.session_state:
    st.session_state.subform_toggle = True #True is disabled
 
-def disable_subform():
+def reset_subform():
    st.session_state.subform_toggle = True #True is disabled
+   st.session_state['account_locator'] = None
 
 def validate_acct_loc(acct_loc):
    if len(acct_loc) < 7 or len(acct_loc) > 8:
