@@ -39,7 +39,7 @@ elif st.session_state.auth_status == 'authed':
    else:
      emoji_1 = ":white_check_mark:"
    label_1 =  "**CURRENT STATUS:** Your name is listed as :blue[" + st.session_state.given_name + " " + st.session_state.middle_name + " " + st.session_state.family_name +"]"
-   st.markdown(emoji_1 + " **STEP 1:** Tell us your name and email.") 
+   st.markdown(emoji_1 + " **STEP 1:** Tell us your name and email. We start with your Community profile information but you can make changes.") 
    st.markdown(label_1)
    st.markdown("*Edit as needed. This is done on the :pencil2:  page.*") 
 
