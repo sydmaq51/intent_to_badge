@@ -25,9 +25,9 @@ def get_user_workshop_acct_info(current_interest):
    
 
 st.subheader(":white_check_mark: Badge Requirements")
-st.write("Please check the requirements listed on this page. We get SO MANY inquiries that we should not get. This app should provide you with what you need to SELF-SERVICE any issues.")
+st.write("Please check the requirements listed on this page to make sure you have completed every needed step. We get SO MANY inquiries that we should not get. This app should provide you with what you need to SELF-SERVICE any issues.")
 
-st.write("This app is new as of April 9th, 2024. You may have used other methods to get badges in the past. The concepts are the same but the methods have changed.")
+st.write("*This app is new as of April 9th, 2024. You may have used other methods to get badges in the past. The concepts are the same but the methods have changed.*")
 st.markdown('----------')
 
 if 'auth_status' not in st.session_state or st.session_state.auth_status == 'not_authed': 
