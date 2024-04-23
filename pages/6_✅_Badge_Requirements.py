@@ -48,7 +48,7 @@ def get_user_workshop_acct_info():
    st.markdown('---------------------')
 
    missing_sql =  (f"select step, max(account_locator) as note from "
-                  f"(select badge_acro, step, '***MISSING TEST - SKIPPED, FAILED, OR INVALIDATED***' as account_locator "
+                  f"(select step, '***MISSING TEST - SKIPPED, FAILED, OR INVALIDATED***' as account_locator "
                   f"from amazing.app.step_master_list where badge_acro = '{st.session_state.current_interest}' "
                   f"union select step, account_locator from amazing.app.all_my_tests "
                   f"where badge_acro = '{st.session_state.current_interest}' and uni_id = '{st.session_state.uni_id}' "
