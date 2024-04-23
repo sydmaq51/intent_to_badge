@@ -47,10 +47,10 @@ def get_user_workshop_acct_info():
    st.markdown("*Some older entries where you have already received your badge may have empty values. That is okay for older badges but for NEW badges, ALL columns MUST be complete.*")
    st.markdown('---------------------')
 
-   missing_sql =  (f"select badge_acro, step, max(account_locator) as note from "
+   missing_sql =  (f"select step, max(account_locator) as note from "
                   f"(select badge_acro, step, '***MISSING TEST - SKIPPED, FAILED, OR INVALIDATED***' as account_locator "
                   f"from amazing.app.step_master_list where badge_acro = '{st.session_state.current_interest}' "
-                  f"union select badge_acro, step, account_locator from amazing.app.all_my_tests "
+                  f"union select step, account_locator from amazing.app.all_my_tests "
                   f"where badge_acro = '{st.session_state.current_interest}' and uni_id = '{st.session_state.uni_id}' "
                   f"and valid = True and passed = True) sub group by badge_acro, step "
                   f"having max(account_locator) like '%***%' order by step; "
@@ -68,7 +68,7 @@ def get_user_workshop_acct_info():
    st.markdown(emoji_4 + " **STEP 4:** For EVERY BADGE you hope to recieve, you need to complete every DORA check and see both PASSED and VALID for that test.") 
    st.write(label_4)
    if missing_rows > 0:
-      st.dataframe(missing_results)
+      st.dataframe(missing_results, hide_index=True)
 
 
 
