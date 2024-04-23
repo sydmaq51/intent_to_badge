@@ -131,7 +131,7 @@ elif st.session_state.auth_status == 'authed':
 
    st.markdown('---------------------')
 
-   st.subheader(":question: Troubleshooting")
+   st.subheader("More Troubleshooting Tips")
    st.markdown("Did you make one of these common mistakes?")
    st.markdown(":no_entry_sign:  Have you received this badge already? We check the UNI ID before issueing. We don't issue twice to the same UNI ID.")
    st.markdown(":no_entry_sign:  Has someone using the same Snowflake Trial Account already received the badge? We don't issue twice on the same Trial Account.")
