@@ -68,7 +68,7 @@ def get_user_workshop_acct_info():
    st.markdown(emoji_4 + " **STEP 4:** For EVERY BADGE you hope to recieve, you need to complete every DORA check and see both PASSED and VALID for that test.") 
    st.write(label_4)
    if missing_rows > 0:
-      st.dataframe(missing_results, hide_index=True)
+      st.dataframe(missing_results, hide_index=True, use_full_width=True)
 
 
 
