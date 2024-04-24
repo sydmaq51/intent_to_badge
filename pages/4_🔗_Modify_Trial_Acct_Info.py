@@ -150,14 +150,16 @@ elif st.session_state.auth_status == 'authed':
                
                if st.session_state.workshop_choice == 'Badge 2: CMCW' and st.session_state.acme_legit == True and st.session_state.new_record == 'False':
                   session.call('AMAZING.APP.CMCW_UPDATE_ACCT_INFO_SP', st.session_state.uni_id, st.session_state.uni_uuid, edited_acct_id, edited_acct_loc, edited_acme)
+                  st.success('Snowflake Trial Account Workshop Data Updated', icon='🚀')
                else:   
                   session.call('AMAZING.APP.ADD_ACCT_INFO_SP', st.session_state.new_record, st.session_state.uni_id, st.session_state.uni_uuid, st.session_state.workshop_choice, edited_acct_id, edited_acct_loc, 'MAIN')
-             
-               st.success('Snowflake Trial Account Workshop Data Updated', icon='🚀')
-               time.sleep(2)
-               st.session_state.account_locator = ''
-               st.session_state.account_identifier = ''
-               st.switch_page("pages/3_⛓️_View_All_Trial_Acct_Info.py")
+                  st.success('Snowflake Trial Account Workshop Data Updated', icon='🚀')
+               
+               if st.session_state.al_legit == True and st.session_state.aid_legit==True and st.session_state.acme_legit==True:
+                  time.sleep(2)
+                  st.session_state.account_locator = ''
+                  st.session_state.account_identifier = ''
+                  st.switch_page("pages/3_⛓️_View_All_Trial_Acct_Info.py")
 
 else: # not authed
    st.markdown(":red[Please sign in using your UNI_ID and UUID in the sidebar of the homepage.]")
