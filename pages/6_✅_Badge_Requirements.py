@@ -60,7 +60,7 @@ def get_user_workshop_acct_info():
    missing_rows = missing_results.shape[0]
    if missing_rows > 6:
       emoji_4 = ":x:"
-      label_4 = ":red[You are missing more than 6 DORA checks. There are 2 common issues that cause you to be missing so many tests. #1 - You entered the WRONG ACCOUNT LOCATOR in your Link row. #2- Your tests are older than 90 days.]"
+      label_4 = ":red[You are missing more than 6 DORA checks. There are some common issues that cause you to be missing so many tests. #1 - You entered the WRONG ACCOUNT LOCATOR in your Link row. #2- Your tests are older than 90 days. #3 - You haven't run any DORA checks or you are running them incorrectly (leaving off the green grader line).]"
    elif missing_rows > 0 and missing_rows <7:
       emoji_4 = ":x:"
       label_4 = ":red[Please correct any issues with tests that are causing them to fail or be marked INVALID.]"
