@@ -34,7 +34,7 @@ elif st.session_state.auth_status == 'authed':
    get_user_workshop_acct_info()
    #st.dataframe(workshops_results, hide_index=True)
    st.markdown('----------')
-   st.markdown(":red[**Both Acct ID and Acct Locator are required before any NEW badges can be issued. This information can be added on the next page.*]")
+   st.markdown(":red[**BOTH Acct ID and Acct Locator are required before any NEW badges can be issued. This information can be added on the :link: page.*]")
    st.markdown(":gray[**If you are pursuing a badge (for example DLKW) and there is not a row above for that badge (for example a row for DLKW) your badge cannot be issued.*]")
    st.markdown(":gray[**New badges require BOTH values, while past badges may NOT have required both values.*]")
 else:
