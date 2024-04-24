@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 st.set_page_config(
-   page_title="Snow-Amazing Badge Mgmt",
+   page_title="You're Snow Amazing! Badge Mgmt",
    page_icon= "🏆"
 )
 
@@ -79,7 +79,7 @@ with st.sidebar:
    # st.session_state
 
 # Page Header
-st.header('Are You Snow-Amazing?')
+st.header('You're Snow Amazing!')
 st.write('Welcome to the learn.snowflake.com Workshop Badge Management app!')
 st.write('Using this app you can manage your badge name and email and you can view your results.')
 
