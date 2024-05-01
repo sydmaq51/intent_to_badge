@@ -26,7 +26,11 @@ elif st.session_state.auth_status == 'authed':
          if mw_choice:
                 if mw_choice == 'CMCW':
                      st.markdown(':blue[Remember that for tests CMCW10, CMCW11 and CMCW14, you must run them from your ACME Account, not your Main Account.]')
-                all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col('uni_id')== st.session_state.uni_id) & (col('badge_acro')== mw_choice))
+                all_my_tests_df =  (f"select * "
+                                    f"from AMAZING.APP.ALL_MY_TESTS where UNI_ID=trim('{st.session_state.uni_id}') "
+                                    f"and badge_acro=trim('{mw_choice}')")
+            
+                # all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col('uni_id')== st.session_state.uni_id) & (col('badge_acro')== mw_choice))
                 all_my_tests_pd_df = all_my_tests_df.to_pandas()
                 amt_rows = all_my_tests_pd_df.shape[0]
                 st.dataframe(all_my_tests_pd_df)
