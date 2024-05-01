@@ -6,6 +6,8 @@ st.set_page_config(
    page_icon= "🏆"
 )
 
+st.image('https://learn.snowflake.com/asset-v1:snowflake+X+X+type@asset+block@snow_amazing_banner.png')
+
 cnx=st.connection("snowflake")
 session = cnx.session()
 if 'auth_status' not in st.session_state:
