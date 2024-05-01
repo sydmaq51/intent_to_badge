@@ -33,7 +33,7 @@ elif st.session_state.auth_status == 'authed':
                 # all_my_tests_df = session.table("AMAZING.APP.ALL_MY_TESTS").filter((col('uni_id')== st.session_state.uni_id) & (col('badge_acro')== mw_choice))
                 all_my_tests_pd_df = all_my_tests_df.to_pandas()
                 amt_rows = all_my_tests_pd_df.shape[0]
-                st.dataframe(all_my_tests_pd_df)
+                # st.dataframe(all_my_tests_pd_df)
                         
                 if amt_rows > 0:    
                         if passed_valid == "All Tests":
