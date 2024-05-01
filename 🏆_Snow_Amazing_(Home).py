@@ -69,7 +69,7 @@ def get_user_profile_info():
       st.session_state['display_format'] = str(user_results_pd_df['DISPLAY_FORMAT'].iloc[0])
    
    else: # no rows returned
-        st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Please double-check the info you entered, check the FAQs page, and try again. Also, make sure you didn't include any stray spaces or returns in the entry boxes.]") 
+        st.markdown(":red[There is no record of the UNI_ID/UUID combination you entered. Make sure you didn't include any stray spaces or returns in the entry boxes. Also try refreshing the browser if the tab has been open for more than 15 minutes.]") 
 
 with st.sidebar:
    st.sidebar.header("User")
