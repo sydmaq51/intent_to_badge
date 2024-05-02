@@ -10,7 +10,10 @@ st.write("Badges issued in the last 20 minutes may not yet be visible.")
 st.write("If you do not see your badge here, please check the :white_check_mark: Badge Requirements page. It can help you troubleshoot.")
         
 if st.session_state.auth_status == 'authed':
-                all_my_badges_df = session.table("AMAZING.APP.BADGE_LOOKUP").filter(col("uni_id")== st.session_state.uni_id)
+                # all_my_badges_df = session.table("AMAZING.APP.BADGE_LOOKUP").filter(col("uni_id")== st.session_state.uni_id)
+                all_my_badges_sql =  (f"select * "
+                                    f"from AMAZING.APP.BADGE_LOOKUP where UNI_ID=trim('{st.session_state.uni_id}'))
+                all_my_badges_df = session.sql(all_my_badges_sql)        
                 all_my_badges_pd_df = all_my_badges_df.to_pandas()
                 # st.dataframe(all_my_badges_pd_df)
                 badge_rows = all_my_badges_pd_df.shape[0]
